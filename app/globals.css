@@ -4,6 +4,6 @@
 
 @layer base {
   .container {
-    @apply max-w-screen-xl px-5 mx-auto;
+    @apply max-w-screen-lg px-5 mx-auto;
   }
 }
