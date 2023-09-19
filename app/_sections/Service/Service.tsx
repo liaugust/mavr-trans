@@ -9,8 +9,8 @@ const Service: FC = () => {
           <div className="text-4xl font-light mb-16">Lorem ipsum</div>
         </div>
 
-        <div className="flex justify-between space-x-10">
-          <div className="w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.20)]">
+        <div className="md:flex md:flex-wrap md:justify-evenly lg:justify-between">
+          <div className="md:w-1/2 lg:w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
             <div className="object-cover">
               <img src="" alt="" />
             </div>
@@ -23,8 +23,7 @@ const Service: FC = () => {
               </div>
             </div>
           </div>
-
-          <div className="w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.20)]">
+          <div className="md:w-1/2 lg:w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
             <div className="object-cover">
               <img src="" alt="" />
             </div>
@@ -37,8 +36,7 @@ const Service: FC = () => {
               </div>
             </div>
           </div>
-
-          <div className="w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.20)]">
+          <div className="md:w-1/2 lg:w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
             <div className="object-cover">
               <img src="" alt="" />
             </div>
