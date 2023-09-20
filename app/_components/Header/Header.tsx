@@ -3,7 +3,7 @@ import { Button, ButtonVariant } from "../Button";
 
 const Header: FC = () => {
   return (
-    <div className="bg-white shadow-[0px_4px_14px_0px_rgba(0,0,0,0.2)]">
+    <header className="bg-white shadow-[0px_4px_14px_0px_rgba(0,0,0,0.2)]">
       <div className="container">
         <nav className="flex justify-between items-center py-4">
           <a className="" href="#">
@@ -33,7 +33,7 @@ const Header: FC = () => {
           </div>
         </nav>
       </div>
-    </div>
+    </header>
   );
 };
 
