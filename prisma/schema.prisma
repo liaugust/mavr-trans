@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Car {
+  id Int @id @unique @default(autoincrement()) @db.Integer()
+
+  name  String @db.VarChar(50)
+  image String @db.VarChar(255)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  rides Ride[]
+
+  @@map("cars")
+}
+
+model Option {
+  id Int @id @unique @default(autoincrement()) @db.Integer()
+
+  name String @db.VarChar(50)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  rides Ride[]
+
+  @@map("options")
+}
+
+model Ride {
+  id Int @id @unique @default(autoincrement()) @db.Integer()
+
+  car   Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+  carId Int @map("car_id") @db.Integer()
+
+  passengers Int @db.Integer()
+
+  options Option[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("rides")
+}

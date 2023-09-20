@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:13.3
+    restart: unless-stopped
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mavr
+      POSTGRES_USER: mavr
+      POSTGRES_PASSWORD: mavr
+    ports:
+      - 5432:5432
+volumes:
+  postgres-volume:
+networks:
+  mavr:
+    external: true

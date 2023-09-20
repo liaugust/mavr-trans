@@ -29,7 +29,7 @@ const buttonVariantStyle: Record<ButtonVariant, string> = {
   filled_primary: `border-primary bg-primary text-white`,
 
   outlined: `border-gray bg-white text-gray`,
-  outlined_primary: `border-primary bg-white text-primary`,
+  outlined_primary: `border-primary text-primary`,
 };
 
 const Button: FC<ButtonProps> = memo(
