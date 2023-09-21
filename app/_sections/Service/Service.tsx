@@ -11,8 +11,12 @@ const Service: FC = () => {
 
         <div className="md:flex md:flex-wrap md:justify-evenly lg:justify-between">
           <div className="md:w-1/2 lg:w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
-            <div className="object-cover">
-              <img src="" alt="" />
+            <div className="object-cover h-72">
+              <img
+                src="/service.jpg"
+                className="w-full h-full object-cover"
+                alt=""
+              />
             </div>
 
             <div className="px-5 py-6 text-center">
@@ -24,8 +28,12 @@ const Service: FC = () => {
             </div>
           </div>
           <div className="md:w-1/2 lg:w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
-            <div className="object-cover">
-              <img src="" alt="" />
+            <div className="object-cover h-72">
+              <img
+                src="/service.jpg"
+                className="w-full h-full object-cover"
+                alt=""
+              />
             </div>
 
             <div className="px-5 py-6 text-center">
@@ -37,8 +45,12 @@ const Service: FC = () => {
             </div>
           </div>
           <div className="md:w-1/2 lg:w-1/3 shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
-            <div className="object-cover">
-              <img src="" alt="" />
+            <div className="object-cover h-72">
+              <img
+                src="/service.jpg"
+                className="w-full h-full object-cover"
+                alt=""
+              />
             </div>
 
             <div className="px-5 py-6 text-center">

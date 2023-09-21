@@ -3,7 +3,7 @@ import { ChooseCar } from "./_sections/ChooseCar";
 import { Faq } from "./_sections/Faq";
 import { Service } from "./_sections/Service";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <About />
