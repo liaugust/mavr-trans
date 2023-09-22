@@ -13,20 +13,23 @@ const ChooseCar: FC = () => {
   }, []);
 
   return (
-    <div className="pt-16 pb-20 bg-[#E2E2E2]">
+    <section className="pt-20 lg:pt-[60px] lg:pb-20 lg:bg-[#E2E2E2]">
       <div className="container">
-        <div className="text-center mb-16">
-          <div className="text-5xl mb-3 font-bold">Choose your way</div>
-          <div className="text-4xl font-light">Lorem ipsum</div>
-        </div>
+        <h2 className="text-center mb-10 lg:mb-[60px]">
+          <span className="block text-[26px] lg:text-[46px] mb-[10px] lg:mb-3 font-bold">
+            Choose your way
+          </span>
+          <span className="block text-base lg:text-4xl font-light ">
+            Lorem ipsum
+          </span>
+        </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 md:gap-7 lg:gap-10">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 md:gap-7 lg:gap-10">
           {cars.map((car) => (
-            <div
+            <li
               key={car.id}
               className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white"
             >
-              {/* <div className="h-44 w-72 m-auto mb-5"> */}
               <div className="h-44 w-full m-auto mb-5">
                 <img
                   className="w-full h-full object-contain"
@@ -35,14 +38,15 @@ const ChooseCar: FC = () => {
                 />
               </div>
 
-              <div className="text-sm text-bold mb-8 uppercase">{car.name}</div>
+              <h3 className="text-[21px] text-bold mb-[30px] uppercase">
+                {car.name}
+              </h3>
               <Button variant={ButtonVariant.Filled} className="w-full">
                 Book now
               </Button>
-            </div>
+            </li>
           ))}
-          <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
-            {/* <div className="h-44 w-72 m-auto mb-5"> */}
+          <li className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
             <div className="h-44 w-full m-auto mb-5">
               <img
                 className="w-full h-full object-contain"
@@ -51,15 +55,14 @@ const ChooseCar: FC = () => {
               />
             </div>
 
-            <div className="text-sm text-bold mb-8 uppercase">
+            <h3 className="text-[21px] text-bold mb-[30px] uppercase">
               Mercedes-benz sprinter
-            </div>
+            </h3>
             <Button variant={ButtonVariant.Filled} className="w-full">
               Book now
             </Button>
-          </div>
-          <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
-            {/* <div className="h-44 w-72 m-auto mb-5"> */}
+          </li>
+          <li className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
             <div className="h-44 w-full m-auto mb-5">
               <img
                 className="w-full h-full object-contain"
@@ -68,15 +71,14 @@ const ChooseCar: FC = () => {
               />
             </div>
 
-            <div className="text-sm text-bold mb-8 uppercase">
+            <h3 className="text-[21px] text-bold mb-[30px] uppercase">
               Mercedes-benz sprinter
-            </div>
+            </h3>
             <Button variant={ButtonVariant.Filled} className="w-full">
               Book now
             </Button>
-          </div>
-          <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
-            {/* <div className="h-44 w-72 m-auto mb-5"> */}
+          </li>
+          <li className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
             <div className="h-44 w-full m-auto mb-5">
               <img
                 className="w-full h-full object-contain"
@@ -85,15 +87,14 @@ const ChooseCar: FC = () => {
               />
             </div>
 
-            <div className="text-sm text-bold mb-8 uppercase">
+            <h3 className="text-[21px] text-bold mb-[30px] uppercase">
               Mercedes-benz sprinter
-            </div>
+            </h3>
             <Button variant={ButtonVariant.Filled} className="w-full">
               Book now
             </Button>
-          </div>
-          <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
-            {/* <div className="h-44 w-72 m-auto mb-5"> */}
+          </li>
+          <li className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
             <div className="h-44 w-full m-auto mb-5">
               <img
                 className="w-full h-full object-contain"
@@ -102,15 +103,14 @@ const ChooseCar: FC = () => {
               />
             </div>
 
-            <div className="text-sm text-bold mb-8 uppercase">
+            <h3 className="text-[21px] text-bold mb-[30px] uppercase">
               Mercedes-benz sprinter
-            </div>
+            </h3>
             <Button variant={ButtonVariant.Filled} className="w-full">
               Book now
             </Button>
-          </div>
-          <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
-            {/* <div className="h-44 w-72 m-auto mb-5"> */}
+          </li>
+          <li className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
             <div className="h-44 w-full m-auto mb-5">
               <img
                 className="w-full h-full object-contain"
@@ -119,15 +119,14 @@ const ChooseCar: FC = () => {
               />
             </div>
 
-            <div className="text-sm text-bold mb-8 uppercase">
+            <h3 className="text-[21px] text-bold mb-[30px] uppercase">
               Mercedes-benz sprinter
-            </div>
+            </h3>
             <Button variant={ButtonVariant.Filled} className="w-full">
               Book now
             </Button>
-          </div>
-          <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
-            {/* <div className="h-44 w-72 m-auto mb-5"> */}
+          </li>
+          <li className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] px-5 pt-5 pb-10 text-center bg-white">
             <div className="h-44 w-full m-auto mb-5">
               <img
                 className="w-full h-full object-contain"
@@ -136,16 +135,16 @@ const ChooseCar: FC = () => {
               />
             </div>
 
-            <div className="text-sm text-bold mb-8 uppercase">
+            <h3 className="text-[21px] text-bold mb-[30px] uppercase">
               Mercedes-benz sprinter
-            </div>
+            </h3>
             <Button variant={ButtonVariant.Filled} className="w-full">
               Book now
             </Button>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

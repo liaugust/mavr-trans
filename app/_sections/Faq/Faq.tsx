@@ -16,20 +16,26 @@ const questions = [
 
 const Faq: FC = () => {
   return (
-    <div className="pt-16 pb-24">
+    <section className="pt-20 lg:pt-16 pb-24">
       <div className="container">
-        <div className="text-center mb-16">
-          <div className="text-5xl mb-3 font-bold">FAQ</div>
-          <div className="text-4xl font-light">Lorem ipsum</div>
-        </div>
+        <h2 className="text-center mb-10 lg:mb-[60px]">
+          <span className="block text-[26px] lg:text-[46px] mb-[10px] lg:mb-3 font-bold">
+            FAQ
+          </span>
+          <span className="block text-base lg:text-4xl font-light">
+            Lorem ipsum
+          </span>
+        </h2>
 
-        <div className="grid grid-flow-row gap-y-5">
+        <ul className="grid grid-flow-row gap-y-5">
           {questions.map((q, i) => (
-            <Accordion question={q.question} answer={q.answer} key={i} />
+            <li key={i}>
+              <Accordion question={q.question} answer={q.answer} />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true,
   content: ["./app/**/*.tsx", "./components/**/*.tsx"],
   theme: {
     extend: {
@@ -9,8 +10,10 @@ module.exports = {
         dark: "#4E3D09",
         gray: "#716F6B",
       },
+      fontFamily: {
+        sans: ["var(--font-gotham)"],
+      },
     },
   },
-  // plugins: [require("@tailwindcss/typography")],
   plugins: [],
 };

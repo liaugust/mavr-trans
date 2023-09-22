@@ -19,7 +19,7 @@ const Header: FC = () => {
           </a>
 
           <div
-            className={`transition-all w-full flex flex-col lg:flex-row justify-between items-center absolute lg:static left-0 h-full bg-[#121420] lg:bg-white py-20 lg:py-0 ${
+            className={`z-40 transition-all w-full flex flex-col lg:flex-row justify-between items-center absolute lg:static left-0 h-full bg-[#121420] lg:bg-white py-20 lg:py-0 ${
               open ? "top-0" : "-top-full"
             }`}
           >
@@ -47,7 +47,7 @@ const Header: FC = () => {
           </div>
 
           <button
-            className="lg:hidden relative z-10"
+            className="lg:hidden relative z-50"
             onClick={() => setOpen((prev) => !prev)}
           >
             <svg

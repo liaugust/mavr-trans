@@ -1,10 +1,30 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "./_components/Header";
 import { Footer } from "./_components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const gotham = localFont({
+  src: [
+    {
+      path: "../public/font/GothamPro.ttf",
+      weight: "400",
+    },
+    {
+      path: "../public/font/GothamPro-Bold.ttf",
+      weight: "700",
+    },
+    {
+      path: "../public/font/GothamPro-Medium.ttf",
+      weight: "500",
+    },
+    {
+      path: "../public/font/GothamPro-Light.ttf",
+      weight: "300",
+    },
+  ],
+  variable: "--font-gotham",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-neutral-100`}>
+      <body className={`${gotham.variable} font-sans bg-neutral-100`}>
         <Header />
         <main>{children}</main>
         <Footer />
