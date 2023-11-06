@@ -11,23 +11,23 @@ import { StoreProvider } from "./store-provider";
 const gotham = localFont({
   src: [
     {
-      path: "../public/font/gothampro.ttf",
+      path: "_fonts/gothampro.ttf",
       weight: "400",
     },
     {
-      path: "../public/font/gothampro_black.ttf",
+      path: "_fonts/gothampro_black.ttf",
       weight: "900",
     },
     {
-      path: "../public/font/gothampro_bold.ttf",
+      path: "_fonts/gothampro_bold.ttf",
       weight: "700",
     },
     {
-      path: "../public/font/gothampro_medium.ttf",
+      path: "_fonts/gothampro_medium.ttf",
       weight: "500",
     },
     {
-      path: "../public/font/gothampro_light.ttf",
+      path: "_fonts/gothampro_light.ttf",
       weight: "300",
     },
   ],
