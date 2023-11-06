@@ -42,7 +42,13 @@ export const ChooseYourTrip: FC = () => {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    await createRide(values)
+    console.log('values', values)
+    // await createRide({
+    //   // arrivalDate:
+    //   carId: values.car,
+    //   categoryId: values.category,
+    //   distance: values.distance,
+    // });
   });
 
   const values = watch();

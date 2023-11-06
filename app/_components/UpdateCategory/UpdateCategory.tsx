@@ -2,8 +2,6 @@
 
 import { FC, useCallback, useState } from "react";
 import { ManageCategory } from "../ManageCategory";
-import { ManageCategorySchema } from "../ManageCategory/constants";
-import { updateCategory } from "@/app/_state/categories";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
 interface UpdateCategoryProps {

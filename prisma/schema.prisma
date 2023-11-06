@@ -96,7 +96,7 @@ model Car {
 model Category {
   id Int @id @unique @default(autoincrement()) @db.Integer()
 
-  image       String? @db.Text()
+  image       String  @db.Text()
   name        String  @db.VarChar(255)
   active      Boolean @default(true) @db.Boolean()
   coefficient Float   @default(1)

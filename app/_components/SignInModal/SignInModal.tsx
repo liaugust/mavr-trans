@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { AuthModal, AuthModalProps } from "../AuthModal";
-import { FormField } from "../FormField";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema, signInSchema } from "./sign-in-schema";
 import { signIn } from "next-auth/react";
+import { Input } from "../Input";
 
 interface SignInModalProps
   extends Omit<
@@ -64,7 +64,7 @@ export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             type="email"
             value={value}
             inputMode="email"
@@ -83,7 +83,7 @@ export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             inputMode="text"
             type="password"

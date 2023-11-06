@@ -14,7 +14,6 @@ import {
   ToggleOptionActiveUseCase,
   UpdateOptionUseCaseInput,
 } from "../_storage";
-import { $options } from "./store";
 
 export const getOptions = async (): Promise<OptionEntity[]> => {
   const getOptionsUseCase = new GetOptionsUseCase();

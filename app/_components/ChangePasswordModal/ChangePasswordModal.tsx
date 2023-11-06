@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { AuthModal, AuthModalProps } from "../AuthModal";
-import { FormField } from "../FormField";
+import { Input } from "../Input";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -53,7 +53,7 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             type="password"
             value={value}
             onBlur={onBlur}
@@ -71,7 +71,7 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             type="password"
             onBlur={onBlur}
@@ -89,7 +89,7 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             type="password"
             onBlur={onBlur}

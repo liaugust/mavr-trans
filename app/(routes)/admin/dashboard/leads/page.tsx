@@ -1,1 +1,3 @@
-export default function LeadsPage() {}
+export default function LeadsPage() {
+  return <div>DS</div>;
+}

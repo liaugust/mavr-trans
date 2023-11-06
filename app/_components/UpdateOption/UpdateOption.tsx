@@ -1,9 +1,11 @@
 "use client";
 
 import { FC, useCallback, useState } from "react";
-import { ManageOptionSchema } from "../ManageOption/constants";
 import { updateOption } from "@/app/_state/options";
-import { OptionEntity } from "@/app/_storage/modules/options/core";
+import {
+  OptionEntity,
+  OptionSchema,
+} from "@/app/_storage/modules/options/core";
 import { ManageOption } from "../ManageOption";
 
 interface UpdateOptionProps {
@@ -17,7 +19,7 @@ export const UpdateOption: FC<UpdateOptionProps> = ({ option }) => {
   const onOpen = useCallback(() => setOpen(true), []);
 
   const onSubmit = useCallback(
-    async (values: ManageOptionSchema) => {
+    async (values: OptionSchema) => {
       await updateOption(option.id, values);
 
       setOpen(false);

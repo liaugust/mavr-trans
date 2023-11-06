@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { AuthModal, AuthModalProps } from "../AuthModal";
-import { FormField } from "../FormField";
+import { Input } from "../Input";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createUser } from "@/app/_state/users";
@@ -52,7 +52,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             type="firstName"
             value={value}
             onBlur={onBlur}
@@ -70,7 +70,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             onBlur={onBlur}
             invalid={invalid}
@@ -87,7 +87,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             inputMode="tel"
             onBlur={onBlur}
@@ -105,7 +105,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             inputMode="email"
             type="email"
@@ -124,7 +124,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             inputMode="text"
             type="password"
@@ -143,7 +143,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },
         }) => (
-          <FormField
+          <Input
             value={value}
             inputMode="text"
             type="password"
