@@ -17,12 +17,12 @@ interface SignUpModalProps
 export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
   const { control, formState, handleSubmit } = useForm<UserSchema>({
     defaultValues: {
-      phone: "+380505050505",
-      email: "august.ivan228@gmail.com",
-      password: "qwerty12345",
-      lastName: "lipato",
-      firstName: "ivan",
-      confirmPassword: "qwerty12345",
+      phone: "",
+      email: "",
+      password: "",
+      lastName: "",
+      firstName: "",
+      confirmPassword: "",
     },
     resolver: zodResolver(userSchema),
     mode: "onBlur",
