@@ -6,19 +6,27 @@ import {
   DirectionsRenderer,
   Libraries,
 } from "@react-google-maps/api";
-import { FC, useCallback, useEffect, useState } from "react";
-import { Control, Controller, useFieldArray, useWatch } from "react-hook-form";
+import { FC, useCallback, useState } from "react";
+import {
+  Control,
+  Controller,
+  UseFormSetValue,
+  useFieldArray,
+  useWatch,
+} from "react-hook-form";
 import { FormFields } from "./request-ride-schema";
 import { PlacesAutocomplete } from "@/app/_components/PlacesAutocomplete";
+import { noop } from "@/app/_helpers/utils";
 
 interface MapProps {
   control: Control<FormFields>;
+  setValue: UseFormSetValue<FormFields>;
 }
 
 const center = { lat: 48.8584, lng: 2.2945 };
 const libraries = ["places"] as Libraries;
 
-export const Map: FC<MapProps> = ({ control }) => {
+export const Map: FC<MapProps> = ({ control, setValue }) => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBaCRGexxALobAN1yY3dckkEvr-qESe5xM",
     libraries,
@@ -34,36 +42,55 @@ export const Map: FC<MapProps> = ({ control }) => {
   const [directionResponse, setDirectionResponse] =
     useState<google.maps.DirectionsResult | null>(null);
 
-  const calculateRoute = useCallback(
-    async (waypoints: FormFields["waypoints"]) => {
-      const allWaypoints = waypoints.map((w) => ({ ...w })) || [];
+  const calculateDisabled = waypoints?.some((w) => !w.lat || !w.lng);
+  const addMoreDisabled = (waypoints?.length || 0) >= 5;
+  const showSwapBtn = (waypoints?.length || 0) === 2;
 
-      const origin = allWaypoints.shift();
-      const destination = allWaypoints.pop();
+  const onAddMore = useCallback(() => {
+    append({
+      lat: 0,
+      lng: 0,
+      fullAddress: "",
+      shortAddress: "",
+    });
+  }, [append]);
 
-      const directionsService = new google.maps.DirectionsService();
-      const results = await directionsService.route({
-        origin: origin?.fullAddress as string,
-        waypoints: allWaypoints.map((w) => ({
-          location: w.fullAddress as string,
-          stopover: true,
-        })),
-        destination: destination?.fullAddress as string,
-        travelMode: google.maps.TravelMode.DRIVING,
-      });
+  const calculateRoute = useCallback(async () => {
+    const allWaypoints = waypoints?.map((w) => ({ ...w })) || [];
 
-      console.log('results', results);
+    const origin = allWaypoints.shift();
+    const destination = allWaypoints.pop();
 
-      setDirectionResponse(results);
-    },
-    []
-  );
+    const directionsService = new google.maps.DirectionsService();
+    const results = await directionsService.route({
+      origin: origin?.fullAddress as string,
+      waypoints: allWaypoints.map((w) => ({
+        location: w.fullAddress as string,
+        stopover: true,
+      })),
+      destination: destination?.fullAddress as string,
+      travelMode: google.maps.TravelMode.DRIVING,
+    });
 
-  useEffect(() => {
-    if (waypoints && waypoints.every((w) => w.lat && w.lng)) {
-      calculateRoute(waypoints as FormFields["waypoints"]);
-    }
-  }, [waypoints, calculateRoute]);
+    const distance = results.routes
+      .map((route) => route.legs.map((leg) => leg.distance?.value || 0))
+      .flat()
+      .reduce((acc, curr) => acc + curr, 0);
+
+    setValue("distance", distance);
+
+    setDirectionResponse(results);
+  }, [setValue, waypoints]);
+
+  // useEffect(() => {
+  //   if (!isChanged.current) return;
+
+  //   if (waypoints && waypoints.every((w) => w.lat && w.lng)) {
+  //     calculateRoute(waypoints as FormFields["waypoints"]);
+  //   }
+
+  //   isChanged.current = false;
+  // }, [waypoints, calculateRoute]);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -81,7 +108,11 @@ export const Map: FC<MapProps> = ({ control }) => {
             Choose your trip route
           </Title>
 
-          <div className="grid gap-y-[12px] w-[calc(100%_-_50px)] md:w-[560px] relative">
+          <div
+            className={`grid gap-y-[12px] ${
+              showSwapBtn ? "w-[calc(100%_-_50px)]" : "w-full"
+            } md:w-[560px] relative`}
+          >
             {fields.map((field, index) => (
               <Controller
                 key={field.id}
@@ -122,11 +153,14 @@ export const Map: FC<MapProps> = ({ control }) => {
             )}
 
             <Button
-              onClick={() =>
-                append({ fullAddress: "", shortAddress: "", lat: 0, lng: 0 })
-              }
+              onClick={addMoreDisabled ? noop : onAddMore}
+              disabled={addMoreDisabled}
             >
               add more
+            </Button>
+
+            <Button onClick={calculateRoute} disabled={calculateDisabled}>
+              calculate
             </Button>
           </div>
         </div>

@@ -3,6 +3,14 @@
 @tailwind base;
 
 @layer base {
+  table,
+  th,
+  td,
+  tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
   .container {
     @apply max-w-[1200px] px-[10px] md:px-5 mx-auto;
   }

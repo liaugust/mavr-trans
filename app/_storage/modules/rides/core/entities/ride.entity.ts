@@ -20,14 +20,16 @@ export type RideEntity = {
     id: number | null;
     name: string;
   };
+  user: {
+    id: string;
+    name: string;
+    phone: string | null;
+  };
   options: string[];
   total: number;
   status: Status;
-  userId: string;
   distance: number;
-  arrivalDate: Date;
   passengers: number;
-  departureDate: Date;
 
   origin: Waypoint;
   destination: Waypoint;

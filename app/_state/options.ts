@@ -1,7 +1,5 @@
 "use server";
 
-import { fetch } from "../api/fetch";
-import { getToken } from "./helper";
 import {
   OptionEntity,
   OptionSchema,
@@ -12,7 +10,7 @@ import {
   DeleteOptionUseCase,
   GetOptionsUseCase,
   ToggleOptionActiveUseCase,
-  UpdateOptionUseCaseInput,
+  UpdateOptionUseCase,
 } from "../_storage";
 
 export const getOptions = async (): Promise<OptionEntity[]> => {
@@ -43,33 +41,7 @@ export const createOption = async (values: OptionSchema) => {
   });
 };
 
-export const updateOption = async (
-  optionId: number,
-  input: UpdateOptionUseCaseInput
-) => {
-  const token = await getToken();
-
-  try {
-    const response = await fetch(`/api/options/${optionId}`, {
-      body: JSON.stringify(input),
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      method: "PUT",
-    });
-
-    if (!response.ok) {
-      return { option: null };
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (e: unknown) {
-    console.log("Error: ", e);
-
-    return { option: null };
-  }
+export const updateOption = async (optionId: number, input: OptionSchema) => {
+  const updateOptionUseCase = new UpdateOptionUseCase();
+  return updateOptionUseCase.handle(optionId, input);
 };

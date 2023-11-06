@@ -1,33 +1,17 @@
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-import { NextFetchEvent } from "next/server";
-import { match } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
-import { headers } from "next/headers";
-
-let locales = ["en", "es"];
-export let defaultLocale = "en";
-
-function getLocale(): string {
-  const headersList = headers();
-  const acceptLanguage = headersList.get("accept-language");
-
-  // if (acceptLanguage) {
-  //   headersList.set("accept-language", acceptLanguage.replaceAll("_", "-"));
-  // }
-
-  const headersObject = Object.fromEntries(headersList.entries());
-  const languages = new Negotiator({ headers: headersObject }).languages();
-  return match(languages, locales, defaultLocale);
-}
+import { NextFetchEvent, NextResponse } from "next/server";
+import { getToken } from "./app/_state/helper";
 
 export default async function middleware(
   request: NextRequestWithAuth,
   event: NextFetchEvent
 ) {
   const { pathname } = request.nextUrl;
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
+  const token = await getToken();
+
+  if (pathname.startsWith("/admin") && !token?.isAdmin) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
   const authMiddleware = await withAuth({
     pages: {
@@ -44,6 +28,7 @@ export const config = {
     "/profile",
     "/trip",
     "/admin/settings",
-    // "/((?!_next|favicon.ico).*)",
+    "/admin/dashboard/leads",
+    "/admin/dashboard/clients",
   ],
 };

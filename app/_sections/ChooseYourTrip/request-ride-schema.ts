@@ -9,9 +9,22 @@ const waypoint = z.object({
 
 export const schema = z.object({
   passengers: z.number().positive().min(1),
-  option: z.number().positive().nullable(),
-  category: z.number().positive().min(1),
-  car: z.number().positive().min(1),
+  option: z
+    .object({
+      id: z.number().positive().min(1),
+      name: z.string(),
+    })
+    .nullable(),
+  category: z.object({
+    coefficient: z.number().positive(),
+    id: z.number().positive().min(1),
+    name: z.string(),
+  }),
+  car: z.object({
+    id: z.number().positive().min(1),
+    name: z.string(),
+  }),
+  distance: z.number().min(0),
   userInfo: z
     .object({
       email: z.string().email(),

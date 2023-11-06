@@ -25,8 +25,8 @@ export const AuthModal: FC<AuthModalProps> = ({
 }) => {
   return (
     <Modal title={title} onClose={onClose}>
-      <Form className="max-w-[380px] m-auto" onSubmit={onSubmit}>
-        <div className="mb-10 grid grid-flow-row gap-y-[10px]">
+      <Form className="md:max-w-[380px] m-auto" onSubmit={onSubmit}>
+        <div className="mb-[30px] md:mb-10 grid grid-flow-row gap-y-[10px]">
           {children}
           {errorMessage && (
             <Caption level="3" className="text-[tomato] text-center">
@@ -39,7 +39,7 @@ export const AuthModal: FC<AuthModalProps> = ({
           size="md"
           type="submit"
           disabled={submitButtonDisabled}
-          className="w-full max-w-[300px] m-auto mb-[30px] block"
+          className="w-full max-w-[300px] m-auto mb-5 md:mb-[30px] block"
         >
           {buttonText}
         </Button>

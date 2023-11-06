@@ -19,7 +19,12 @@ export class RideAdapter extends BasePrismaAdapter {
     const ride = await this.prisma.ride.update({
       where: { id: data.rideId },
       data: { confirmedAt: new Date() },
-      include: { options: true, car: true, user: true, waypoints: true },
+      include: {
+        options: true,
+        car: true,
+        user: true,
+        waypoints: { orderBy: { order: "asc" } },
+      },
     });
 
     return RideMapper.toRideEntity(ride);
@@ -57,11 +62,13 @@ export class RideAdapter extends BasePrismaAdapter {
             data: data.waypoints,
           },
         },
-
-        arrivalDate: data.arrivalDate,
-        departureDate: data.departureDate,
       },
-      include: { options: true, car: true, user: true, waypoints: true },
+      include: {
+        options: true,
+        car: true,
+        user: true,
+        waypoints: { orderBy: { order: "asc" } },
+      },
     });
 
     return RideMapper.toRideEntity(ride);
@@ -69,7 +76,12 @@ export class RideAdapter extends BasePrismaAdapter {
 
   async getRides(): Promise<RideEntity[]> {
     const redes = await this.prisma.ride.findMany({
-      include: { options: true, car: true, user: true, waypoints: true },
+      include: {
+        options: true,
+        car: true,
+        user: true,
+        waypoints: { orderBy: { order: "asc" } },
+      },
     });
     return redes.map(RideMapper.toRideEntity);
   }
@@ -79,7 +91,12 @@ export class RideAdapter extends BasePrismaAdapter {
       where: { email: input.email },
       select: {
         rides: {
-          include: { options: true, car: true, user: true, waypoints: true },
+          include: {
+            options: true,
+            car: true,
+            user: true,
+            waypoints: { orderBy: { order: "asc" } },
+          },
           take: 10,
         },
       },
@@ -88,12 +105,6 @@ export class RideAdapter extends BasePrismaAdapter {
     if (!user) {
       return [];
     }
-
-    // const rides = await this.prisma.ride.findMany({
-    //   where: { userId: input.userId },
-    //   include: { options: true, car: true, user: true },
-    //   take: 10,
-    // });
 
     return user.rides.map(RideMapper.toRideEntity);
   }

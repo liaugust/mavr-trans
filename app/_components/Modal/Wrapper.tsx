@@ -1,6 +1,6 @@
 "use client";
 import { useClickAway } from "@/app/_hooks/useClickAway";
-import { FC, PropsWithChildren, useEffect, useRef } from "react";
+import { FC, PropsWithChildren, useRef } from "react";
 
 interface WrapperProps extends PropsWithChildren {
   onClose: () => void;
@@ -12,7 +12,7 @@ export const Wrapper: FC<WrapperProps> = ({ children, onClose }) => {
   useClickAway(wrapperRef, onClose);
 
   return (
-    <div ref={wrapperRef} className="w-[560px]">
+    <div ref={wrapperRef} className="w-[560px] m-[10px]">
       {children}
     </div>
   );

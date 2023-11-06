@@ -1,11 +1,13 @@
-import { Car } from "@/app/_components/Car";
+import { EntityCard } from "@/app/_components/EntityCard";
 import { Title } from "@/app/_components/Typography";
 import { useStore } from "@/app/store-provider";
 import { FC, useMemo } from "react";
 
+type Class = { id: number; name: string; coefficient: number };
+
 interface ChooseClassStepProps {
-  value: number;
-  onChange: (value: number) => void;
+  value: Class | null;
+  onChange: (value: Class) => void;
 }
 
 export const ChooseClassStep: FC<ChooseClassStepProps> = ({
@@ -29,15 +31,21 @@ export const ChooseClassStep: FC<ChooseClassStepProps> = ({
         Choose Class
       </Title>
 
-      <div className="grid md:grid-cols-[repeat(2,1fr)] lg:grid-cols-[repeat(3,1fr)] gap-[10px] md:gap-10 mb-[60px]">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[10px] md:gap-10 mb-[60px]">
         {activeCategories.map((category) => (
-          <Car
+          <EntityCard
             key={category.id}
             id={category.id}
             name={category.name}
             src={category.image}
-            onSelect={() => onChange(category.id)}
-            selected={value === category.id}
+            onSelect={() =>
+              onChange({
+                id: category.id,
+                name: category.name,
+                coefficient: category.coefficient,
+              })
+            }
+            selected={value?.id === category.id}
           />
         ))}
       </div>

@@ -7,6 +7,7 @@ import {
   OptionSchema,
 } from "@/app/_storage/modules/options/core";
 import { ManageOption } from "../ManageOption";
+import { Caption } from "../Typography";
 
 interface UpdateOptionProps {
   option: OptionEntity;
@@ -38,10 +39,10 @@ export const UpdateOption: FC<UpdateOptionProps> = ({ option }) => {
         />
       )}
       <button
-        className={`w-full uppercase bg-[#F6B24B] py-[30px] px-[15px]`}
+        className={`w-full uppercase bg-[#F6B24B]  flex items-center justify-center`}
         onClick={onOpen}
       >
-        Update
+        <Caption>Update</Caption>
       </button>
     </>
   );

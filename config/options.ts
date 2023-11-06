@@ -62,6 +62,7 @@ export const options: NextAuthOptions = {
         return {
           ...token,
           username: user.name,
+          isAdmin: user.isAdmin,
           activeRides: user.activeRides,
           phoneNumber: user.phoneNumber,
           inactiveRides: user.inactiveRides,
@@ -76,6 +77,7 @@ export const options: NextAuthOptions = {
         ...session,
         user: {
           ...session.user,
+          isAdmin: token.isAdmin,
           username: token.username,
           phoneNumber: token.phoneNumber,
           activeRides: token.activeRides,

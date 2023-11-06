@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Typography, TypographyProps } from "../Typography";
 
-type Level = "1" | "2" | "3";
+type Level = "1" | "1.1" | "2" | "3";
 
 interface TextProps extends TypographyProps {
   level?: Level;
@@ -9,6 +9,7 @@ interface TextProps extends TypographyProps {
 
 const stylesSize: Record<Level, string> = {
   1: "text-[16px] md:text-[21px]",
+  "1.1": "text-[14px] md:text-[24px]",
   2: "text-[14px] md:text-[18px]",
   3: "text-[14px] md:text-[16px]",
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, useCallback } from "react";
+import { Caption } from "../Typography";
 
 interface HideEntityProps {
   active: boolean;
@@ -19,10 +20,10 @@ export const HideEntity: FC<HideEntityProps> = ({
 
   return (
     <button
-      className={`w-full uppercase bg-[#8E8E8E] py-[30px] px-[15px]`}
+      className={`w-full uppercase bg-[#8E8E8E]  flex items-center justify-center`}
       onClick={onHideEntity}
     >
-      {active ? "Hide" : "Show"}
+      <Caption>{active ? "Hide" : "Show"}</Caption>
     </button>
   );
 };

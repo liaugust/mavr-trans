@@ -1,6 +1,5 @@
-import { Button } from "@/app/_components/Button";
 import { Input } from "@/app/_components/Input";
-import { Heading, Title } from "@/app/_components/Typography";
+import { Title } from "@/app/_components/Typography";
 import { FC } from "react";
 import { Control, Controller } from "react-hook-form";
 import { FormFields } from "./request-ride-schema";
@@ -12,7 +11,11 @@ interface FillFormStepProps {
 export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
   return (
     <>
-      <Title weight="4" className="capitalize text-center mb-[60px]">
+      <Title
+        level="2.1"
+        weight="4"
+        className="capitalize text-center mb-10 md:mb-[60px]"
+      >
         Fill the form
       </Title>
 

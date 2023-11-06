@@ -1,7 +1,5 @@
 "use server";
 
-import { fetch } from "../api/fetch";
-import { getToken } from "./helper";
 import {
   CategoryEntity,
   categorySchema,
@@ -12,7 +10,7 @@ import {
   GetCategoriesUseCase,
   GetCategoryUseCase,
   ToggleCategoryActiveUseCase,
-  UpdateCategoryUseCaseInput,
+  UpdateCategoryUseCase,
 } from "../_storage";
 import { del, put } from "@vercel/blob";
 
@@ -21,6 +19,11 @@ export const getCategory = async (
 ): Promise<CategoryEntity | null> => {
   const getCategoryUseCase = new GetCategoryUseCase();
   return getCategoryUseCase.handle({ id: categoryId });
+};
+
+export const toggleCategoryActive = async (categoryId: number) => {
+  const toggleCategoryActive = new ToggleCategoryActiveUseCase();
+  return toggleCategoryActive.handle({ categoryId });
 };
 
 export const getCategories = async (): Promise<CategoryEntity[]> => {
@@ -73,36 +76,50 @@ export const createCategory = async (formData: FormData) => {
 
 export const updateCategory = async (
   categoryId: number,
-  input: UpdateCategoryUseCaseInput
+  formData: FormData
 ) => {
-  const token = await getToken();
+  const category = await getCategory(categoryId);
 
-  try {
-    const response = await fetch(`/api/categories/${categoryId}`, {
-      body: JSON.stringify(input),
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      method: "PUT",
-    });
+  if (!category) return null;
 
-    if (!response.ok) {
-      return { category: null };
-    }
+  const updateCategoryUseCase = new UpdateCategoryUseCase();
+  const coefficient = formData.get("coefficient");
+  const image = formData.get("image") as File;
+  const name = formData.get("name");
 
-    const data = await response.json();
+  const safeParsedBody = categorySchema.safeParse({
+    coefficient,
+    image,
+    name,
+  });
 
-    return data;
-  } catch (e: unknown) {
-    console.log("Error: ", e);
-
-    return { category: null };
+  if (!safeParsedBody.success) {
+    console.log(
+      "safeParse failed",
+      JSON.stringify(safeParsedBody.error, null, 4)
+    );
+    return null;
   }
-};
 
-export const toggleCategoryActive = async (categoryId: number) => {
-  const toggleCategoryActive = new ToggleCategoryActiveUseCase();
-  return toggleCategoryActive.handle({ categoryId });
+  const { data } = safeParsedBody;
+
+  let url: string | undefined = undefined;
+
+  if (data.image && data.image !== "null") {
+    const file = await image.arrayBuffer();
+    const fileType = image.name.split(".").pop();
+    const filePath = `category-images/${Date.now()}.${fileType}`;
+
+    const result = await put(filePath, file, { access: "public" });
+
+    await del(category.image);
+
+    url = result.url;
+  }
+
+  return updateCategoryUseCase.handle(categoryId, {
+    coefficient: data.coefficient,
+    name: data.name,
+    image: url,
+  });
 };

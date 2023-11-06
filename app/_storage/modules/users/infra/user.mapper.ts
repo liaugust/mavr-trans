@@ -1,6 +1,5 @@
-import type { Account, Option, Ride, User, Waypoint } from "@prisma/client";
+import type { Option, Ride, User, Waypoint } from "@prisma/client";
 import type { UserEntity } from "../core";
-import { RideEntity } from "../../rides/core";
 import { RideMapper } from "../../rides/infra/ride.mapper";
 
 type PrismaUser = User & {
@@ -20,15 +19,16 @@ export class UserMapper {
     const sortedRides = rides.reduce(
       (acc, ride) => {
         const arr = {
-          pending: acc.active,
-          confirmed: acc.inactive,
+          done: acc.active,
+          active: acc.active,
+          waiting: acc.active,
         };
 
         arr[ride.status].push(ride);
 
         return acc;
       },
-      { active: [] as RideEntity[], inactive: [] as RideEntity[] }
+      { active: [], done: [] } as any
     );
 
     return {

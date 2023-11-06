@@ -1,7 +1,5 @@
 "use server";
 
-import { fetch } from "../api/fetch";
-import { getToken } from "./helper";
 import { CarEntity, carSchema } from "../_storage/modules/cars/core";
 import {
   CreateCarUseCase,
@@ -9,7 +7,7 @@ import {
   GetCarUseCase,
   GetCarsUseCase,
   ToggleCarActiveUseCase,
-  UpdateCarUseCaseInput,
+  UpdateCarUseCase,
 } from "../_storage";
 import { del, put } from "@vercel/blob";
 
@@ -65,8 +63,8 @@ export const createCar = async (formData: FormData) => {
 
   const { data } = safeParsedBody;
 
-  const file = await image.arrayBuffer();
-  const fileType = image.name.split(".").pop();
+  const file = await data.image.arrayBuffer();
+  const fileType = data.image.name.split(".").pop();
   const filePath = `car-images/${Date.now()}.${fileType}`;
 
   const { url } = await put(filePath, file, { access: "public" });
@@ -80,33 +78,52 @@ export const createCar = async (formData: FormData) => {
   });
 };
 
-export const updateCar = async (
-  carId: number,
-  input: UpdateCarUseCaseInput
-) => {
-  const token = await getToken();
+export const updateCar = async (carId: number, formData: FormData) => {
+  const car = await getCar(carId);
 
-  try {
-    const response = await fetch(`/api/cars/${carId}`, {
-      body: JSON.stringify(input),
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      method: "PUT",
-    });
+  if (!car) return null;
 
-    if (!response.ok) {
-      return { car: null };
-    }
+  const updateCarUseCase = new UpdateCarUseCase();
+  const categoryId = formData.get("categoryId");
+  const image = formData.get("image") as File;
+  const seats = formData.get("seats");
+  const name = formData.get("name");
 
-    const data = await response.json();
+  const safeParsedBody = carSchema.safeParse({
+    categoryId,
+    seats,
+    image,
+    name,
+  });
 
-    return data;
-  } catch (e: unknown) {
-    console.log("Error: ", e);
-
-    return { car: null };
+  if (!safeParsedBody.success) {
+    console.log(
+      "safeParse failed",
+      JSON.stringify(safeParsedBody.error, null, 4)
+    );
+    return null;
   }
+
+  const { data } = safeParsedBody;
+
+  let url: string | undefined = undefined;
+
+  if (data.image && data.image !== "null") {
+    const file = await image.arrayBuffer();
+    const fileType = image.name.split(".").pop();
+    const filePath = `car-images/${Date.now()}.${fileType}`;
+
+    const result = await put(filePath, file, { access: "public" });
+
+    await del(car.image);
+
+    url = result.url;
+  }
+
+  return updateCarUseCase.handle(carId, {
+    categoryId: data.categoryId,
+    seats: data.seats,
+    name: data.name,
+    image: url,
+  });
 };

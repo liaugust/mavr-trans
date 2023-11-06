@@ -3,6 +3,7 @@ import { DefaultSession } from "next-auth";
 declare module "next-auth" {
   interface User {
     username: string;
+    isAdmin: boolean;
     successfulRides: number;
     activeRides: RideEntity[];
     phoneNumber: string | null;
@@ -12,6 +13,7 @@ declare module "next-auth" {
   interface Session {
     user: User & {
       username: string;
+      isAdmin: boolean;
       successfulRides: number;
       activeRides: RideEntity[];
       phoneNumber: string | null;
@@ -19,6 +21,7 @@ declare module "next-auth" {
     };
     token: {
       username: string;
+      isAdmin: boolean;
       successfulRides: number;
       activeRides: RideEntity[];
       phoneNumber: string | null;

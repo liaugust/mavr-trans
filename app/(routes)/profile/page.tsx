@@ -7,11 +7,11 @@ export default function ProfilePage() {
     <>
       <div className="container">
         <div className="inner py-5 md:py-[45px] flex flex-col md:flex-row gap-y-[60px] lg:gap-y-0 gap-x-10 items-start">
-          <div className="order-2 w-full md:basis-[59%]">
+          <div className="order-2 w-full max-w-[660px]">
             <ActiveRides />
             <RidesHistory />
           </div>
-          <ProfileCard className="order-1 md:order-3 w-full md:basis-[41%]" />
+          <ProfileCard className="order-1 md:order-3 w-full max-w-[460px]" />
         </div>
       </div>
     </>

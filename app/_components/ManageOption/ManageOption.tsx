@@ -30,8 +30,9 @@ export const ManageOption: FC<ManageOptionProps> = ({
     mode: "onBlur",
   });
 
-  const { isDirty, isLoading, isValid } = formState;
-  const submitButtonDisabled = !isDirty || !isValid || isLoading;
+  const { isDirty, isLoading, isValid, isSubmitting, isValidating } = formState;
+  const isFormLoading = isLoading || isSubmitting || isValidating;
+  const submitButtonDisabled = !isDirty || !isValid || isFormLoading;
 
   const onSubmit = handleSubmit(async (values: OptionSchema) => {
     await onSubmitHandler(values);

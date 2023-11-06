@@ -16,12 +16,12 @@ export const Modal: FC<ModalProps> = ({ onClose, title, children }) => {
   return (
     <Overlay>
       <Wrapper onClose={onClose}>
-        <div className="bg-white h-full w-full rounded-[4px] pt-10 pb-[50px] px-5 relative">
+        <div className="bg-white h-full w-full rounded-[4px] px-[10px] py-10 md:pt-10 md:pb-[50px] md:px-5 relative">
           <CloseButton onClose={onClose} />
           {title && (
             <Title
               level="5"
-              className="text-[#343331] text-[32px] mb-8 text-center"
+              className="text-[#343331] mb-5 md:mb-8 text-center"
             >
               {title}
             </Title>

@@ -39,6 +39,13 @@ export class UserAdapter extends BasePrismaAdapter {
     return UserMapper.toUserEntity(user);
   }
 
+  async getUsers(): Promise<UserEntity[]> {
+    const users = await this.prisma.user.findMany({
+      include: { rides: { include: { waypoints: true, options: true } } },
+    });
+    return users.map(UserMapper.toUserEntity);
+  }
+
   async getUser(input: GetUserUseCaseInput): Promise<UserEntity | null> {
     const user = await this.prisma.user.findUnique({
       where: { email: input.email },

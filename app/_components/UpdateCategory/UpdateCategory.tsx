@@ -3,6 +3,7 @@
 import { FC, useCallback, useState } from "react";
 import { ManageCategory } from "../ManageCategory";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
+import { Caption } from "../Typography";
 
 interface UpdateCategoryProps {
   category: CategoryEntity;
@@ -31,10 +32,10 @@ export const UpdateCategory: FC<UpdateCategoryProps> = ({ category }) => {
         />
       )}
       <button
-        className={`w-full uppercase bg-[#F6B24B] py-[30px] px-[15px]`}
+        className={`w-full uppercase bg-[#F6B24B] flex items-center justify-center`}
         onClick={onOpen}
       >
-        Update
+        <Caption>Update</Caption>
       </button>
     </>
   );

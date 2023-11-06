@@ -16,9 +16,6 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
     lng: number;
   }[];
 
-  arrivalDate: Date;
-  departureDate: Date;
-
   constructor(props: CreateRideUseCaseInput) {
     super(props);
 
@@ -29,7 +26,5 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
     this.optionIds = props.optionIds;
     this.categoryId = props.categoryId;
     this.passengers = props.passengers;
-    this.arrivalDate = props.arrivalDate;
-    this.departureDate = props.departureDate;
   }
 }

@@ -36,12 +36,14 @@ export class RideMapper {
       },
       total: r.total,
       status: r.status,
-      userId: r.userId,
+      user: {
+        id: r.user.id,
+        name: r.user.name,
+        phone: r.user.phone,
+      },
       distance: r.distance,
       options: r.optionNames,
       passengers: r.passengers,
-      arrivalDate: r.arrivalDate,
-      departureDate: r.departureDate,
 
       origin,
       destination,

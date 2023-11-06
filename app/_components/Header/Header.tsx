@@ -8,6 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 import useLockBodyScroll from "@/app/_hooks/useLockBodyScroll";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
+import { preventDefault } from "@/app/_helpers/prevent-default";
 
 const Header: FC = () => {
   const session = useSession();
@@ -27,22 +28,30 @@ const Header: FC = () => {
             </Link>
 
             <div
-              className={`z-40 transition-all w-full flex flex-col lg:flex-row justify-between items-center absolute lg:static left-0 h-full bg-[#121420] lg:bg-white py-20 lg:py-0 ${
+              className={`z-40 transition-all w-full flex flex-col lg:flex-row justify-between items-center fixed lg:static left-0 h-full bg-[#121420] lg:bg-white py-20 lg:py-0 ${
                 open ? "top-0" : "-top-full"
               }`}
             >
               <ul className="lg:flex lg:items-center text-center lg:text-left text-primary lg:text-[#1E1D1F]">
                 <li className="py-2 lg:py-0 px-2 lg:mr-12 text-2xl lg:text-lg">
-                  <Link href="/">Home</Link>
+                  <Link onClick={() => setOpen(false)} href="/">
+                    Home
+                  </Link>
                 </li>
                 <li className="py-2 lg:py-0 px-2 lg:mr-12 text-2xl lg:text-lg">
-                  <Link href="/#about">About us</Link>
+                  <Link onClick={() => setOpen(false)} href="/#about">
+                    About us
+                  </Link>
                 </li>
                 <li className="py-2 lg:py-0 px-2 lg:mr-12 text-2xl lg:text-lg">
-                  <a href="/#faq">FAQ</a>
+                  <Link onClick={() => setOpen(false)} href="/#faq">
+                    FAQ
+                  </Link>
                 </li>
                 <li className="py-2 lg:py-0 px-2 text-2xl lg:text-lg">
-                  <a href="#contact">Contact</a>
+                  <Link onClick={() => setOpen(false)} href="#contact">
+                    Contact
+                  </Link>
                 </li>
               </ul>
 
@@ -52,6 +61,7 @@ const Header: FC = () => {
                     variant="outlined_primary"
                     onClick={() => {
                       router.push("/profile");
+                      setOpen(false);
                     }}
                   >
                     Profile

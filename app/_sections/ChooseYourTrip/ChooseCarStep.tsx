@@ -1,12 +1,14 @@
-import { Car } from "@/app/_components/Car";
+import { EntityCard } from "@/app/_components/EntityCard";
 import { Title } from "@/app/_components/Typography";
 import { useStore } from "@/app/store-provider";
 import { FC, useMemo } from "react";
 
+type Car = { id: number; name: string };
+
 interface ChooseCarStepProps {
-  value: number;
+  value: Car | null;
   passengers: number;
-  onChange: (value: number) => void;
+  onChange: (value: Car) => void;
 }
 
 export const ChooseCarStep: FC<ChooseCarStepProps> = ({
@@ -45,13 +47,13 @@ export const ChooseCarStep: FC<ChooseCarStepProps> = ({
 
       <div className="grid md:grid-cols-[repeat(2,1fr)] lg:grid-cols-[repeat(3,1fr)] gap-[10px] md:gap-10 mb-[60px]">
         {carsWithPassengers.map((car) => (
-          <Car
+          <EntityCard
             key={car.id}
-            onSelect={() => onChange(car.id)}
+            onSelect={() => onChange({ id: car.id, name: car.name })}
             id={car.id}
             name={car.name}
             src={car.image}
-            selected={value === car.id}
+            selected={value?.id === car.id}
           />
         ))}
       </div>

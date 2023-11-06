@@ -36,7 +36,7 @@ export const EntityList = <T extends Option>({
     <ul className="">
       {entities.map((entity) => (
         <li className="grid grid-cols-2" key={entity.id}>
-          <div className="flex">
+          <div className="flex min-h-[70px]">
             {entity.image && (
               <img
                 src={entity.image}

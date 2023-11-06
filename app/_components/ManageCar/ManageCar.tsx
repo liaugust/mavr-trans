@@ -9,12 +9,16 @@ import { Input } from "../Input";
 import { Select } from "../Select";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 import { useStore } from "@/app/store-provider";
-import { CarSchema, carSchema } from "@/app/_storage/modules/cars/core";
+import {
+  ACCEPTED_IMAGE_TYPES,
+  CarSchema,
+  carSchema,
+} from "@/app/_storage/modules/cars/core";
 
 interface ManageCarProps {
   title: string;
   onClose: () => void;
-  defaultValues?: CarSchema;
+  defaultValues?: Omit<CarSchema, "files">;
   onSubmitHandler: (formData: FormData) => Promise<void>;
 }
 
@@ -34,13 +38,19 @@ export const ManageCar: FC<ManageCarProps> = ({
 }) => {
   const { categories } = useStore();
   const { control, handleSubmit, formState } = useForm<CarSchema>({
-    defaultValues,
+    defaultValues: {
+      categoryId: defaultValues.categoryId,
+      seats: defaultValues.seats,
+      name: defaultValues.name,
+      image: null as null | File,
+    },
     resolver: zodResolver(carSchema),
     mode: "onBlur",
   });
 
-  const { isDirty, isLoading, isValid } = formState;
-  const submitButtonDisabled = !isDirty || !isValid || isLoading;
+  const { isDirty, isLoading, isValid, isSubmitting, isValidating } = formState;
+  const isFormLoading = isLoading || isSubmitting || isValidating;
+  const submitButtonDisabled = !isDirty || !isValid || isFormLoading;
 
   const onSubmit = handleSubmit(async (values: CarSchema) => {
     const formData = new FormData();
@@ -124,12 +134,11 @@ export const ManageCar: FC<ManageCarProps> = ({
       <Controller
         name="image"
         control={control}
-        render={({
-          field: { name, value, onChange, onBlur },
-          fieldState: { invalid, error },
-        }) => (
+        render={({ field: { name, onChange } }) => (
           <input
+            name={name}
             type="file"
+            accept={ACCEPTED_IMAGE_TYPES.join(",")}
             onChange={(e) => {
               const file = e.target.files?.item(0);
               if (file) onChange(file);

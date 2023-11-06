@@ -33,8 +33,6 @@ export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
       redirect: false,
     });
 
-    console.log("signInData", signInData);
-
     if (signInData?.error) {
       setError("root", {
         message: signInData.error,

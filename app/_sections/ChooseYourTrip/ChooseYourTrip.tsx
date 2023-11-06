@@ -12,15 +12,18 @@ import { Map } from "./Map";
 import { ChooseClassStep } from "./ChooseClassStep";
 import { Button } from "@/app/_components/Button";
 import { createRide } from "@/app/_state/rides";
+import { MessageStep } from "./Message";
+import { useRouter } from "next/navigation";
 
 export const ChooseYourTrip: FC = () => {
   const [step, setStep] = useState(0);
+  const router = useRouter();
 
-  const { control, handleSubmit, watch } = useForm<FormFields>({
+  const { control, handleSubmit, watch, setValue } = useForm<FormFields>({
     defaultValues: {
       passengers: 1,
-      option: null,
-      car: null as unknown as number,
+      option: null as unknown as { id: number; name: string } | null,
+      car: null as unknown as { id: number; name: string },
       userInfo: { firstName: "", lastName: "", phone: "", email: "" },
       waypoints: [
         {
@@ -42,13 +45,25 @@ export const ChooseYourTrip: FC = () => {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    console.log('values', values)
-    // await createRide({
-    //   // arrivalDate:
-    //   carId: values.car,
-    //   categoryId: values.category,
-    //   distance: values.distance,
-    // });
+    try {
+      await createRide({
+        carId: values.car.id,
+        distance: values.distance,
+        categoryId: values.category.id,
+        optionIds: values.option ? [values.option.id] : [],
+        passengers: values.passengers,
+        waypoints: values.waypoints.map((w, idx) => ({
+          fullAddress: w.fullAddress,
+          shortAddress: w.shortAddress,
+          order: idx,
+          lng: w.lng,
+          lat: w.lat,
+        })),
+      });
+      setStep(6);
+    } catch (e) {
+      setStep(7);
+    }
   });
 
   const values = watch();
@@ -85,14 +100,14 @@ export const ChooseYourTrip: FC = () => {
 
   return (
     <>
-      <Map control={control} />
+      <Map setValue={setValue} control={control} />
 
-      <section className="pt-[80px] pb-[60px]">
-        <div className="container">
+      <section className="pt-[60px] pb-[60px]">
+        <div className="container px-0">
           <div
-            className={`md:py-[60px] md:px-10 ${
-              step === 4 ? "bg-white" : ""
-            } md:max-w-max mx-auto`}
+            className={`py-10 px-[10px] md:py-[60px] md:px-10 ${
+              step === 5 ? "bg-white max-w-[760px]" : ""
+            } mx-auto`}
           >
             {step === 0 && (
               <Controller
@@ -135,24 +150,36 @@ export const ChooseYourTrip: FC = () => {
               />
             )}
             {step === 4 && <FillFormStep control={control} />}
-            {step === 5 && <Checkout />}
+            {step === 5 && <Checkout control={control} />}
+            {step === 6 && <MessageStep type="success" />}
+            {step === 7 && <MessageStep type="failure" />}
 
-            <div className="grid grid-cols-2 md:grid-cols-[300px_300px] gap-x-5 md:gap-x-10 mx-a justify-center">
-              <Button
-                disabled={step === 0}
-                onClick={() => setStep((prev) => prev - 1)}
-                variant="outlined"
-              >
-                Back
-              </Button>
+            <div
+              className={
+                "grid md:grid-flow-col md:auto-cols-[300px] max-w-[640px] gap-x-5 md:gap-x-10 mx-auto justify-center"
+              }
+            >
+              {step < 7 && (
+                <Button
+                  disabled={step === 0}
+                  onClick={() => setStep((prev) => prev - 1)}
+                  variant="outlined"
+                >
+                  Back
+                </Button>
+              )}
 
               <Button
                 disabled={disabled}
                 onClick={
-                  step === 4 ? onSubmit : () => setStep((prev) => prev + 1)
+                  step === 5
+                    ? onSubmit
+                    : step === 7 || step === 6
+                    ? () => router.push("/")
+                    : () => setStep((prev) => prev + 1)
                 }
               >
-                {step === 4 ? "Pay for transfer" : "Next"}
+                {step === 7 || step === 6 ? "Back to home" : "Next"}
               </Button>
             </div>
           </div>

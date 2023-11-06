@@ -2,6 +2,7 @@
 
 import { FC, useCallback, useState } from "react";
 import { ConfirmModal } from "../ConfirmModal";
+import { Caption } from "../Typography";
 
 interface DeleteEntityProps {
   entityId: number;
@@ -33,10 +34,10 @@ export const DeleteEntity: FC<DeleteEntityProps> = ({
         />
       )}
       <button
-        className={`w-full uppercase bg-[#F84949] py-[30px] px-[15px]`}
+        className={`w-full uppercase bg-[#F84949]  flex items-center justify-center`}
         onClick={onOpen}
       >
-        Delete
+        <Caption>Delete</Caption>
       </button>
     </>
   );
