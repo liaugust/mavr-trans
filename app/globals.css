@@ -4,6 +4,75 @@
 
 @layer base {
   .container {
-    @apply max-w-[1240px] px-[10px] md:px-5 mx-auto;
+    @apply max-w-[1200px] px-[10px] md:px-5 mx-auto;
   }
+
+  .subhead {
+    position: relative;
+    padding-left: 30px;
+    max-width: max-content;
+  }
+
+  .subhead::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    width: 20px;
+    height: 1px;
+    transform: translateY(-50%);
+    background-color: currentColor;
+  }
+
+  .hero {
+    background-color: #1d1d1f;
+    background-size: 100% auto;
+    background-position: bottom 260px !important;
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      #1d1d1f 44.63%,
+      rgba(29, 29, 31, 0.81) 63.44%,
+      rgba(15, 15, 15, 0.29) 85.43%,
+      rgba(29, 29, 31, 0) 96.08%
+    );
+    background-size: 100% auto;
+  }
+
+  @media (min-width: 1024px) {
+    .hero::before {
+      background: linear-gradient(
+        90deg,
+        #1d1d1f 39.42%,
+        rgba(29, 29, 31, 0.81) 63.44%,
+        rgba(15, 15, 15, 0.29) 85.43%,
+        rgba(29, 29, 31, 0) 96.08%
+      );
+      background-repeat: no-repeat;
+      background-size: 900px auto;
+    }
+
+    .hero {
+      background-size: 1100px 100%;
+    }
+  }
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  flex-grow: 1;
+}
+
+button {
+  line-height: 1;
 }

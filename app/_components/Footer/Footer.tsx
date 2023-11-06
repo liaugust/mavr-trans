@@ -3,7 +3,7 @@ import Socials from "./Socials";
 
 const Footer: FC = () => {
   return (
-    <footer className="text-white">
+    <footer className="text-white" id="contact">
       <div className="bg-[#121420] pt-14 pb-12">
         <div className="container">
           <div className="flex-wrap md:flex-nowrap flex gap-y-10 md:gap-y-0 md:gap-x-5">

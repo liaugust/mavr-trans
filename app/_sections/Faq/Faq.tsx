@@ -1,4 +1,5 @@
 import { Accordion } from "@/app/_components/Accordion";
+import { Title } from "@/app/_components/Typography";
 import { FC } from "react";
 
 const questions = [
@@ -16,16 +17,17 @@ const questions = [
 
 const Faq: FC = () => {
   return (
-    <section className="pt-20 lg:pt-16 pb-24">
+    <section className="pt-20 lg:pt-16 pb-24" id="faq">
       <div className="container">
-        <h2 className="text-center mb-10 lg:mb-[60px]">
-          <span className="block text-[26px] lg:text-[46px] mb-[10px] lg:mb-3 font-bold">
-            FAQ
-          </span>
-          <span className="block text-base lg:text-4xl font-light">
+        <Title
+          level="2.1"
+          className="text-center text-[#343331] mb-10 lg:mb-[60px]"
+        >
+          FAQ
+          <Title level="4" weight="0" Component="span" className="block">
             Lorem ipsum
-          </span>
-        </h2>
+          </Title>
+        </Title>
 
         <ul className="grid grid-flow-row gap-y-5">
           {questions.map((q, i) => (

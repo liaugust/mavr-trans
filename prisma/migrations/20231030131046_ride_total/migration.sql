@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "rides" ADD COLUMN     "total" INTEGER NOT NULL DEFAULT 0;

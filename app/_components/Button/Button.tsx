@@ -6,22 +6,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
 }
 
-export enum ButtonSize {
-  sm = "sm",
-  md = "md",
-}
+type ButtonSize = "sm" | "md";
 
-export enum ButtonVariant {
-  Filled = "filled",
-  FilledPrimary = "filled_primary",
+type ButtonVariant =
+  | "filled"
+  | "filled_primary"
+  | "outlined"
+  | "outlined_primary";
 
-  Outlined = "outlined",
-  OutlinedPrimary = "outlined_primary",
-}
+const baseClassName =
+  "disabled:cursor-not-allowed disabled:opacity-[0.5] font-base uppercase border rounded";
 
 const buttonSizeStyle: Record<ButtonSize, string> = {
-  sm: `font-base uppercase py-3 px-7 border rounded`,
-  md: `font-base uppercase py-6 px-7 border rounded`,
+  sm: `py-3 px-7`,
+  md: `py-6 px-7`,
 };
 
 const buttonVariantStyle: Record<ButtonVariant, string> = {
@@ -36,16 +34,16 @@ const Button: FC<ButtonProps> = memo(
   ({
     children,
     className,
+    size = "sm",
     type = "button",
-    size = ButtonSize.sm,
-    variant = ButtonVariant.Filled,
+    variant = "filled",
     ...rest
   }) => {
     return (
       <button
         {...rest}
         type={type}
-        className={`${buttonSizeStyle[size]} ${buttonVariantStyle[variant]} ${className}`}
+        className={` ${baseClassName} ${buttonSizeStyle[size]} ${buttonVariantStyle[variant]} ${className}`}
       >
         {children}
       </button>
