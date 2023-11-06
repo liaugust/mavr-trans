@@ -19,7 +19,7 @@ export class UserMapper {
     const sortedRides = rides.reduce(
       (acc, ride) => {
         const arr = {
-          done: acc.active,
+          done: acc.done,
           active: acc.active,
           waiting: acc.active,
         };

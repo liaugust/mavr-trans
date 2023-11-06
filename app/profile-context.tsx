@@ -34,23 +34,22 @@ export const ProfileProvider: FC<StoreProviderProps> = ({ children }) => {
   }, []);
 
   const value = useMemo(() => {
-    const result = rides.reduce(
+    const sortedRides = rides.reduce(
       (acc, ride) => {
-        if (ride.status === "pending") {
-          acc.active.push(ride);
-        } else {
-          acc.inactive.push(ride);
-        }
+        const arr = {
+          done: acc.inactive,
+          active: acc.active,
+          waiting: acc.active,
+        };
+
+        arr[ride.status].push(ride);
 
         return acc;
       },
-      {
-        active: [],
-        inactive: [],
-      } as State
+      { active: [] as RideEntity[], inactive: [] as RideEntity[] }
     );
 
-    return result;
+    return sortedRides;
   }, [rides]);
 
   return (

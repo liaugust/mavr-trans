@@ -39,7 +39,7 @@ export class RideMapper {
       user: {
         id: r.user.id,
         name: r.user.name,
-        phone: r.user.phone,
+        phone: r.user.phoneNumber,
       },
       distance: r.distance,
       options: r.optionNames,
