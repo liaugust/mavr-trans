@@ -10,7 +10,7 @@ export interface ServiceCardProps {
 
 export const ServiceCard: FC<ServiceCardProps> = ({ title, text, src }) => {
   return (
-    <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)]">
+    <div className="shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] bg-white hover:-translate-x-[10px] hover:-translate-y-[10px] transition-transform ">
       <div className="object-cover h-[280px]">
         <img src={src} className="w-full h-full object-cover" alt={title} />
       </div>

@@ -2,8 +2,9 @@ import { EntityCard } from "@/app/_components/EntityCard";
 import { Title } from "@/app/_components/Typography";
 import { useStore } from "@/app/store-provider";
 import { FC, useMemo } from "react";
+import { FormFields } from "./request-ride-schema";
 
-type Class = { id: number; name: string; coefficient: number };
+type Class = FormFields["category"];
 
 interface ChooseClassStepProps {
   value: Class | null;
@@ -43,6 +44,7 @@ export const ChooseClassStep: FC<ChooseClassStepProps> = ({
                 id: category.id,
                 name: category.name,
                 coefficient: category.coefficient,
+                maximumSeats: category.maximumSeats,
               })
             }
             selected={value?.id === category.id}

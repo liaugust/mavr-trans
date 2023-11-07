@@ -24,16 +24,13 @@ export const Card: FC<CardProps> = ({
       {children}
 
       {!selected && (
-        <>
-          <div className="absolute w-full h-full bg-white opacity-[0.6] left-0 top-0 z-10" />
-          <button
-            className="opacity-0 absolute left-0 top-0 w-full h-full z-20"
-            onClick={onSelect}
-            type="button"
-          >
-            Select
-          </button>
-        </>
+        <button
+          className="opacity-0 absolute left-0 top-0 w-full h-full z-20"
+          onClick={onSelect}
+          type="button"
+        >
+          Select
+        </button>
       )}
     </div>
   );

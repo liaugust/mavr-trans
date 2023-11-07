@@ -49,6 +49,7 @@ export const ChooseYourTrip: FC = () => {
       await createRide({
         carId: values.car.id,
         distance: values.distance,
+        phone: values.userInfo.phone,
         categoryId: values.category.id,
         optionIds: values.option ? [values.option.id] : [],
         passengers: values.passengers,
@@ -102,7 +103,7 @@ export const ChooseYourTrip: FC = () => {
     <>
       <Map setValue={setValue} control={control} />
 
-      <section className="pt-[60px] pb-[60px]">
+      <section className="pt-[60px] pb-[60px]" id="manage-trip">
         <div className="container px-0">
           <div
             className={`py-10 px-[10px] md:py-[60px] md:px-10 ${
@@ -123,7 +124,11 @@ export const ChooseYourTrip: FC = () => {
                 control={control}
                 name="passengers"
                 render={({ field: { value, onChange } }) => (
-                  <ChoosePassengersStep value={value} onChange={onChange} />
+                  <ChoosePassengersStep
+                    maximumSeats={category.maximumSeats}
+                    value={value}
+                    onChange={onChange}
+                  />
                 )}
               />
             )}
@@ -159,7 +164,7 @@ export const ChooseYourTrip: FC = () => {
                 "grid md:grid-flow-col md:auto-cols-[300px] max-w-[640px] gap-x-5 md:gap-x-10 mx-auto justify-center"
               }
             >
-              {step < 7 && (
+              {step <= 5 && (
                 <Button
                   disabled={step === 0}
                   onClick={() => setStep((prev) => prev - 1)}

@@ -8,6 +8,7 @@ declare module "next-auth" {
     activeRides: RideEntity[];
     phoneNumber: string | null;
     inactiveRides: RideEntity[];
+    provider: "google" | "credentials";
   }
 
   interface Session {
@@ -18,6 +19,7 @@ declare module "next-auth" {
       activeRides: RideEntity[];
       phoneNumber: string | null;
       inactiveRides: RideEntity[];
+      provider: "google" | "credentials";
     };
     token: {
       username: string;
@@ -26,6 +28,7 @@ declare module "next-auth" {
       activeRides: RideEntity[];
       phoneNumber: string | null;
       inactiveRides: RideEntity[];
+      provider: "google" | "credentials";
     };
   }
 }

@@ -23,7 +23,7 @@ interface MapProps {
   setValue: UseFormSetValue<FormFields>;
 }
 
-const center = { lat: 48.8584, lng: 2.2945 };
+const center = { lat: 45.4627338, lng: 9.1777323 };
 const libraries = ["places"] as Libraries;
 
 export const Map: FC<MapProps> = ({ control, setValue }) => {
@@ -80,17 +80,10 @@ export const Map: FC<MapProps> = ({ control, setValue }) => {
     setValue("distance", distance);
 
     setDirectionResponse(results);
+
+    const form = document.getElementById("manage-trip");
+    form?.scrollIntoView({ behavior: "smooth" });
   }, [setValue, waypoints]);
-
-  // useEffect(() => {
-  //   if (!isChanged.current) return;
-
-  //   if (waypoints && waypoints.every((w) => w.lat && w.lng)) {
-  //     calculateRoute(waypoints as FormFields["waypoints"]);
-  //   }
-
-  //   isChanged.current = false;
-  // }, [waypoints, calculateRoute]);
 
   if (!isLoaded) {
     return <div>Loading...</div>;

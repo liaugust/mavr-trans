@@ -12,7 +12,6 @@ const links = [
 export default function AdminLayout({ children }: PropsWithChildren) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  console.log("pathname", pathname);
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
               {links.map((link) => (
                 <li key={link.pathname}>
                   <Link
-                    href="/admin/dashboard/leads"
+                    href={link.pathname}
                     className={
                       pathname === link.pathname
                         ? "font-medium relative before:absolute before:h-[1px] before:w-1/2 before:bottom-0 before:left-0 before:bg-primary"

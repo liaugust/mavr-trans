@@ -2,6 +2,7 @@ import { BaseUseCaseInput } from "../../../../use-cases/base.use-case-input";
 
 export class CreateRideUseCaseInput extends BaseUseCaseInput {
   carId: number;
+  phone: string;
   userId: string;
   distance: number;
   categoryId: number;
@@ -20,6 +21,7 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
     super(props);
 
     this.carId = props.carId;
+    this.phone = props.phone;
     this.userId = props.userId;
     this.distance = props.distance;
     this.waypoints = props.waypoints;

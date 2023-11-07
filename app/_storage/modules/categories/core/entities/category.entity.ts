@@ -4,6 +4,7 @@ export type CategoryEntity = {
   image: string;
   active: boolean;
   coefficient: number;
+  maximumSeats: number;
 
   createdAt: Date;
   updatedAt: Date | null;

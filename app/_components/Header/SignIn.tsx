@@ -15,7 +15,6 @@ export const SignIn: FC = () => {
           router.push("/?modal=login");
         }}
         variant="filled_primary"
-        className="mr-2"
       >
         Sign in
       </Button>

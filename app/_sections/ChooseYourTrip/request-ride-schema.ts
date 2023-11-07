@@ -16,6 +16,7 @@ export const schema = z.object({
     })
     .nullable(),
   category: z.object({
+    maximumSeats: z.number().positive(),
     coefficient: z.number().positive(),
     id: z.number().positive().min(1),
     name: z.string(),

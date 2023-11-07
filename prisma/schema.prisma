@@ -96,10 +96,11 @@ model Car {
 model Category {
   id Int @id @unique @default(autoincrement()) @db.Integer()
 
-  image       String  @db.Text()
-  name        String  @db.VarChar(255)
-  active      Boolean @default(true) @db.Boolean()
-  coefficient Float   @default(1)
+  image        String  @db.Text()
+  name         String  @db.VarChar(255)
+  maximumSeats Int     @default(1) @map("maximum_seats") @db.Integer()
+  active       Boolean @default(true) @db.Boolean()
+  coefficient  Float   @default(1)
 
   cars Car[]
 

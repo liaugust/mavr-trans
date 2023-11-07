@@ -9,6 +9,7 @@ export class CategoryMapper {
       image: c.image,
       active: c.active,
       coefficient: c.coefficient,
+      maximumSeats: c.maximumSeats,
 
       updatedAt: c.updatedAt,
       createdAt: c.createdAt,

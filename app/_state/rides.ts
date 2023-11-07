@@ -7,6 +7,7 @@ import {
   GetRidesUseCase,
   GetUserRidesUseCase,
   GetUserUseCase,
+  UpdateUserUseCase,
 } from "../_storage";
 import { getToken } from "./helper";
 
@@ -35,6 +36,11 @@ export const createRide = async (
   const user = await getUserUseCase.handle({ email: token.email });
 
   if (!user) return null;
+
+  if (!user.phoneNumber) {
+    const updateUserUseCase = new UpdateUserUseCase();
+    await updateUserUseCase.handle(user.id, { phoneNumber: input.phone });
+  }
 
   const createRideUseCase = new CreateRideUseCase();
   return createRideUseCase.handle({ ...input, userId: user.id });

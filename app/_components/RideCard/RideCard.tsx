@@ -32,7 +32,7 @@ export const RideCard: FC<RideCardProps> = ({ active = false, ride }) => {
         <div
           className={`py-5 px-[30px] bg-[#20244B] flex flex-col items-center`}
         >
-          <div className="w-[80px] h-[80px] rounded-[50%] bg-[#EBB200] mb-[10px]">
+          <div className="w-[80px] h-[80px] rounded-[50%] bg-[#EBB200] mb-[10px] flex items-center justify-center">
             {ride.car.image && <img src={ride.car.image} alt={ride.car.name} />}
           </div>
           <Caption className="uppercase">{ride.car.name}</Caption>

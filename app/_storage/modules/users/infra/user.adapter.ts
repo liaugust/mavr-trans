@@ -8,6 +8,7 @@ import {
   CreateUserUseCaseInput,
   GetUserUseCaseInput,
   ResetUserPasswordUseCaseInput,
+  UpdateUserUseCaseInput,
 } from "../use-cases";
 
 export class UserAdapter extends BasePrismaAdapter {
@@ -17,6 +18,21 @@ export class UserAdapter extends BasePrismaAdapter {
 
   async createUser(input: CreateUserUseCaseInput): Promise<UserEntity> {
     const user = await this.prisma.user.create({
+      data: input,
+      include: {
+        rides: { include: { waypoints: true, options: true } },
+      },
+    });
+
+    return UserMapper.toUserEntity(user);
+  }
+
+  async updateUser(
+    userId: string,
+    input: UpdateUserUseCaseInput
+  ): Promise<UserEntity> {
+    const user = await this.prisma.user.update({
+      where: { id: userId },
       data: input,
       include: {
         rides: { include: { waypoints: true, options: true } },

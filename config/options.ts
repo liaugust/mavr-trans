@@ -40,6 +40,7 @@ export const options: NextAuthOptions = {
 
         return {
           id: existingUser.id,
+          provider: "credentials",
           email: existingUser.email,
           username: existingUser.name,
           isAdmin: existingUser.isAdmin,
@@ -57,9 +58,9 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
-        return {
+        const newToken = {
           ...token,
           username: user.name,
           isAdmin: user.isAdmin,
@@ -68,6 +69,13 @@ export const options: NextAuthOptions = {
           inactiveRides: user.inactiveRides,
           successfulRides: user.successfulRides,
         };
+
+        if (account && account.provider) {
+          // @ts-ignore
+          newToken.provider = account.provider;
+        }
+
+        return newToken;
       }
 
       return token;
@@ -79,6 +87,7 @@ export const options: NextAuthOptions = {
           ...session.user,
           isAdmin: token.isAdmin,
           username: token.username,
+          provider: token.provider,
           phoneNumber: token.phoneNumber,
           activeRides: token.activeRides,
           inactiveRides: token.inactiveRides,

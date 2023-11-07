@@ -6,7 +6,7 @@ export default function CarsPage() {
   return (
     <div>
       <div className="container p-[30px]">
-        <div className="grid lg:grid-cols-2 gap-[30px]">
+        <div className="grid gap-y-[30px]">
           <CarsList />
 
           <OptionsList />

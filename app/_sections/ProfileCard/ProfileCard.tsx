@@ -6,6 +6,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { FC } from "react";
 import { SuccessfulRides } from "./SuccessfulRides";
+import { ChangePassword } from "@/app/_components/ChangePassword";
 
 interface ProfileCardProps {
   className?: string;
@@ -52,9 +53,7 @@ export const ProfileCard: FC<ProfileCardProps> = async ({ className }) => {
         >
           {session.user.email}
         </Text>
-        <Button className="bg-transparent" variant="outlined">
-          Change password
-        </Button>
+        {session.user.provider !== "google" && <ChangePassword />}
       </div>
       <SuccessfulRides />
     </div>

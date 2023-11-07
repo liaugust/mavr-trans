@@ -43,7 +43,7 @@ const Button: FC<ButtonProps> = memo(
       <button
         {...rest}
         type={type}
-        className={` ${baseClassName} ${buttonSizeStyle[size]} ${buttonVariantStyle[variant]} ${className}`}
+        className={` ${baseClassName} ${buttonSizeStyle[size]} ${buttonVariantStyle[variant]} ${className} hover:opacity-[0.8] transition-opacity`}
       >
         {children}
       </button>

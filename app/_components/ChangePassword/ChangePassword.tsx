@@ -1,3 +1,4 @@
+'use client'
 import { FC } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/app/_components/Button";
@@ -12,15 +13,15 @@ export const ChangePassword: FC = () => {
     <>
       <Button
         onClick={() => {
-          router.push("/?modal=login");
+          router.push("/?modal=change-password");
         }}
-        variant="filled_primary"
-        className="mr-2"
+        className="bg-transparent"
+        variant="outlined"
       >
-        Sign in
+        Change password
       </Button>
 
-      {modal === "login" && (
+      {modal === "change-password" && (
         <ChangePasswordModal
           onClose={() => {
             router.back();
