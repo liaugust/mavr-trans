@@ -47,6 +47,7 @@ export const deleteCategory = async (categoryId: number) => {
 export const createCategory = async (formData: FormData) => {
   const createCategoryUseCase = new CreateCategoryUseCase();
   const coefficient = formData.get("coefficient");
+  const maximumSeats = formData.get("maximumSeats");
   const image = formData.get("image") as File;
   const name = formData.get("name");
 
@@ -54,6 +55,7 @@ export const createCategory = async (formData: FormData) => {
     name,
     image,
     coefficient,
+    maximumSeats,
   });
 
   if (!safeParsedBody.success) return;
@@ -67,8 +69,8 @@ export const createCategory = async (formData: FormData) => {
   const { url } = await put(filePath, file, { access: "public" });
 
   return createCategoryUseCase.handle({
+    maximumSeats: data.maximumSeats,
     coefficient: data.coefficient,
-    maximumSeats: data.seats,
     name: data.name,
     active: true,
     image: url,
@@ -85,13 +87,13 @@ export const updateCategory = async (
 
   const updateCategoryUseCase = new UpdateCategoryUseCase();
   const coefficient = formData.get("coefficient");
-  const seats = formData.get("seats");
+  const maximumSeats = formData.get("maximumSeats");
   const image = formData.get("image") as File;
   const name = formData.get("name");
 
   const safeParsedBody = categorySchema.safeParse({
+    maximumSeats,
     coefficient,
-    seats,
     image,
     name,
   });
@@ -122,7 +124,7 @@ export const updateCategory = async (
 
   return updateCategoryUseCase.handle(categoryId, {
     coefficient: data.coefficient,
-    maximumSeats: data.seats,
+    maximumSeats: data.maximumSeats,
     name: data.name,
     image: url,
   });

@@ -31,8 +31,8 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
   const { t } = useTranslation(lang);
   const { control, handleSubmit, formState } = useForm<CategorySchema>({
     defaultValues: {
+      maximumSeats: defaultValues.maximumSeats,
       coefficient: defaultValues.coefficient,
-      seats: defaultValues.seats,
       image: null as null | File,
       name: defaultValues.name,
     },
@@ -48,7 +48,7 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
     const formData = new FormData();
     formData.set("name", values.name);
     formData.set("image", values.image);
-    formData.set("seats", values.seats.toString());
+    formData.set("maximumSeats", values.maximumSeats.toString());
     formData.set("coefficient", values.coefficient.toString());
 
     await onSubmitHandler(formData);
@@ -105,7 +105,7 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
         )}
       />
       <Controller
-        name="seats"
+        name="maximumSeats"
         control={control}
         render={({
           field: { name, value, onChange, onBlur },

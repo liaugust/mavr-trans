@@ -56,12 +56,20 @@ export const EntityList = <T extends Option>({
           </div>
           <div className="grid grid-cols-3">
             {isCategories && (
-              <UpdateCategory category={entity as unknown as CategoryEntity} />
+              <UpdateCategory
+                lang={lang}
+                category={entity as unknown as CategoryEntity}
+              />
             )}
             {isOptions && (
-              <UpdateOption option={entity as unknown as OptionEntity} />
+              <UpdateOption
+                lang={lang}
+                option={entity as unknown as OptionEntity}
+              />
             )}
-            {isCars && <UpdateCar car={entity as unknown as CarEntity} />}
+            {isCars && (
+              <UpdateCar lang={lang} car={entity as unknown as CarEntity} />
+            )}
 
             <DeleteEntity
               deleteEntityCb={onDeleteEntity}

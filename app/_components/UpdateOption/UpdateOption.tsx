@@ -8,12 +8,13 @@ import {
 } from "@/app/_storage/modules/options/core";
 import { ManageOption } from "../ManageOption";
 import { Caption } from "../Typography";
+import { WithLang } from "@/app/types";
 
-interface UpdateOptionProps {
+interface UpdateOptionProps extends WithLang {
   option: OptionEntity;
 }
 
-export const UpdateOption: FC<UpdateOptionProps> = ({ option }) => {
+export const UpdateOption: FC<UpdateOptionProps> = ({ lang, option }) => {
   const [open, setOpen] = useState(false);
 
   const onClose = useCallback(() => setOpen(false), []);
@@ -32,6 +33,7 @@ export const UpdateOption: FC<UpdateOptionProps> = ({ option }) => {
     <>
       {open && (
         <ManageOption
+          lang={lang}
           onClose={onClose}
           title="Update option"
           defaultValues={option}

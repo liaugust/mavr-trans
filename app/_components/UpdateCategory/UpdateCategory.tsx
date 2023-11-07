@@ -4,12 +4,13 @@ import { FC, useCallback, useState } from "react";
 import { ManageCategory } from "../ManageCategory";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 import { Caption } from "../Typography";
+import { WithLang } from "@/app/types";
 
-interface UpdateCategoryProps {
+interface UpdateCategoryProps extends WithLang {
   category: CategoryEntity;
 }
 
-export const UpdateCategory: FC<UpdateCategoryProps> = ({ category }) => {
+export const UpdateCategory: FC<UpdateCategoryProps> = ({ lang, category }) => {
   const [open, setOpen] = useState(false);
 
   const onClose = useCallback(() => setOpen(false), []);
@@ -25,6 +26,7 @@ export const UpdateCategory: FC<UpdateCategoryProps> = ({ category }) => {
     <>
       {open && (
         <ManageCategory
+          lang={lang}
           onClose={onClose}
           title="Create category"
           defaultValues={category}

@@ -6,12 +6,13 @@ import { ManageCar } from "../ManageCar";
 import { Caption } from "../Typography";
 import { updateCar } from "@/app/_state/cars";
 import { useStore } from "@/app/(routes)/[lang]/store-provider";
+import { WithLang } from "@/app/types";
 
-interface UpdateCarProps {
+interface UpdateCarProps extends WithLang {
   car: CarEntity;
 }
 
-export const UpdateCar: FC<UpdateCarProps> = ({ car }) => {
+export const UpdateCar: FC<UpdateCarProps> = ({ car, lang }) => {
   const { update } = useStore();
   const [open, setOpen] = useState(false);
 
@@ -33,6 +34,7 @@ export const UpdateCar: FC<UpdateCarProps> = ({ car }) => {
     <>
       {open && (
         <ManageCar
+          lang={lang}
           onClose={onClose}
           title="Update car"
           defaultValues={car}
