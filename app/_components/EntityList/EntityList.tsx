@@ -7,6 +7,7 @@ import { UpdateOption } from "../UpdateOption";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 import { OptionEntity } from "@/app/_storage/modules/options/core";
 import { CarEntity } from "@/app/_storage/modules/cars/core";
+import { WithLang } from "@/app/types";
 
 interface Option {
   id: number;
@@ -15,7 +16,7 @@ interface Option {
   active?: boolean;
 }
 
-interface EntityListProps<T> {
+interface EntityListProps<T> extends WithLang {
   entities: T[];
   kind: "cars" | "categories" | "options";
   onHideEntity: (entityId: number) => Promise<void>;
@@ -23,6 +24,7 @@ interface EntityListProps<T> {
 }
 
 export const EntityList = <T extends Option>({
+  lang,
   kind,
   entities,
   onHideEntity,
@@ -64,12 +66,14 @@ export const EntityList = <T extends Option>({
             <DeleteEntity
               deleteEntityCb={onDeleteEntity}
               entityId={entity.id}
+              lang={lang}
             />
             {typeof entity.active === "boolean" && (
               <HideEntity
                 hideEntityCb={onHideEntity}
                 active={entity.active}
                 entityId={entity.id}
+                lang={lang}
               />
             )}
           </div>

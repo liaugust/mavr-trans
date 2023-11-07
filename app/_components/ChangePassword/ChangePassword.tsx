@@ -1,10 +1,13 @@
-'use client'
+"use client";
 import { FC } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/app/_components/Button";
 import { ChangePasswordModal } from "../ChangePasswordModal";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-export const ChangePassword: FC = () => {
+export const ChangePassword: FC<WithLang> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const searchParams = useSearchParams();
   const modal = searchParams.get("modal");
   const router = useRouter();
@@ -18,11 +21,12 @@ export const ChangePassword: FC = () => {
         className="bg-transparent"
         variant="outlined"
       >
-        Change password
+        {t("pages.profile.profile_button")}
       </Button>
 
       {modal === "change-password" && (
         <ChangePasswordModal
+          lang={lang}
           onClose={() => {
             router.back();
           }}

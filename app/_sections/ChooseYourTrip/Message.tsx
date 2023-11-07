@@ -1,24 +1,27 @@
 import { Heading, Title } from "@/app/_components/Typography";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 import { FC } from "react";
 
 type MessageType = "success" | "failure";
 
-interface MessageStepProps {
+interface MessageStepProps extends WithLang {
   type: MessageType;
 }
 
 const content = {
   success: {
-    text: "Your application has been processed and a manager will contact you soon.",
-    title: "Confirmed",
+    text: "pages.trip.confirmation.title",
+    title: "pages.trip.confirmation.text",
   },
   failure: {
-    text: "We were unable to process your request. Please try again later.",
-    title: "An error has occurred",
+    text: "pages.trip.error.title",
+    title: "pages.trip.error.title",
   },
 };
 
-export const MessageStep: FC<MessageStepProps> = ({ type }) => {
+export const MessageStep: FC<MessageStepProps> = ({ lang, type }) => {
+  const { t } = useTranslation(lang);
   return (
     <>
       <Title
@@ -26,7 +29,7 @@ export const MessageStep: FC<MessageStepProps> = ({ type }) => {
         weight="4"
         className="capitalize text-center mb-10 md:mb-[60px]"
       >
-        {content[type].title}
+        {t(content[type].title)}
       </Title>
 
       <Heading
@@ -34,7 +37,7 @@ export const MessageStep: FC<MessageStepProps> = ({ type }) => {
         weight="1"
         className="text-primary p-[30px] rounded-md bg-[#121420] md:max-w-[560px] mx-auto text-center mb-10"
       >
-        {content[type].text}
+        {t(content[type].text)}
       </Heading>
     </>
   );

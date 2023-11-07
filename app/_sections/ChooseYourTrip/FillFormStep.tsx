@@ -3,12 +3,16 @@ import { Title } from "@/app/_components/Typography";
 import { FC } from "react";
 import { Control, Controller } from "react-hook-form";
 import { FormFields } from "./request-ride-schema";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
-interface FillFormStepProps {
+interface FillFormStepProps extends WithLang {
   control: Control<FormFields>;
 }
 
-export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
+export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
+  const { t } = useTranslation(lang);
+
   return (
     <>
       <Title
@@ -16,7 +20,7 @@ export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
         weight="4"
         className="capitalize text-center mb-10 md:mb-[60px]"
       >
-        Fill the form
+        {t("pages.trip.form.contact_info.title")}
       </Title>
 
       <div className="mb-[35px] grid gap-y-[14px] max-w-[560px] mx-auto">
@@ -30,7 +34,7 @@ export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
             <Input
               invalid={invalid}
               errorMessage={error?.message}
-              placeholder="First name"
+              placeholder={t("pages.trip.form.contact_info.fields.first_name")}
               value={value}
               onChange={onChange}
             />
@@ -46,7 +50,7 @@ export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
             <Input
               invalid={invalid}
               errorMessage={error?.message}
-              placeholder="Second name"
+              placeholder={t("pages.trip.form.contact_info.fields.last_name")}
               value={value}
               onChange={onChange}
             />
@@ -62,7 +66,7 @@ export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
             <Input
               invalid={invalid}
               errorMessage={error?.message}
-              placeholder="Phone number"
+              placeholder={t("pages.trip.form.contact_info.fields.phone")}
               value={value}
               onChange={onChange}
             />
@@ -78,7 +82,7 @@ export const FillFormStep: FC<FillFormStepProps> = ({ control }) => {
             <Input
               invalid={invalid}
               errorMessage={error?.message}
-              placeholder="Email"
+              placeholder={t("pages.trip.form.contact_info.fields.email")}
               value={value}
               onChange={onChange}
             />

@@ -5,6 +5,7 @@ export class CreateCategoryUseCaseInput extends BaseUseCaseInput {
   image: string;
   active: boolean;
   coefficient: number;
+  maximumSeats: number;
 
   constructor(props: CreateCategoryUseCaseInput) {
     super(props);
@@ -13,5 +14,6 @@ export class CreateCategoryUseCaseInput extends BaseUseCaseInput {
     this.image = props.image;
     this.active = props.active;
     this.coefficient = props.coefficient;
+    this.maximumSeats = props.maximumSeats;
   }
 }

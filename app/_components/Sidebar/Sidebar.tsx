@@ -1,15 +1,21 @@
 "use client";
+
+import { FC, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PropsWithChildren, useState } from "react";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
 const links = [
-  { pathname: "/admin/dashboard/leads", label: "Leads" },
-  { pathname: "/admin/dashboard/clients", label: "Clients" },
-  { pathname: "/admin/settings", label: "Settings" },
+  { pathname: "/admin/dashboard/leads", label: "admin.sidebar.leads" },
+  { pathname: "/admin/dashboard/clients", label: "admin.sidebar.clients" },
+  { pathname: "/admin/settings", label: "admin.sidebar.settings" },
 ];
 
-export default function AdminLayout({ children }: PropsWithChildren) {
+interface SidebarProps extends WithLang {}
+
+export const Sidebar: FC<SidebarProps> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -37,7 +43,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                         : ""
                     }
                   >
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 </li>
               ))}
@@ -45,6 +51,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
           </div>
         </div>
       </div>
+
       <button
         className="relative z-[110] left-[15px] top-[15px]"
         onClick={() => setOpen((prev) => !prev)}
@@ -62,7 +69,6 @@ export default function AdminLayout({ children }: PropsWithChildren) {
           <rect y="20" width="36" height="2" fill="currentColor" />
         </svg>
       </button>
-      {children}
     </>
   );
-}
+};

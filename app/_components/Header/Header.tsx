@@ -8,9 +8,13 @@ import { signOut, useSession } from "next-auth/react";
 import useLockBodyScroll from "@/app/_hooks/useLockBodyScroll";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
-import { preventDefault } from "@/app/_helpers/prevent-default";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-const Header: FC = () => {
+interface HeaderProps extends WithLang {}
+
+const Header: FC<HeaderProps> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const session = useSession();
   const router = useRouter();
 
@@ -34,23 +38,23 @@ const Header: FC = () => {
             >
               <ul className="lg:flex lg:items-center text-center lg:text-left text-primary lg:text-[#1E1D1F]">
                 <li className="py-2 lg:py-0 px-2 lg:mr-12 text-2xl lg:text-lg">
-                  <Link onClick={() => setOpen(false)} href="/">
-                    Home
+                  <Link onClick={() => setOpen(false)} href={`/${lang}`}>
+                    {t("header.links.home")}
                   </Link>
                 </li>
                 <li className="py-2 lg:py-0 px-2 lg:mr-12 text-2xl lg:text-lg">
-                  <Link onClick={() => setOpen(false)} href="/#about">
-                    About us
+                  <Link onClick={() => setOpen(false)} href={`/${lang}/#about`}>
+                    {t("header.links.about")}
                   </Link>
                 </li>
                 <li className="py-2 lg:py-0 px-2 lg:mr-12 text-2xl lg:text-lg">
-                  <Link onClick={() => setOpen(false)} href="/#faq">
-                    FAQ
+                  <Link onClick={() => setOpen(false)} href={`/${lang}/#faq`}>
+                    {t("header.links.faq")}
                   </Link>
                 </li>
                 <li className="py-2 lg:py-0 px-2 text-2xl lg:text-lg">
-                  <Link onClick={() => setOpen(false)} href="#contact">
-                    Contact
+                  <Link onClick={() => setOpen(false)} href={"#contact"}>
+                    {t("header.links.contacts")}
                   </Link>
                 </li>
               </ul>
@@ -64,7 +68,7 @@ const Header: FC = () => {
                       setOpen(false);
                     }}
                   >
-                    Profile
+                    {t("header.buttons.profile")}
                   </Button>
 
                   <button
@@ -94,9 +98,9 @@ const Header: FC = () => {
                   </button>
                 </div>
               ) : (
-                <div className="buttons">
-                  <SignIn />
-                  <SignUp />
+                <div className="flex gap-x-[10px]">
+                  <SignIn lang={lang} />
+                  <SignUp lang={lang} />
                 </div>
               )}
             </div>

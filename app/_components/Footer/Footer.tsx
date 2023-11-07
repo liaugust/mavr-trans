@@ -1,22 +1,24 @@
 import { FC } from "react";
-import Socials from "./Socials";
+import { useTranslation } from "@/app/_i18n";
+import Link from "next/link";
+import { getLanguage } from "@/app/_i18n/helper";
 
-const Footer: FC = () => {
+const Footer: FC = async () => {
+  const lang = getLanguage();
+  const { t } = await useTranslation();
+
   return (
     <footer className="text-white" id="contact">
       <div className="bg-[#121420] pt-14 pb-12">
         <div className="container">
           <div className="flex-wrap md:flex-nowrap flex gap-y-10 md:gap-y-0 md:gap-x-5">
             <div className="w-full md:w-1/2">
-              <img className="mb-5" src="/logo-primary.svg" alt="" />
-              <p className="text-xs w-52">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur rutrum ligula ac dolor sagittis pretium.
-              </p>
+              <img className="mb-5" src="/logo-primary.svg" alt="mavr trans" />
+              <p className="text-xs w-52">{t("footer.text")}</p>
             </div>
             <div className="w-2/3 sm:w-1/2 lg:w-1/4">
               <div className="mb-[30px] text-[22px] md:text-2xl relative after:absolute after:bottom-0 after:w-[70px] after:h-[2px] after:block after:bg-primary">
-                Official info
+                {t("footer.official_info.title")}
               </div>
 
               <ul className="grid grid-flow-row gap-y-3 mb-5">
@@ -85,34 +87,32 @@ const Footer: FC = () => {
                   </a>
                 </li>
               </ul>
-
-              <Socials />
             </div>
             <div className="w-1/3 sm:w-1/2 md:w-1/4">
               <div className="mb-[30px] text-[22px] md:text-2xl relative after:absolute after:bottom-0 after:w-[70px] after:h-[2px] after:block after:bg-primary">
-                Quick link
+                {t("footer.quick_link.title")}
               </div>
 
               <ul className="grid grid-flow-row gap-y-3 mb-5">
                 <li>
-                  <a className="text-lg" href="#">
-                    Home
-                  </a>
+                  <Link className="text-lg" href={`/${lang}`}>
+                    {t("footer.quick_link.links.home")}
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-lg" href="#">
-                    About us
-                  </a>
+                  <Link className="text-lg" href={`/${lang}/#about`}>
+                    {t("footer.quick_link.links.about")}
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-lg" href="#">
-                    FAQ
-                  </a>
+                  <Link className="text-lg" href={`/${lang}/#faq`}>
+                    {t("footer.quick_link.links.faq")}
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-lg" href="#">
-                    Contact
-                  </a>
+                  <Link className="text-lg" href={`#contact`}>
+                    {t("footer.quick_link.links.contacts")}
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -125,11 +125,11 @@ const Footer: FC = () => {
           <nav>
             <ul className="flex justify-end space-x-4">
               <li>
-                <a href="">Terms</a>
+                <Link href={`/${lang}/terms`}>Terms</Link>
               </li>
               <li>|</li>
               <li>
-                <a href="">Privacy</a>
+                <Link href={`/${lang}/privacy`}>Privacy</Link>
               </li>
             </ul>
           </nav>

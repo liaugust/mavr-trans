@@ -11,8 +11,10 @@ import {
   CategorySchema,
   categorySchema,
 } from "@/app/_storage/modules/categories/core";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
-interface ManageCategoryProps {
+interface ManageCategoryProps extends WithLang {
   title: string;
   onClose: () => void;
   defaultValues?: CategorySchema;
@@ -20,14 +22,17 @@ interface ManageCategoryProps {
 }
 
 export const ManageCategory: FC<ManageCategoryProps> = ({
+  lang,
   title,
   onClose,
   onSubmitHandler,
   defaultValues = initialValues,
 }) => {
+  const { t } = useTranslation(lang);
   const { control, handleSubmit, formState } = useForm<CategorySchema>({
     defaultValues: {
       coefficient: defaultValues.coefficient,
+      seats: defaultValues.seats,
       image: null as null | File,
       name: defaultValues.name,
     },
@@ -43,6 +48,7 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
     const formData = new FormData();
     formData.set("name", values.name);
     formData.set("image", values.image);
+    formData.set("seats", values.seats.toString());
     formData.set("coefficient", values.coefficient.toString());
 
     await onSubmitHandler(formData);
@@ -52,7 +58,7 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
     <ManageEntityModal
       title={title}
       onClose={onClose}
-      buttonText="Submit"
+      buttonText={t("admin.pages.settings.buttons.submit")}
       onSubmit={onSubmit}
       submitButtonDisabled={submitButtonDisabled}
     >
@@ -70,7 +76,9 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Enter name"
+            placeholder={t(
+              "admin.pages.settings.classes.form.name_placeholder"
+            )}
             errorMessage={error?.message}
           />
         )}
@@ -90,7 +98,30 @@ export const ManageCategory: FC<ManageCategoryProps> = ({
             invalid={invalid}
             onChange={onChange}
             errorMessage={error?.message}
-            placeholder="Enter coefficient"
+            placeholder={t(
+              "admin.pages.settings.classes.form.coefficient_placeholder"
+            )}
+          />
+        )}
+      />
+      <Controller
+        name="seats"
+        control={control}
+        render={({
+          field: { name, value, onChange, onBlur },
+          fieldState: { invalid, error },
+        }) => (
+          <Input
+            name={name}
+            value={value}
+            onBlur={onBlur}
+            inputMode="decimal"
+            invalid={invalid}
+            onChange={onChange}
+            errorMessage={error?.message}
+            placeholder={t(
+              "admin.pages.settings.classes.form.seats_placeholder"
+            )}
           />
         )}
       />

@@ -27,6 +27,7 @@ export const categorySchema = z.object({
 
       return true;
     }, "Only .jpg, .jpeg, .png and .webp formats are supported."),
+  seats: z.coerce.number().min(1),
   coefficient: z.coerce.number().min(0),
 });
 

@@ -68,6 +68,7 @@ export const createCategory = async (formData: FormData) => {
 
   return createCategoryUseCase.handle({
     coefficient: data.coefficient,
+    maximumSeats: data.seats,
     name: data.name,
     active: true,
     image: url,
@@ -84,11 +85,13 @@ export const updateCategory = async (
 
   const updateCategoryUseCase = new UpdateCategoryUseCase();
   const coefficient = formData.get("coefficient");
+  const seats = formData.get("seats");
   const image = formData.get("image") as File;
   const name = formData.get("name");
 
   const safeParsedBody = categorySchema.safeParse({
     coefficient,
+    seats,
     image,
     name,
   });
@@ -119,6 +122,7 @@ export const updateCategory = async (
 
   return updateCategoryUseCase.handle(categoryId, {
     coefficient: data.coefficient,
+    maximumSeats: data.seats,
     name: data.name,
     image: url,
   });

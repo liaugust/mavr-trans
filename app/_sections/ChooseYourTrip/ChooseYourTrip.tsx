@@ -14,8 +14,11 @@ import { Button } from "@/app/_components/Button";
 import { createRide } from "@/app/_state/rides";
 import { MessageStep } from "./Message";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-export const ChooseYourTrip: FC = () => {
+export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const [step, setStep] = useState(0);
   const router = useRouter();
 
@@ -101,7 +104,7 @@ export const ChooseYourTrip: FC = () => {
 
   return (
     <>
-      <Map setValue={setValue} control={control} />
+      <Map setValue={setValue} control={control} lang={lang} />
 
       <section className="pt-[60px] pb-[60px]" id="manage-trip">
         <div className="container px-0">
@@ -115,7 +118,11 @@ export const ChooseYourTrip: FC = () => {
                 control={control}
                 name="category"
                 render={({ field: { value, onChange } }) => (
-                  <ChooseClassStep value={value} onChange={onChange} />
+                  <ChooseClassStep
+                    lang={lang}
+                    value={value}
+                    onChange={onChange}
+                  />
                 )}
               />
             )}
@@ -125,6 +132,7 @@ export const ChooseYourTrip: FC = () => {
                 name="passengers"
                 render={({ field: { value, onChange } }) => (
                   <ChoosePassengersStep
+                    lang={lang}
                     maximumSeats={category.maximumSeats}
                     value={value}
                     onChange={onChange}
@@ -138,6 +146,7 @@ export const ChooseYourTrip: FC = () => {
                 name="car"
                 render={({ field: { value, onChange } }) => (
                   <ChooseCarStep
+                    lang={lang}
                     value={value}
                     onChange={onChange}
                     passengers={passengers}
@@ -150,14 +159,18 @@ export const ChooseYourTrip: FC = () => {
                 name="option"
                 control={control}
                 render={({ field: { value, onChange } }) => (
-                  <ChooseOptionStep value={value} onChange={onChange} />
+                  <ChooseOptionStep
+                    lang={lang}
+                    value={value}
+                    onChange={onChange}
+                  />
                 )}
               />
             )}
-            {step === 4 && <FillFormStep control={control} />}
-            {step === 5 && <Checkout control={control} />}
-            {step === 6 && <MessageStep type="success" />}
-            {step === 7 && <MessageStep type="failure" />}
+            {step === 4 && <FillFormStep lang={lang} control={control} />}
+            {step === 5 && <Checkout lang={lang} control={control} />}
+            {step === 6 && <MessageStep lang={lang} type="success" />}
+            {step === 7 && <MessageStep lang={lang} type="failure" />}
 
             <div
               className={
@@ -170,7 +183,7 @@ export const ChooseYourTrip: FC = () => {
                   onClick={() => setStep((prev) => prev - 1)}
                   variant="outlined"
                 >
-                  Back
+                  {t("pages.trip.form.buttons.prev")}
                 </Button>
               )}
 
@@ -184,7 +197,9 @@ export const ChooseYourTrip: FC = () => {
                     : () => setStep((prev) => prev + 1)
                 }
               >
-                {step === 7 || step === 6 ? "Back to home" : "Next"}
+                {step === 7 || step === 6
+                  ? t("pages.trip.form.buttons.go_home")
+                  : t("pages.trip.form.buttons.next")}
               </Button>
             </div>
           </div>

@@ -5,16 +5,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema, signInSchema } from "./sign-in-schema";
 import { signIn } from "next-auth/react";
 import { Input } from "../Input";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
 interface SignInModalProps
-  extends Omit<
-    AuthModalProps,
-    "title" | "buttonText" | "onSubmit" | "submitButtonDisabled"
-  > {
+  extends WithLang,
+    Omit<
+      AuthModalProps,
+      "title" | "buttonText" | "onSubmit" | "submitButtonDisabled"
+    > {
   onSuccess: () => void;
 }
 
-export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
+export const SignInModal: FC<SignInModalProps> = ({
+  onClose,
+  onSuccess,
+  lang,
+}) => {
+  const { t } = useTranslation(lang);
   const { control, formState, handleSubmit, setError } = useForm<SignInSchema>({
     defaultValues: {
       email: "",
@@ -48,10 +56,11 @@ export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
 
   return (
     <AuthModal
-      title="Login"
+      lang={lang}
+      title={t("modals.sign_in.title")}
       onClose={onClose}
       onSubmit={onSubmit}
-      buttonText="Sign In"
+      buttonText={t("modals.sign_in.buttons.submit")}
       errorMessage={errors.root?.message}
       submitButtonDisabled={submitButtonDisabled}
     >
@@ -70,7 +79,7 @@ export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
             invalid={invalid}
             onChange={onChange}
             errorMessage={error?.message}
-            placeholder="Enter your email address"
+            placeholder={t("modals.sign_in.fields.email_placeholder")}
           />
         )}
       />
@@ -88,7 +97,7 @@ export const SignInModal: FC<SignInModalProps> = ({ onClose, onSuccess }) => {
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Password"
+            placeholder={t("modals.sign_in.fields.password_placeholder")}
             errorMessage={error?.message}
           />
         )}

@@ -1,0 +1,285 @@
+{
+  "header": {
+    "links": {
+      "home": "Home",
+      "about": "Chi siamo",
+      "faq": "Domande frequenti",
+      "contacts": "Contatti"
+    },
+    "buttons": {
+      "sign_in": "Accedi",
+      "sign_up": "Registrati",
+      "profile": "Profilo"
+    }
+  },
+  "footer": {
+    "text": "Non devi più preoccuparti del trasporto in un paese straniero o durante eventi importanti.",
+    "terms": "Termini",
+    "privacy": "Privacy",
+    "official_info": {
+      "title": "Informazioni ufficiali"
+    },
+    "quick_link": {
+      "title": "Link rapidi",
+      "links": {
+        "home": "Home",
+        "about": "Chi siamo",
+        "faq": "Domande frequenti",
+        "contacts": "Contatti"
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "subhead": "Consegna veloce di auto",
+        "title": "Il modo migliore per",
+        "subtitle": "Rilassati durante i viaggi",
+        "text": "Non devi più preoccuparti del trasporto in un paese straniero o durante eventi importanti. I nostri trasferimenti privati ti offriranno tranquillità, comfort e affidabilità, anche nelle situazioni più insolite.",
+        "button": "Prenota un trasferimento"
+      },
+      "about": {
+        "subhead": "La nostra azienda",
+        "title": "Mavr-Trans",
+        "subtitle": "Il tuo comfort è il nostro compito.",
+        "text": "Con oltre 10 anni di esperienza nel settore, Mavr-Trans è la tua scelta affidabile per il trasporto in Italia e oltre. Non importa se sei in Italia per lavoro o turismo, la nostra azienda si assicurerà che tu viaggi in modo puntuale e confortevole e ottieni solo le migliori impressioni dal tuo viaggio. Abbiamo una vasta selezione di tipi di auto che ti aiuteranno a scegliere esattamente ciò che desideri e per il numero di persone di cui hai bisogno, che tu stia viaggiando da solo, con la famiglia o con i colleghi. Ci prenderemo cura del tuo comfort, della velocità e del percorso ottimale.",
+        "counters": [
+          { "count": "10+", "title": "Anni di esperienza" },
+          { "count": "22K+", "title": "clienti soddisfatti" }
+        ]
+      },
+      "service": {
+        "title": "Il miglior servizio di trasferimento",
+        "subtitle": "",
+        "services": [
+          {
+            "title": "Percorso personale",
+            "text": "Sappiamo che le tue esigenze di viaggio possono essere uniche. La nostra azienda offre itinerari personalizzati e servizi che soddisfano le tue esigenze, che si tratti di svago, lavoro o eventi."
+          },
+          {
+            "title": "Convenienza esclusiva",
+            "text": "Puoi essere sicuro di sicurezza e stile quando viaggi con noi. Il massimo standard di servizio e auto moderne per la tua comodità."
+          },
+          {
+            "title": "Servizio",
+            "text": "Prenota un viaggio da qualsiasi parte del mondo in pochi clic sul nostro sito web e ricevi un feedback rapido dai nostri manager."
+          }
+        ]
+      },
+      "choose_class": {
+        "title": "Scegli il tuo percorso",
+        "subtitle": "",
+        "book_now": "Prenota ora"
+      },
+      "faq": {
+        "title": "Domande frequenti",
+        "subtitle": "",
+        "questions": [
+          {
+            "question": "Come posso prenotare un trasferimento privato con la vostra azienda?",
+            "answer": "Puoi utilizzare il nostro servizio di prenotazione online sul sito web per facilità e rapidità, devi scegliere il percorso, l'auto e le opzioni dettagliate utilizzando l'assistenza sul sito e pagare i servizi. Oppure puoi lasciare le tue informazioni di contatto per essere contattato dal nostro manager. È disponibile anche l'opzione di inviare un messaggio al messenger."
+          },
+          {
+            "question": "Quali tipi di pagamenti accettate per i servizi di trasferimento?",
+            "answer": "Accettiamo vari tipi di pagamenti, tra cui carte di credito e di debito, bonifici e altri metodi di pagamento. Il metodo di pagamento principale è il pagamento tramite il sistema di pagamento installato sul sito. Ma se hai bisogno di metodi aggiuntivi, lascia i tuoi dati di contatto e il nostro manager ti contatterà."
+          },
+          {
+            "question": "È possibile scegliere il tipo di veicolo per il trasporto?",
+            "answer": "Sì, offriamo la possibilità di scegliere il tipo di auto in base al tuo comfort e alle tue esigenze. Puoi scegliere quello che meglio si adatta al tuo viaggio dalla lista delle auto disponibili."
+          },
+          {
+            "question": "Il vostro servizio funziona 24 ore su 24 o ci sono restrizioni sugli orari per ordinare un trasferimento?",
+            "answer": "Il nostro servizio è disponibile 7 giorni su 7. Puoi ordinare un trasferimento in qualsiasi momento che ti sia comodo, anche nelle situazioni più inaspettate."
+          },
+          {
+            "question": "Come posso annullare o modificare la mia prenotazione?",
+            "answer": "Per annullare o modificare la tua prenotazione, contatta il nostro servizio clienti il prima possibile. Siamo pronti ad aiutarti."
+          },
+          {
+            "question": "Fornite servizi aggiuntivi, come seggiolini per bambini o un conducente aggiuntivo?",
+            "answer": "Sì, forniamo servizi aggiuntivi come seggiolini per bambini, un conducente aggiuntivo e molti altri. Per favore, facci sapere le tue esigenze al momento della prenotazione."
+          },
+          {
+            "question": "Come posso contattarti per ulteriori domande o assistenza durante il mio viaggio?",
+            "answer": "Puoi contattare il nostro team di supporto clienti utilizzando i contatti forniti sul nostro sito web. Siamo sempre pronti a rispondere alle tue domande e fornire assistenza."
+          },
+          {
+            "question": "In quali regioni o città opera la vostra azienda?",
+            "answer": "La nostra azienda fornisce servizi di trasferimento in varie regioni e città d'Italia. Per ulteriori informazioni sulle località che serviamo, ti preghiamo di contattarci."
+          }
+        ]
+      }
+    },
+    "trip": {
+      "title": "Scegli il tuo percorso di viaggio",
+
+      "choose_route": {
+        "origin_point_placeholder": "Seleziona un punto di partenza o fai clic sulla mappa",
+        "destination_point_placeholder": "Seleziona il tuo punto di destinazione",
+        "waypoint_placeholder": "Seleziona un punto di sosta aggiuntivo",
+        "add_waypoint": "Punto di sosta aggiuntivo"
+      },
+
+      "form": {
+        "choose_class": {
+          "title": "Scegli la tua classe"
+        },
+        "choose_car": {
+          "title": "Scegli la tua auto"
+        },
+        "passengers": {
+          "title": "Numero di passeggeri"
+        },
+        "options": {
+          "title": "Numero di opzioni"
+        },
+        "contact_info": {
+          "title": "Compila il modulo",
+          "inputs": {
+            "first_name": "Nome",
+            "last_name": "Cognome",
+            "phone": "Numero di telefono",
+            "email": "Email"
+          }
+        },
+        "checkout": {
+          "title": "È tutto corretto?",
+          "fields": {
+            "route": "Percorso",
+            "car": "Auto",
+            "passengers": "Numero di passeggeri",
+            "options": "Opzioni aggiuntive",
+            "full_name": "Nome del cliente",
+            "phone": "Numero di telefono",
+            "amount": "Importo"
+          }
+        },
+        "confirmation": {
+          "title": "Confermato",
+          "text": "La tua richiesta è stata elaborata e un responsabile ti contatterà a breve."
+        },
+        "error": {
+          "title": "Si è verificato un errore",
+          "text": "Non siamo riusciti a elaborare la tua richiesta. Riprova più tardi."
+        },
+
+        "buttons": {
+          "prev": "Indietro",
+          "next": "Avanti",
+          "go_home": "Torna alla home",
+          "submit": "Paga il trasferimento"
+        }
+      }
+    },
+    "profile": {
+      "active_transfers": "Trasferimento attivo",
+      "transfers_history": "Storico degli ordini",
+      "profile_button": "Cambia password",
+      "successful_trips": "viaggi riusciti"
+    },
+    "error": {
+      "title": "Errore 404",
+      "subtitle": "Pagina non trovata",
+      "go_home": "Torna alla home"
+    }
+  },
+  "modals": {
+    "sign_in": {
+      "title": "Accesso",
+      "fields": {
+        "phone_or_email_placeholder": "Numero di telefono o Email",
+        "password_placeholder": "Password"
+      },
+      "buttons": {
+        "submit": "Accedi",
+        "google": "Accedi con un account Google"
+      }
+    },
+    "sign_up": {
+      "title": "Crea un account",
+      "fields": {
+        "first_name_placeholder": "Nome",
+        "last_name_placeholder": "Cognome",
+        "phone_placeholder": "Numero di telefono",
+        "email_placeholder": "Email",
+        "create_password_placeholder": "Crea una password",
+        "confirm_password_placeholder": "Ripeti la password"
+      },
+      "buttons": {
+        "submit": "Crea un account",
+        "google": "Accedi con un account Google"
+      }
+    },
+    "reset_password": {
+      "title": "Cambia password",
+      "fields": {
+        "new_password_placeholder": "Nuova password",
+        "repeat_password_placeholder": "Ripeti la password"
+      },
+      "buttons": {
+        "submit": "Cambia"
+      }
+    }
+  },
+  "admin": {
+    "sidebar": {
+      "leads": "Lead",
+      "clients": "Clienti",
+      "settings": "Impostazioni"
+    },
+    "pages": {
+      "leads": {
+        "table_columns": {
+          "date": "Data",
+          "first_name": "Nome",
+          "last_name": "Cognome",
+          "phone": "Numero di telefono",
+          "route": "Percorso",
+          "car": "Auto",
+          "options": "Opzioni aggiuntive",
+          "total": "Totale",
+          "status": "Stato"
+        },
+        "confirm": "Conferma"
+      },
+      "clients": {
+        "table_columns": {
+          "first_name": "Nome",
+          "last_name": "Cognome",
+          "phone": "Numero di telefono",
+          "email": "Indirizzo email",
+          "confirmed_transfer": "Trasferimento confermato"
+        }
+      },
+      "settings": {
+        "buttons": {
+          "edit": "Modifica",
+          "hide": "Nascondi",
+          "delete": "Elimina",
+          "add_new": "Aggiungi nuovo"
+        },
+        "cars": {
+          "title": "Auto",
+          "form": {
+            "name_placeholder": "Inserisci il nome",
+            "seats_placeholder": "Inserisci i posti",
+            "category_placeholder": "Scegli la categoria"
+          }
+        },
+        "options": {
+          "title": "Opzioni aggiuntive",
+          "form": {
+            "name_placeholder": "Inserisci il nome"
+          }
+        },
+        "classes": {
+          "title": "Classi",
+          "form": {
+            "name_placeholder": "Inserisci il nome",
+            "coefficient_placeholder": "Inserisci il coefficiente"
+          }
+        }
+      }
+    }
+  }
+}

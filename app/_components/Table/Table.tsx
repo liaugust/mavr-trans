@@ -1,3 +1,4 @@
+import { useTranslation } from "@/app/_i18n";
 import { FC } from "react";
 
 interface TableProps {
@@ -5,7 +6,9 @@ interface TableProps {
   values: string[][];
 }
 
-export const Table: FC<TableProps> = ({ values, columns }) => {
+export const Table: FC<TableProps> = async ({ values, columns }) => {
+  const { t } = await useTranslation();
+
   return (
     <div className="overflow-x-scroll">
       <table className="rounded-[10px] w-full">
@@ -13,7 +16,7 @@ export const Table: FC<TableProps> = ({ values, columns }) => {
           <tr>
             {columns.map((column) => (
               <th className="p-5" key={column}>
-                {column}
+                {t(column)}
               </th>
             ))}
           </tr>

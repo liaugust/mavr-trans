@@ -4,8 +4,10 @@ import { Button } from "../Button";
 import { Form } from "../Form";
 import { GoogleBtn } from "./GoogleBtn";
 import { Caption } from "../Typography";
+import { Language } from "@/app/_i18n/settings";
+import { WithLang } from "@/app/types";
 
-export interface AuthModalProps extends ModalProps {
+export interface AuthModalProps extends ModalProps, WithLang {
   buttonText: string;
   errorMessage?: string;
   withGoogleAuth?: boolean;
@@ -14,6 +16,7 @@ export interface AuthModalProps extends ModalProps {
 }
 
 export const AuthModal: FC<AuthModalProps> = ({
+  lang,
   title,
   onClose,
   onSubmit,
@@ -43,7 +46,7 @@ export const AuthModal: FC<AuthModalProps> = ({
         >
           {buttonText}
         </Button>
-        {withGoogleAuth && <GoogleBtn />}
+        {withGoogleAuth && <GoogleBtn lang={lang} />}
       </Form>
     </Modal>
   );

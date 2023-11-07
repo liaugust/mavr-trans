@@ -1,21 +1,25 @@
 import { EntityCard } from "@/app/_components/EntityCard";
 import { Title } from "@/app/_components/Typography";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { FC, useMemo } from "react";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
 type Car = { id: number; name: string };
 
-interface ChooseCarStepProps {
+interface ChooseCarStepProps extends WithLang {
   value: Car | null;
   passengers: number;
   onChange: (value: Car) => void;
 }
 
 export const ChooseCarStep: FC<ChooseCarStepProps> = ({
+  lang,
   value,
   passengers,
   onChange,
 }) => {
+  const { t } = useTranslation(lang);
   const { cars } = useStore();
 
   const carsWithPassengers = useMemo(
@@ -42,7 +46,7 @@ export const ChooseCarStep: FC<ChooseCarStepProps> = ({
         weight="4"
         className="capitalize text-center mb-[60px]"
       >
-        Choose your car
+        {t("pages.trip.form.choose_car.title")}
       </Title>
 
       <div className="grid md:grid-cols-[repeat(2,1fr)] lg:grid-cols-[repeat(3,1fr)] gap-[10px] md:gap-10 mb-[60px]">

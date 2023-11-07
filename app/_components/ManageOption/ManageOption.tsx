@@ -10,8 +10,10 @@ import {
   OptionSchema,
   optionSchema,
 } from "@/app/_storage/modules/options/core";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
-interface ManageOptionProps {
+interface ManageOptionProps extends WithLang {
   title: string;
   onClose: () => void;
   defaultValues?: OptionSchema;
@@ -19,11 +21,13 @@ interface ManageOptionProps {
 }
 
 export const ManageOption: FC<ManageOptionProps> = ({
+  lang,
   title,
   onClose,
   onSubmitHandler,
   defaultValues = initialValues,
 }) => {
+  const { t } = useTranslation(lang);
   const { control, handleSubmit, formState } = useForm<OptionSchema>({
     defaultValues,
     resolver: zodResolver(optionSchema),
@@ -42,7 +46,7 @@ export const ManageOption: FC<ManageOptionProps> = ({
     <ManageEntityModal
       title={title}
       onClose={onClose}
-      buttonText="Submit"
+      buttonText={t("admin.pages.settings.buttons.submit")}
       onSubmit={onSubmit}
       submitButtonDisabled={submitButtonDisabled}
     >
@@ -60,7 +64,9 @@ export const ManageOption: FC<ManageOptionProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Enter name"
+            placeholder={t(
+              "admin.pages.settings.options.form.name_placeholder"
+            )}
             errorMessage={error?.message}
           />
         )}

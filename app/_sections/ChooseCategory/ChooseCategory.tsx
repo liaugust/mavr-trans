@@ -3,12 +3,15 @@
 import { Title } from "@/app/_components/Typography";
 import { FC } from "react";
 import { Category } from "./Category";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import Link from "next/link";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-interface ChooseCategoryProps {}
+interface ChooseCategoryProps extends WithLang {}
 
-const ChooseCategory: FC<ChooseCategoryProps> = () => {
+const ChooseCategory: FC<ChooseCategoryProps> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const { categories } = useStore();
 
   return (
@@ -19,10 +22,10 @@ const ChooseCategory: FC<ChooseCategoryProps> = () => {
           Component={"h2"}
           className="text-center mb-10 lg:mb-[60px] text-[#343331] capitalize"
         >
-          Choose your way
-          <Title level="4" weight="0" Component="span" className="block">
+          {t("pages.home.choose_class.title")}
+          {/* <Title level="4" weight="0" Component="span" className="block">
             Lorem ipsum
-          </Title>
+          </Title> */}
         </Title>
 
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 auto-rows-[280px] gap-3 sm:gap-5 md:gap-7 lg:gap-10">
@@ -42,7 +45,7 @@ const ChooseCategory: FC<ChooseCategoryProps> = () => {
                 level="5"
                 className="bg-primary w-full h-full flex items-center justify-center uppercase"
               >
-                Book now
+                {t("pages.home.choose_class.book_now")}
               </Title>
             </Link>
           </li>

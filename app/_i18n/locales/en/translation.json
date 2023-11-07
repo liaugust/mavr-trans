@@ -1,0 +1,289 @@
+{
+  "header": {
+    "links": {
+      "home": "Home",
+      "about": "About us",
+      "faq": "FAQ",
+      "contacts": "Contact"
+    },
+    "buttons": {
+      "sign_in": "Sign in",
+      "sign_up": "Sign up",
+      "profile": "Profile"
+    }
+  },
+  "footer": {
+    "text": "You no longer have to worry about transportation in a foreign country or during important events.",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "official_info": {
+      "title": "Official info"
+    },
+    "quick_link": {
+      "title": "Quick links",
+      "links": {
+        "home": "Home",
+        "about": "About us",
+        "faq": "FAQ",
+        "contacts": "Contact"
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "subhead": "Fast car delivery",
+        "title": "The best way to",
+        "subtitle": "Relax while traveling",
+        "text": "You no longer have to worry about transportation in a foreign country or during important events. Our private transfers will provide you with peace of mind, comfort, and reliability, even in the most unusual situations.",
+        "button": "Book a transfer"
+      },
+      "about": {
+        "subhead": "About our company",
+        "title": "Mavr-Trans",
+        "subtitle": "Your comfort is our task.",
+        "text": "With more than 10 years of experience in the industry, Mavr-Trans is your reliable choice for transportation throughout Italy and beyond. It doesn't matter whether you are in Italy for work or a tourist, our company will make sure that you travel on time and comfortably and get only the best impressions from your trip. We have a large selection of types of cars, which will help you choose exactly what you want and for the number of people you need, regardless of whether you are traveling alone, with family or colleagues. We will take care of your comfort, speed, and optimal route.",
+        "counters": [
+          { "count": "10+", "title": "Years experience" },
+          { "count": "22K+", "title": "satisfied customers" }
+        ]
+      },
+      "service": {
+        "title": "Best transfer service",
+        "subtitle": "",
+        "services": {
+          "first": {
+            "title": "Personal Route",
+            "text": "We understand that your travel needs may be unique. Our company offers personalized itineraries and services that meet your needs, be it for leisure, work, or events"
+          },
+          "second": {
+            "title": "Exclusive Convenience",
+            "text": "You can be sure of safety and style when traveling with us. The highest standard of service and modern cars for your convenience."
+          },
+          "third": {
+            "title": "Service",
+            "text": "Book a trip from anywhere in the world in a few clicks on our website, and get quick feedback from our managers"
+          }
+        }
+      },
+      "choose_class": {
+        "title": "Choose your way",
+        "subtitle": "",
+        "book_now": "Book now"
+      },
+      "faq": {
+        "title": "FAQ",
+        "subtitle": "",
+        "questions": [
+          {
+            "question": "How can I book a private transfer with your company?",
+            "answer": "You can also use our online booking service on the website for ease and speed, you need to choose the route, car, and detailed options using the help on the website, and pay for the services. Or you can leave your contact information to be contacted by our manager. The option of sending a message to the messenger is also available."
+          },
+          {
+            "question": "What types of payments do you accept for transfer services?",
+            "answer": "We accept various types of payments, including credit and debit cards, electronic transfers, and other payment methods. The main payment method is payment using the payment system installed on the site. But if you need additional methods, leave your contact details and our manager will contact you."
+          },
+          {
+            "question": "Is it possible to choose the type of vehicle for transportation?",
+            "answer": "Yes, we offer the possibility to choose the type of car according to your comfort and needs. You can choose the one that best suits your trip from the list of available cars."
+          },
+          {
+            "question": "Does your service work around the clock, or are there any restrictions on the time of ordering a transfer?",
+            "answer": "Our service is available 7 days a week. You can order a transfer at a time convenient for you, even in the most unexpected situations."
+          },
+          {
+            "question": "How can I cancel or change my reservation?",
+            "answer": "To cancel or change your reservation, please contact our customer service team as far in advance as possible. We are ready to help you."
+          },
+          {
+            "question": "Do you provide additional services, such as child seats or an additional driver?",
+            "answer": "Yes, we provide additional services such as child seats, an additional driver, and many others. Please let us know your needs when booking."
+          },
+          {
+            "question": "How can I contact you for additional questions or assistance during my trip?",
+            "answer": "You can reach our customer support team using the contacts provided on our website. We are always ready to answer your questions and provide assistance."
+          },
+          {
+            "question": "What regions or cities does your company serve?",
+            "answer": "Our company provides transfer services in various regions and cities of Italy. For more information on the locations we serve, please contact us."
+          }
+        ]
+      }
+    },
+    "trip": {
+      "title": "Choose your trip route",
+
+      "choose_route": {
+        "origin_point_placeholder": "Select a starting point or click on the map",
+        "destination_point_placeholder": "Select your destination point",
+        "waypoint_placeholder": "Select additional waypoint",
+        "add_waypoint": "Additional stopping point"
+      },
+
+      "form": {
+        "choose_class": {
+          "title": "Choose your class"
+        },
+        "choose_car": {
+          "title": "Choose your car"
+        },
+        "passengers": {
+          "title": "Number of passengers"
+        },
+        "options": {
+          "title": "Number of options"
+        },
+        "contact_info": {
+          "title": "Fill the form",
+          "inputs": {
+            "first_name": "First name",
+            "last_name": "Second name",
+            "phone": "Phone number",
+            "email": "Email"
+          }
+        }
+      },
+      "checkout": {
+        "title": "Is everything correct?",
+        "fields": {
+          "route": "Route",
+          "car": "Car",
+          "passengers": "Number of passengers",
+          "options": "Additional options",
+          "full_name": "Customer name",
+          "phone": "Phone number",
+          "amount": "Amount"
+        }
+      },
+      "confirmation": {
+        "title": "Confirmed",
+        "text": "Your application has been processed and a manager will contact you soon."
+      },
+      "error": {
+        "title": "An error has occurred",
+        "text": "We were unable to process your request. Please try again later."
+      },
+
+      "buttons": {
+        "prev": "Back",
+        "next": "Next",
+        "go_home": "Back to home"
+      }
+    },
+    "profile": {
+      "active_transfers": "Active transfer",
+      "transfers_history": "History of orders",
+      "profile_button": "Change password",
+      "successfull_trips": "successful trips"
+    },
+    "error": {
+      "title": "404 error",
+      "subtitle": "Page not found",
+      "go_home": "Back to home"
+    }
+  },
+  "modals": {
+    "sign_in": {
+      "title": "Login",
+      "fields": {
+        "email_placeholder": "Enter your email address",
+        "password_placeholder": "Password"
+      },
+      "buttons": {
+        "submit": "Sign in",
+        "google": "Sign in with Google account"
+      }
+    },
+    "sign_up": {
+      "title": "Create an account",
+      "fields": {
+        "first_name_placeholder": "First name",
+        "last_name_placeholder": "Second name",
+        "phone_placeholder": "Phone number",
+        "email_placeholder": "Email",
+        "create_password_placeholder": "Create a password",
+        "confirm_password_placeholder": "Repeat a password"
+      },
+      "buttons": {
+        "submit": "Create an account",
+        "google": "Sign in with Google account"
+      }
+    },
+    "reset_password": {
+      "title": "Change password",
+      "fields": {
+        "prev_password_placeholder": "New password",
+        "new_password_placeholder": "New password",
+        "repeat_password_placeholder": "Repeat a password"
+      },
+      "buttons": {
+        "submit": "Change"
+      }
+    }
+  },
+  "admin": {
+    "sidebar": {
+      "leads": "Leads",
+      "clients": "Clients",
+      "settings": "Settings"
+    },
+    "pages": {
+      "leads": {
+        "table_columns": {
+          "date": "Date",
+          "name": "Name",
+          "phone": "Phone number",
+          "route": "Route",
+          "car": "Car",
+          "options": "Additional options",
+          "total": "Total",
+          "status": "Status"
+        },
+        "confirm": "Confirm"
+      },
+      "clients": {
+        "table_columns": {
+          "first_name": "Name",
+          "last_name": "Surname",
+          "phone": "Phone number",
+          "email": "Email",
+          "confirmed_transfer": "Confirmed transfer"
+        }
+      },
+      "settings": {
+        "buttons": {
+          "edit": "Edit",
+          "hide": "Hide",
+          "submit": "Submit",
+          "delete": "Delete",
+          "add_new": "Add new"
+        },
+        "cars": {
+          "title": "Cars",
+          "form": {
+            "title": "Create car",
+            "name_placeholder": "Enter name",
+            "seats_placeholder": "Enter seats",
+            "category_placeholder": "Choose category"
+          }
+        },
+        "options": {
+          "title": "Additional options",
+          "form": {
+            "title": "Create option",
+            "name_placeholder": "Enter name"
+          }
+        },
+        "classes": {
+          "title": "Classes",
+          "form": {
+            "title": "Create class",
+            "name_placeholder": "Enter name",
+            "seats_placeholder": "Enter maximum seats",
+            "coefficient_placeholder": "Enter coefficient"
+          }
+        }
+      }
+    }
+  }
+}

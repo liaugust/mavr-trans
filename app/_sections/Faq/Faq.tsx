@@ -1,21 +1,20 @@
 import { Accordion } from "@/app/_components/Accordion";
 import { Title } from "@/app/_components/Typography";
+import { useTranslation } from "@/app/_i18n";
 import { FC } from "react";
 
-const questions = [
-  {
-    question: "What are the rules for using the service?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula ac dolor sagittis pretium. Fusce pharetra tortor a quam lacinia blandit. Maecenas ac lobortis sapien. Nam aliquam dignissim eros et consequat. Donec pulvinar pulvinar nulla, vel aliquam metus blandit at. Nullam ac congue magna.",
-  },
-  {
-    question: "What are the rules for using the service?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula ac dolor sagittis pretium. Fusce pharetra tortor a quam lacinia blandit. Maecenas ac lobortis sapien. Nam aliquam dignissim eros et consequat. Donec pulvinar pulvinar nulla, vel aliquam metus blandit at. Nullam ac congue magna.",
-  },
-];
+type Question = {
+  question: string;
+  answer: string;
+};
 
-const Faq: FC = () => {
+const Faq: FC = async () => {
+  const { t } = await useTranslation();
+
+  const questions = t("pages.home.faq.questions", {
+    returnObjects: true,
+  }) as Question[];
+
   return (
     <section className="pt-20 lg:pt-16 pb-24" id="faq">
       <div className="container">
@@ -23,10 +22,10 @@ const Faq: FC = () => {
           level="2.1"
           className="text-center text-[#343331] mb-10 lg:mb-[60px]"
         >
-          FAQ
-          <Title level="4" weight="0" Component="span" className="block">
+          {t("pages.home.faq.title")}
+          {/* <Title level="4" weight="0" Component="span" className="block">
             Lorem ipsum
-          </Title>
+          </Title> */}
         </Title>
 
         <ul className="grid grid-flow-row gap-y-5">

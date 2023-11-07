@@ -2,8 +2,14 @@ import { FC } from "react";
 import { Button } from "../Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SignInModal } from "../SignInModal";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-export const SignIn: FC = () => {
+interface SignInProps extends WithLang {}
+
+export const SignIn: FC<SignInProps> = ({ lang }) => {
+  const { t } = useTranslation(lang);
+
   const searchParams = useSearchParams();
   const modal = searchParams.get("modal");
   const router = useRouter();
@@ -12,20 +18,21 @@ export const SignIn: FC = () => {
     <>
       <Button
         onClick={() => {
-          router.push("/?modal=login");
+          router.push(`/${lang}?modal=login`);
         }}
         variant="filled_primary"
       >
-        Sign in
+        {t("header.buttons.sign_in")}
       </Button>
 
       {modal === "login" && (
         <SignInModal
+          lang={lang}
           onClose={() => {
-            router.push("/");
+            router.push(`/${lang}`);
           }}
           onSuccess={() => {
-            router.push("/profile");
+            router.push(`/${lang}/profile`);
           }}
         />
       )}

@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createUser } from "@/app/_state/users";
 import { UserSchema, userSchema } from "@/app/_storage/modules/users/core";
+import { useTranslation } from "@/app/_i18n/client";
 
 interface SignUpModalProps
   extends Omit<
@@ -14,7 +15,12 @@ interface SignUpModalProps
   onSuccess: () => void;
 }
 
-export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
+export const SignUpModal: FC<SignUpModalProps> = ({
+  onClose,
+  onSuccess,
+  lang,
+}) => {
+  const { t } = useTranslation(lang);
   const { control, formState, handleSubmit } = useForm<UserSchema>({
     defaultValues: {
       phone: "",
@@ -39,10 +45,11 @@ export const SignUpModal: FC<SignUpModalProps> = ({ onClose, onSuccess }) => {
 
   return (
     <AuthModal
-      title="Create an account"
+      lang={lang}
+      title={t("modals.sign_up.title")}
       onClose={onClose}
       onSubmit={onSubmit}
-      buttonText="Create an account"
+      buttonText={t("modals.sign_up.buttons.submit")}
       submitButtonDisabled={submitButtonDisabled}
     >
       <Controller

@@ -17,8 +17,10 @@ import {
 import { FormFields } from "./request-ride-schema";
 import { PlacesAutocomplete } from "@/app/_components/PlacesAutocomplete";
 import { noop } from "@/app/_helpers/utils";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-interface MapProps {
+interface MapProps extends WithLang {
   control: Control<FormFields>;
   setValue: UseFormSetValue<FormFields>;
 }
@@ -26,7 +28,8 @@ interface MapProps {
 const center = { lat: 45.4627338, lng: 9.1777323 };
 const libraries = ["places"] as Libraries;
 
-export const Map: FC<MapProps> = ({ control, setValue }) => {
+export const Map: FC<MapProps> = ({ control, setValue, lang }) => {
+  const { t } = useTranslation(lang);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBaCRGexxALobAN1yY3dckkEvr-qESe5xM",
     libraries,
@@ -98,7 +101,7 @@ export const Map: FC<MapProps> = ({ control, setValue }) => {
             weight="3"
             className="mb-5 md:mb-10 capitalize text-center"
           >
-            Choose your trip route
+            {t("pages.trip.title")}
           </Title>
 
           <div
@@ -118,8 +121,10 @@ export const Map: FC<MapProps> = ({ control, setValue }) => {
                     removable={fields.length >= 3}
                     placeholder={
                       index === 0
-                        ? "Select a starting point or click on the map"
-                        : "Select your destination"
+                        ? t("pages.trip.choose_route.origin_point_placeholder")
+                        : t(
+                            "pages.trip.choose_route.destination_point_placeholder"
+                          )
                     }
                   />
                 )}
@@ -149,7 +154,7 @@ export const Map: FC<MapProps> = ({ control, setValue }) => {
               onClick={addMoreDisabled ? noop : onAddMore}
               disabled={addMoreDisabled}
             >
-              add more
+              {t("pages.trip.choose_route.add_waypoint")}
             </Button>
 
             <Button onClick={calculateRoute} disabled={calculateDisabled}>

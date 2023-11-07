@@ -3,14 +3,14 @@ import { Table } from "@/app/_components/Table";
 import { getAllRides } from "@/app/_state/rides";
 
 const columns = [
-  "Date",
-  "Name",
-  "Phone number",
-  "Route",
-  "Car",
-  "Additional options",
-  "Total",
-  "Status",
+  "admin.pages.leads.table_columns.date",
+  "admin.pages.leads.table_columns.name",
+  "admin.pages.leads.table_columns.phone",
+  "admin.pages.leads.table_columns.route",
+  "admin.pages.leads.table_columns.car",
+  "admin.pages.leads.table_columns.options",
+  "admin.pages.leads.table_columns.total",
+  "admin.pages.leads.table_columns.status",
 ];
 
 export default async function LeadsPage() {

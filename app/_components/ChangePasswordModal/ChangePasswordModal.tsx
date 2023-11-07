@@ -8,6 +8,7 @@ import {
   changePasswordSchema,
 } from "./change-password-schema";
 import { resetPassword } from "@/app/_state/users";
+import { useTranslation } from "@/app/_i18n/client";
 
 interface ChangePasswordModalProps
   extends Omit<
@@ -19,7 +20,9 @@ interface ChangePasswordModalProps
 
 export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
   onClose,
+  lang,
 }) => {
+  const { t } = useTranslation(lang);
   const { control, formState, handleSubmit } = useForm<ChangePasswordSchema>({
     defaultValues: {
       newPassword: "",
@@ -40,10 +43,11 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
 
   return (
     <AuthModal
-      title="Login"
+      lang={lang}
+      title={t("modals.reset_password.title")}
       onClose={onClose}
       onSubmit={onSubmit}
-      buttonText="Sign In"
+      buttonText={t("modals.reset_password.buttons.submit")}
       submitButtonDisabled={submitButtonDisabled}
     >
       <Controller
@@ -60,7 +64,9 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
             invalid={invalid}
             onChange={onChange}
             errorMessage={error?.message}
-            placeholder="Latest password"
+            placeholder={t(
+              "modals.reset_password.fields.prev_password_placeholder"
+            )}
           />
         )}
       />
@@ -77,7 +83,9 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="New password"
+            placeholder={t(
+              "modals.reset_password.fields.new_password_placeholder"
+            )}
             errorMessage={error?.message}
           />
         )}
@@ -95,7 +103,9 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Repeat a password"
+            placeholder={t(
+              "modals.reset_password.fields.repeat_password_placeholder"
+            )}
             errorMessage={error?.message}
           />
         )}

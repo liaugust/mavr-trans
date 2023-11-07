@@ -1,13 +1,17 @@
 import { Text, Title } from "@/app/_components/Typography";
-import { FC, useEffect } from "react";
-import { Control, UseFormSetValue, useWatch } from "react-hook-form";
+import { FC } from "react";
+import { Control, useWatch } from "react-hook-form";
 import { FormFields } from "./request-ride-schema";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
-interface CheckoutProps {
+interface CheckoutProps extends WithLang {
   control: Control<FormFields>;
 }
 
-export const Checkout: FC<CheckoutProps> = ({ control }) => {
+export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
+  const { t } = useTranslation(lang);
+
   const fields = useWatch({ control });
 
   const distance = (fields.distance || 0) / 1000;
@@ -23,13 +27,13 @@ export const Checkout: FC<CheckoutProps> = ({ control }) => {
         weight="4"
         className="capitalize mb-10 md:mb-[60px] text-center leading-none"
       >
-        Is everything right?
+        {t("pages.trip.confirmation.title")}
       </Title>
 
       <div className="grid gap-y-3 md:gap-y-[14px]">
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            Route:
+            {t("pages.trip.confirmation.fields.route")}
           </Text>
           <Text level="1.1">
             {direction} ({formattedDistance})
@@ -37,25 +41,25 @@ export const Checkout: FC<CheckoutProps> = ({ control }) => {
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            Car:
+            {t("pages.trip.confirmation.fields.car")}
           </Text>
           <Text level="1.1">{fields.car?.name}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            Number of passengers:
+            {t("pages.trip.confirmation.fields.passengers")}
           </Text>
           <Text level="1.1">{fields.passengers}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            Additional options:
+            {t("pages.trip.confirmation.fields.options")}
           </Text>
           <Text level="1.1">{fields.option?.name}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            Customer name:
+            {t("pages.trip.confirmation.fields.full_name")}
           </Text>
           <Text level="1.1">
             {fields.userInfo?.firstName} {fields.userInfo?.lastName}
@@ -63,7 +67,7 @@ export const Checkout: FC<CheckoutProps> = ({ control }) => {
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            Phone number:
+            {t("pages.trip.confirmation.fields.phone")}
           </Text>
           <Text level="1.1">{fields.userInfo?.phone}</Text>
         </div>
@@ -72,7 +76,7 @@ export const Checkout: FC<CheckoutProps> = ({ control }) => {
       <hr className="bg-[#121420] h-[1px] w-full mt-10 md:mt-[100px] mb-5 md:mb-[30px]" />
 
       <div className="flex justify-between items-center mb-[60px] md:mb-[100px]">
-        <Text level="1.1">Amount:</Text>
+        <Text level="1.1">{t("pages.trip.confirmation.fields.amount")}</Text>
         <Text level="1.1">€{total.toFixed(1)}</Text>
       </div>
     </>

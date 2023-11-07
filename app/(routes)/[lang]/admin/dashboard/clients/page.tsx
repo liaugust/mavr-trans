@@ -1,7 +1,12 @@
 import { Table } from "@/app/_components/Table";
 import { getUsers } from "@/app/_state/users";
 
-const columns = ["Name", "Phone number", "Email", "Confirmed transfer"];
+const columns = [
+  "admin.pages.clients.table_columns.name",
+  "admin.pages.clients.table_columns.phone",
+  "admin.pages.clients.table_columns.email",
+  "admin.pages.clients.table_columns.confirmed_transfers",
+];
 
 export default async function ClientsPage() {
   const users = await getUsers();

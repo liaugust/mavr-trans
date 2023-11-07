@@ -4,7 +4,7 @@ import { FC, useCallback } from "react";
 import { Heading } from "../Typography";
 import { EntityList } from "../EntityList";
 import { CreateCar } from "../CreateCar";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { deleteCar, toggleCarActive } from "@/app/_state/cars";
 
 export const CarsList: FC = () => {

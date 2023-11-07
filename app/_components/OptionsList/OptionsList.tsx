@@ -4,7 +4,7 @@ import { Heading } from "../Typography";
 import { EntityList } from "../EntityList";
 import { deleteOption, toggleOptionActive } from "@/app/_state/options";
 import { CreateOption } from "../CreateOption";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 
 export const OptionsList: FC = () => {
   const { options, remove, toggle } = useStore();

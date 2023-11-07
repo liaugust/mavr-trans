@@ -1,8 +1,11 @@
 "use client";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 import { signIn } from "next-auth/react";
 import { FC } from "react";
 
-export const GoogleBtn: FC = () => {
+export const GoogleBtn: FC<WithLang> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   return (
     <button
       className="rounded-sm p-3 bg-[#E8E8E6] relative w-full"
@@ -34,7 +37,7 @@ export const GoogleBtn: FC = () => {
           />
         </svg>
       </div>
-      Sign in with Google account
+      {t("modals.sign_up.buttons.google")}
     </button>
   );
 };

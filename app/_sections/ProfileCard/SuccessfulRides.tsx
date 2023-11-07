@@ -1,9 +1,12 @@
 "use client";
 import { Heading, Title } from "@/app/_components/Typography";
-import { useProfile } from "@/app/profile-context";
+import { useProfile } from "@/app/(routes)/[lang]/profile-context";
 import { FC } from "react";
+import { useTranslation } from "@/app/_i18n/client";
+import { WithLang } from "@/app/types";
 
-export const SuccessfulRides: FC = () => {
+export const SuccessfulRides: FC<WithLang> = ({ lang }) => {
+  const { t } = useTranslation(lang);
   const { active } = useProfile();
 
   return (
@@ -13,7 +16,7 @@ export const SuccessfulRides: FC = () => {
       </Title>
 
       <Heading weight="0" Component="div" level="3">
-        successful trips
+        {t("pages.profile.successfull_trips")}
       </Heading>
     </div>
   );

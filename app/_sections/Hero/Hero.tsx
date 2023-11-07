@@ -1,6 +1,10 @@
 import { Caption, Text, Title } from "@/app/_components/Typography";
 import { FC } from "react";
 import { BookTransfer } from "./BookTransfer";
+import { useTranslation } from "@/app/_i18n";
+import { getServerSession } from "next-auth";
+import { options } from "@/config/options";
+import { WithLang } from "@/app/types";
 
 const gradient = {
   position: `before:top-0 before:bottom-0 before:left-0`,
@@ -9,7 +13,10 @@ const gradient = {
 };
 const baseSectionClassName = `max-w-[1920px] m-auto pt-24 lg:pt-40 pb-64 lg:pb-44 relative bg-[url('/hero.jpg')] bg-no-repeat bg-[right_bottom] lg:bg-center lg:bg-right`;
 
-const Hero: FC = () => {
+const Hero: FC<WithLang> = async ({ lang }) => {
+  const { t } = await useTranslation();
+  const session = await getServerSession(options);
+
   return (
     <div
       className={`${baseSectionClassName} ${gradient.base} ${gradient.position} ${gradient.size} hero`}
@@ -22,17 +29,17 @@ const Hero: FC = () => {
               Component="span"
               className="mb-[14px] uppercase subhead w-max m-auto lg:m-0 lg:mb-5 leading-none"
             >
-              Fast car delivery
+              {t("pages.home.hero.subhead")}
             </Text>
             <Title
               Component="span"
               className="mb-2 lg:mb-[10px] text-primary leading-none"
             >
-              The best way to
+              {t("pages.home.hero.title")}
             </Title>
 
             <Title Component="span" weight="1" className="leading-none">
-              Relax while traveling
+              {t("pages.home.hero.subtitle")}
             </Title>
           </Title>
 
@@ -41,14 +48,10 @@ const Hero: FC = () => {
             spacing={36}
             className="mb-[60px] max-w-[285px] lg:max-w-[435px] leading-[1.4]"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            rutrum ligula ac dolor sagittis pretium. Fusce pharetra tortor a
-            quam lacinia blandit. Maecenas ac lobortis sapien. Nam aliquam
-            dignissim eros et consequat. Donec pulvinar pulvinar nulla, vel
-            aliquam metus blandit at. Nullam ac congue magna.
+            {t("pages.home.hero.text")}
           </Caption>
 
-          <BookTransfer />
+          <BookTransfer isLogged={Boolean(session?.user)} lang={lang} />
         </div>
       </div>
     </div>

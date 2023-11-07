@@ -1,8 +1,11 @@
 import { Caption, Heading, Text } from "@/app/_components/Typography";
 import { FC } from "react";
 import { Counter } from "./Counter";
+import { useTranslation } from "@/app/_i18n";
 
-const About: FC = () => {
+const About: FC = async () => {
+  const { t } = await useTranslation();
+
   return (
     <section className="pt-20" id="about">
       <div className="container">
@@ -26,39 +29,23 @@ const About: FC = () => {
               level="3"
               className="uppercase mb-5 text-dark2 subhead leading-none m-auto lg:m-0 lg:mb-5"
             >
-              About our company
+              {t("pages.home.about.subhead")}
             </Text>
             <Heading className="mb-[10px] leading-none">
-              Lorem ipsum dolor sit amet
+              {t("pages.home.about.title")}
             </Heading>
             <Heading weight="0" className="mb-[30px] leading-none">
-              Consectetur adipiscing elit
+              {t("pages.home.about.subtitle")}
             </Heading>
 
             <Caption
               weight="0"
               level="1"
               Component="p"
-              className="text-dark2 mb-[10px] lg:mb-[14px] leading-[1.4]"
+              // className="text-dark2 mb-[10px] lg:mb-[14px] leading-[1.4]"
+              className="text-dark2 mb-[10px] leading-[1.4]"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              rutrum ligula ac dolor sagittis pretium. Fusce pharetra tortor a
-              quam lacinia blandit. Maecenas ac lobortis sapien. Nam aliquam
-              dignissim eros et consequat. Donec pulvinar pulvinar nulla, vel
-              aliquam metus blandit at. Nullam ac congue magna.
-            </Caption>
-
-            <Caption
-              Component="p"
-              weight="0"
-              level="1"
-              className="text-dark2 leading-[1.4]"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              rutrum ligula ac dolor sagittis pretium. Fusce pharetra tortor a
-              quam lacinia blandit. Maecenas ac lobortis sapien. Nam aliquam
-              dignissim eros et consequat. Donec pulvinar pulvinar nulla, vel
-              aliquam metus blandit at. Nullam ac congue magna.
+              {t("pages.home.about.text")}
             </Caption>
           </div>
         </div>

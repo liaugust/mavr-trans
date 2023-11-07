@@ -1,19 +1,23 @@
 import { Card } from "@/app/_components/Card";
 import { Heading, Title } from "@/app/_components/Typography";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { FC } from "react";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
 type Option = { id: number; name: string };
 
-interface ChooseOptionStepProps {
+interface ChooseOptionStepProps extends WithLang {
   value: Option | null;
   onChange: (value: Option | null) => void;
 }
 
 export const ChooseOptionStep: FC<ChooseOptionStepProps> = ({
+  lang,
   value,
   onChange,
 }) => {
+  const { t } = useTranslation(lang);
   const { options } = useStore();
 
   return (
@@ -23,7 +27,7 @@ export const ChooseOptionStep: FC<ChooseOptionStepProps> = ({
         weight="4"
         className="capitalize text-center mb-10 md:mb-[60px]"
       >
-        additional options
+        {t("pages.trip.form.options.title")}
       </Title>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-[60px] justify-center">

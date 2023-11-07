@@ -5,7 +5,7 @@ import { CarEntity } from "@/app/_storage/modules/cars/core";
 import { ManageCar } from "../ManageCar";
 import { Caption } from "../Typography";
 import { updateCar } from "@/app/_state/cars";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 
 interface UpdateCarProps {
   car: CarEntity;

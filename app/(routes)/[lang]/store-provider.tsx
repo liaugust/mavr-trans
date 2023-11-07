@@ -9,12 +9,12 @@ import {
   useMemo,
   useState,
 } from "react";
-import { CategoryEntity } from "./_storage/modules/categories/core";
-import { OptionEntity } from "./_storage/modules/options/core";
-import { CarEntity } from "./_storage/modules/cars/core";
-import { getCategories } from "./_state/categories";
-import { getCars } from "./_state/cars";
-import { getOptions } from "./_state/options";
+import { CategoryEntity } from "../../_storage/modules/categories/core";
+import { OptionEntity } from "../../_storage/modules/options/core";
+import { CarEntity } from "../../_storage/modules/cars/core";
+import { getCategories } from "../../_state/categories";
+import { getCars } from "../../_state/cars";
+import { getOptions } from "../../_state/options";
 
 interface StoreProviderProps extends PropsWithChildren {}
 

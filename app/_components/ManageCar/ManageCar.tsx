@@ -8,14 +8,16 @@ import { initialValues } from "./constants";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
-import { useStore } from "@/app/store-provider";
+import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import {
   ACCEPTED_IMAGE_TYPES,
   CarSchema,
   carSchema,
 } from "@/app/_storage/modules/cars/core";
+import { WithLang } from "@/app/types";
+import { useTranslation } from "@/app/_i18n/client";
 
-interface ManageCarProps {
+interface ManageCarProps extends WithLang {
   title: string;
   onClose: () => void;
   defaultValues?: Omit<CarSchema, "files">;
@@ -31,11 +33,13 @@ const getOptionValue = (option: unknown) => {
 };
 
 export const ManageCar: FC<ManageCarProps> = ({
+  lang,
   title,
   onClose,
   onSubmitHandler,
   defaultValues = initialValues,
 }) => {
+  const { t } = useTranslation(lang);
   const { categories } = useStore();
   const { control, handleSubmit, formState } = useForm<CarSchema>({
     defaultValues: {
@@ -66,7 +70,7 @@ export const ManageCar: FC<ManageCarProps> = ({
     <ManageEntityModal
       title={title}
       onClose={onClose}
-      buttonText="Submit"
+      buttonText={t("admin.pages.settings.buttons.submit")}
       onSubmit={onSubmit}
       submitButtonDisabled={submitButtonDisabled}
     >
@@ -84,7 +88,7 @@ export const ManageCar: FC<ManageCarProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Enter name"
+            placeholder={t("admin.pages.settings.cars.form.name_placeholder")}
             errorMessage={error?.message}
           />
         )}
@@ -108,7 +112,9 @@ export const ManageCar: FC<ManageCarProps> = ({
               onChange(Number((option as CategoryEntity).id));
             }}
             errorMessage={error?.message}
-            placeholder="Choose category"
+            placeholder={t(
+              "admin.pages.settings.cars.form.category_placeholder"
+            )}
           />
         )}
       />
@@ -127,7 +133,7 @@ export const ManageCar: FC<ManageCarProps> = ({
             invalid={invalid}
             onChange={onChange}
             errorMessage={error?.message}
-            placeholder="Enter seats"
+            placeholder={t("admin.pages.settings.cars.form.seats_placeholder")}
           />
         )}
       />

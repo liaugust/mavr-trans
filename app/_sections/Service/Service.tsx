@@ -1,29 +1,32 @@
 import { Title } from "@/app/_components/Typography";
 import { FC } from "react";
 import { ServiceCard, ServiceCardProps } from "./ServiceCard";
+import { useTranslation } from "@/app/_i18n";
 
 const services: ServiceCardProps[] = [
   {
     id: 1,
     src: "/service.jpg",
-    title: "Lorem ipsum",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula ac dolor sagittis pretium.",
+    title: "pages.home.service.services.first.title",
+    text: "pages.home.service.services.first.text",
   },
   {
     id: 2,
     src: "/service.jpg",
-    title: "Lorem ipsum",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula ac dolor sagittis pretium.",
+    title: "pages.home.service.services.second.title",
+    text: "pages.home.service.services.second.text",
   },
   {
     id: 3,
     src: "/service.jpg",
-    title: "Lorem ipsum",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum ligula ac dolor sagittis pretium.",
+    title: "pages.home.service.services.third.title",
+    text: "pages.home.service.services.third.text",
   },
 ];
 
-const Service: FC = () => {
+const Service: FC = async () => {
+  const { t } = await useTranslation();
+
   return (
     <section className="pt-20 lg:pt-[140px] lg:pb-20">
       <div className="container">
@@ -32,9 +35,9 @@ const Service: FC = () => {
           Component="h2"
           className="text-center mb-10 lg:mb-[60px] text-[#343331] capitalize"
         >
-          Best transfer service
+          {t("pages.home.service.title")}
           <Title level="4" weight="0" Component="span" className="block">
-            Lorem ipsum
+            {t("pages.home.service.subtitle")}
           </Title>
         </Title>
 
@@ -47,8 +50,8 @@ const Service: FC = () => {
               <ServiceCard
                 id={service.id}
                 src={service.src}
-                text={service.text}
-                title={service.title}
+                text={t(service.text)}
+                title={t(service.title)}
               />
             </li>
           ))}
