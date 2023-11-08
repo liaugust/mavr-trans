@@ -13,7 +13,7 @@ const Accordion: FC<AccordionProps> = ({ question, answer }) => {
         <Heading
           weight="1"
           level="3"
-          className="w-40 md:w-full leading-[1.3] lg:leading-none"
+          className="w-50 md:w-full leading-[1.3] lg:leading-none"
         >
           {question}
         </Heading>

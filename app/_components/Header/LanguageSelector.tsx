@@ -14,6 +14,11 @@ const styles: Record<string, (base: CSSObjectWithLabel) => CSSObjectWithLabel> =
       ...base,
       border: "none",
       minHeight: "unset",
+      zIndex: 10,
+    }),
+    menu: (base) => ({
+      ...base,
+      zIndex: 30,
     }),
     container: (base) => ({
       ...base,
