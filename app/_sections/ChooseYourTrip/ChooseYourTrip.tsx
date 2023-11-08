@@ -193,7 +193,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                   step === 5
                     ? onSubmit
                     : step === 7 || step === 6
-                    ? () => router.push("/")
+                    ? () => router.push(`/${lang}`)
                     : () => setStep((prev) => prev + 1)
                 }
               >

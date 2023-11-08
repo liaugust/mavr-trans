@@ -69,7 +69,7 @@ const Header: FC<HeaderProps> = ({ lang }) => {
                   <Button
                     variant="outlined_primary"
                     onClick={() => {
-                      router.push("/profile");
+                      router.push(`/${lang}/profile`);
                       setOpen(false);
                     }}
                   >

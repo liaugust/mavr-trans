@@ -16,7 +16,7 @@ export const ChangePassword: FC<WithLang> = ({ lang }) => {
     <>
       <Button
         onClick={() => {
-          router.push("/?modal=change-password");
+          router.push(`/${lang}?modal=change-password`);
         }}
         className="bg-transparent"
         variant="outlined"

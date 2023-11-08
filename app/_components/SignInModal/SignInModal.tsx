@@ -47,7 +47,6 @@ export const SignInModal: FC<SignInModalProps> = ({
       });
     } else {
       onSuccess();
-      // router.replace("/admin/leads");
     }
   });
 
