@@ -212,7 +212,7 @@
     "reset_password": {
       "title": "Change password",
       "fields": {
-        "prev_password_placeholder": "New password",
+        "prev_password_placeholder": "Current password",
         "new_password_placeholder": "New password",
         "repeat_password_placeholder": "Repeat a password"
       },

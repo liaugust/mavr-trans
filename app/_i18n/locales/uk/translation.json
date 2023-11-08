@@ -184,6 +184,7 @@
     "reset_password": {
       "title": "Змінити пароль",
       "fields": {
+        "prev_password_placeholder": "Теперешній пароль",
         "new_password_placeholder": "Новий пароль",
         "repeat_password_placeholder": "Повторіть пароль"
       },

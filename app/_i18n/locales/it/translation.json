@@ -213,6 +213,7 @@
     "reset_password": {
       "title": "Cambia password",
       "fields": {
+        "prev_password_placeholder": "Password attuale",
         "new_password_placeholder": "Nuova password",
         "repeat_password_placeholder": "Ripeti la password"
       },

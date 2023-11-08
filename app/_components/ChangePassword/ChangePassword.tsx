@@ -10,13 +10,14 @@ export const ChangePassword: FC<WithLang> = ({ lang }) => {
   const { t } = useTranslation(lang);
   const searchParams = useSearchParams();
   const modal = searchParams.get("modal");
+
   const router = useRouter();
 
   return (
     <>
       <Button
         onClick={() => {
-          router.push(`/${lang}?modal=change-password`);
+          router.push(`/${lang}/profile?modal=change-password`);
         }}
         className="bg-transparent"
         variant="outlined"
