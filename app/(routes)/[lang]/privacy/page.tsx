@@ -3,29 +3,31 @@ import { Heading, Title } from "@/app/_components/Typography";
 export default function PrivacyPage() {
   return (
     <div className="container py-10">
-      <Title className="mb-10">Privacy Policy for MavrTrans</Title>
-      <p>
-        <em>Last Updated: {new Date("").toLocaleDateString()}</em>
-      </p>
+      <div className="mb-10">
+        <Title className="mb-10">Privacy Policy for MavrTrans</Title>
+        <p>
+          <em>Last Updated: {new Date("").toLocaleDateString()}</em>
+        </p>
 
-      <p>
-        At MavrTrans, we are committed to protecting your privacy and ensuring
-        the security of your personal information. This Privacy Policy outlines
-        how we collect, use, disclose, and safeguard your data when you use our
-        taxi service. By using MavrTrans, you consent to the practices described
-        in this policy.
-      </p>
+        <p>
+          At MavrTrans, we are committed to protecting your privacy and ensuring
+          the security of your personal information. This Privacy Policy
+          outlines how we collect, use, disclose, and safeguard your data when
+          you use our taxi service. By using MavrTrans, you consent to the
+          practices described in this policy.
+        </p>
+      </div>
 
-      <div>
-        <Heading className="mb-5">1. Information We Collect</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">1. Information We Collect</Heading>
         <p>
           We collect the following types of information to provide our taxi
           services and improve your experience:
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           1.1. Personal Information:
         </Heading>
         <ul>
@@ -38,8 +40,8 @@ export default function PrivacyPage() {
         </ul>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           1.2. Usage Information:
         </Heading>
         <ul>
@@ -53,13 +55,13 @@ export default function PrivacyPage() {
         </ul>
       </div>
 
-      <div>
-        <Heading className="mb-5">2. How We Use Your Information</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">2. How We Use Your Information</Heading>
         <p>We use the collected information for the following purposes:</p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           2.1. Providing Services:
         </Heading>
         <ul>
@@ -71,8 +73,8 @@ export default function PrivacyPage() {
         </ul>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           2.2. Improving Our Services:
         </Heading>
         <ul>
@@ -82,8 +84,8 @@ export default function PrivacyPage() {
         </ul>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           2.3. Legal and Safety Purposes:
         </Heading>
         <ul>
@@ -92,15 +94,15 @@ export default function PrivacyPage() {
         </ul>
       </div>
 
-      <div>
-        <Heading className="mb-5">3. Information Sharing</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">3. Information Sharing</Heading>
         <p>
           We may share your personal information with the following parties:
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           3.1. Drivers:
         </Heading>
         <p>
@@ -109,8 +111,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           3.2. Service Providers:
         </Heading>
         <p>
@@ -119,8 +121,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           3.3. Legal Requirements:
         </Heading>
         <p>
@@ -129,8 +131,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           3.4. Business Transactions:
         </Heading>
         <p>
@@ -139,15 +141,15 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading className="mb-5">4. Your Choices</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">4. Your Choices</Heading>
         <p>
           You have the following rights concerning your personal information:
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           4.1. Access and Correction:
         </Heading>
         <p>
@@ -156,8 +158,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           4.2. Location Services:
         </Heading>
         <p>
@@ -166,8 +168,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading level="3" className="mb-2">
+      <div className="mb-10">
+        <Heading level="3" className="mb-1">
           4.3. Marketing Communications:
         </Heading>
         <p>
@@ -176,8 +178,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading className="mb-5">5. Data Security</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">5. Data Security</Heading>
         <p>
           We employ industry-standard security measures to protect your data.
           While we take every reasonable step to safeguard your information,
@@ -186,8 +188,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading className="mb-5">6. Children&apos;s Privacy</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">6. Children&apos;s Privacy</Heading>
         <p>
           MavrTrans does not knowingly collect information from individuals
           under the age of 18. If you believe we have inadvertently collected
@@ -196,8 +198,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div>
-        <Heading className="mb-5">7. Changes to Privacy Policy</Heading>
+      <div className="mb-10">
+        <Heading className="mb-3">7. Changes to Privacy Policy</Heading>
         <p>
           We may update this Privacy Policy to reflect changes in our practices
           or legal requirements. We will notify you of any significant updates
@@ -205,7 +207,7 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <Heading className="mb-5">8. Contact Us</Heading>
+      <Heading className="mb-3">8. Contact Us</Heading>
       <p>
         If you have any questions or concerns about our Privacy Policy, please
         contact us at:
