@@ -45,7 +45,7 @@ export const createUser = async (values: UserSchema) => {
   return createUserUseCase.handle({
     password,
     email: data.email,
-    phone: data.phone,
+    phoneNumber: data.phoneNumber,
     name: `${data.firstName} ${data.lastName}`,
   });
 };

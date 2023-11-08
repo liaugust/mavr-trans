@@ -21,23 +21,29 @@ export const SignUpModal: FC<SignUpModalProps> = ({
   lang,
 }) => {
   const { t } = useTranslation(lang);
-  const { control, formState, handleSubmit } = useForm<UserSchema>({
+  const { control, formState, handleSubmit, setError } = useForm<UserSchema>({
     defaultValues: {
-      phone: "",
       email: "",
       password: "",
       lastName: "",
       firstName: "",
+      phoneNumber: "",
       confirmPassword: "",
     },
     resolver: zodResolver(userSchema),
     mode: "onBlur",
   });
-  const { isDirty, isLoading, isValid, isSubmitting, isValidating } = formState;
+  const { isDirty, isLoading, isValid, isSubmitting, isValidating, errors } =
+    formState;
 
   const onSubmit = handleSubmit(async (values: UserSchema) => {
-    await createUser(values);
-    onSuccess();
+    try {
+      await createUser(values);
+      onSuccess();
+    } catch (e) {
+      const error = e instanceof Error ? e : new Error("Unknown error");
+      setError("root", { message: error.message });
+    }
   });
 
   const isFormLoading = isLoading || isSubmitting || isValidating;
@@ -49,6 +55,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
       title={t("modals.sign_up.title")}
       onClose={onClose}
       onSubmit={onSubmit}
+      errorMessage={errors.root?.message}
       buttonText={t("modals.sign_up.buttons.submit")}
       submitButtonDisabled={submitButtonDisabled}
     >
@@ -89,7 +96,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
       />
       <Controller
         control={control}
-        name="phone"
+        name="phoneNumber"
         render={({
           field: { value, onChange, onBlur },
           fieldState: { error, invalid },

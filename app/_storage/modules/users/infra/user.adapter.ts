@@ -17,6 +17,14 @@ export class UserAdapter extends BasePrismaAdapter {
   }
 
   async createUser(input: CreateUserUseCaseInput): Promise<UserEntity> {
+    const userExists = await this.prisma.user.findUnique({
+      where: { email: input.email },
+    });
+
+    if (userExists) {
+      throw new Error("User already exists");
+    }
+
     const user = await this.prisma.user.create({
       data: input,
       include: {

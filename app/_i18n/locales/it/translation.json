@@ -175,7 +175,7 @@
       "active_transfers": "Trasferimento attivo",
       "transfers_history": "Storico degli ordini",
       "profile_button": "Cambia password",
-      "successful_trips": "viaggi riusciti"
+      "successfull_trips": "viaggi riusciti"
     },
     "error": {
       "title": "Errore 404",

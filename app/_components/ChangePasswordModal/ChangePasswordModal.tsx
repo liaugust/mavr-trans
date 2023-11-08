@@ -23,19 +23,27 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
   lang,
 }) => {
   const { t } = useTranslation(lang);
-  const { control, formState, handleSubmit } = useForm<ChangePasswordSchema>({
-    defaultValues: {
-      newPassword: "",
-      prevPassword: "",
-      confirmPassword: "",
-    },
-    resolver: zodResolver(changePasswordSchema),
-    mode: "onBlur",
-  });
-  const { isDirty, isLoading, isValid, isSubmitting, isValidating } = formState;
+  const { control, formState, handleSubmit, setError } =
+    useForm<ChangePasswordSchema>({
+      defaultValues: {
+        newPassword: "",
+        prevPassword: "",
+        confirmPassword: "",
+      },
+      resolver: zodResolver(changePasswordSchema),
+      mode: "onBlur",
+    });
+  const { isDirty, isLoading, isValid, isSubmitting, isValidating, errors } =
+    formState;
 
   const onSubmit = handleSubmit(async (values: ChangePasswordSchema) => {
-    await resetPassword(values);
+    try {
+      await resetPassword(values);
+      onClose();
+    } catch (e) {
+      const error = e instanceof Error ? e : new Error("Unknown error");
+      setError("root", { message: error.message });
+    }
   });
 
   const isFormLoading = isLoading || isSubmitting || isValidating;
@@ -47,6 +55,7 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
       title={t("modals.reset_password.title")}
       onClose={onClose}
       onSubmit={onSubmit}
+      errorMessage={errors.root?.message}
       buttonText={t("modals.reset_password.buttons.submit")}
       submitButtonDisabled={submitButtonDisabled}
     >
