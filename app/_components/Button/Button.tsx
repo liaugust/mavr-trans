@@ -3,6 +3,7 @@ import { ButtonHTMLAttributes, FC, ReactNode, memo } from "react";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
+  normalize?: boolean;
   size?: ButtonSize;
 }
 
@@ -33,6 +34,7 @@ const buttonVariantStyle: Record<ButtonVariant, string> = {
 const Button: FC<ButtonProps> = memo(
   ({
     children,
+    normalize,
     className,
     size = "sm",
     type = "button",
@@ -43,7 +45,11 @@ const Button: FC<ButtonProps> = memo(
       <button
         {...rest}
         type={type}
-        className={` ${baseClassName} ${buttonSizeStyle[size]} ${buttonVariantStyle[variant]} ${className} hover:opacity-[0.8] transition-opacity`}
+        className={
+          normalize
+            ? `border-none p-0 m-0 bg-none ${className}`
+            : ` ${baseClassName} ${buttonSizeStyle[size]} ${buttonVariantStyle[variant]} ${className} hover:opacity-[0.8] transition-opacity`
+        }
       >
         {children}
       </button>
