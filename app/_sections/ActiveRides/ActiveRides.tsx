@@ -29,7 +29,7 @@ export const ActiveRides: FC<ActiveRidesProps> = ({ className, lang }) => {
           ))}
         </ul>
       ) : (
-        <Text>No active transfers yet</Text>
+        <Text>{t("no_transfers")}</Text>
       )}
     </div>
   );

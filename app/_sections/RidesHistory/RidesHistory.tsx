@@ -29,7 +29,9 @@ export const RidesHistory: FC<RidesHistoryProps> = ({ className, lang }) => {
           ))}
         </ul>
       ) : (
-        <Text>No active transfers yet</Text>
+        <Text>
+          <Text>{t("no_transfers")}</Text>
+        </Text>
       )}
     </div>
   );
