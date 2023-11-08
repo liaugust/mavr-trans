@@ -1,4 +1,7 @@
 {
+  "no_transfers": "No transfers yet",
+  "terms": "Terms",
+  "privacy": "Privacy",
   "header": {
     "links": {
       "home": "Home",

@@ -125,11 +125,11 @@ const Footer: FC = async () => {
           <nav>
             <ul className="flex justify-end space-x-4">
               <li>
-                <Link href={`/${lang}/terms`}>Terms</Link>
+                <Link href={`/${lang}/terms`}>{t("terms")}</Link>
               </li>
               <li>|</li>
               <li>
-                <Link href={`/${lang}/privacy`}>Privacy</Link>
+                <Link href={`/${lang}/privacy`}>{t("privacy")}</Link>
               </li>
             </ul>
           </nav>
