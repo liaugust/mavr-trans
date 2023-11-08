@@ -15,7 +15,8 @@ export const options: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/en?modal=login",
+    error: "/",
+    signIn: "/?modal=login",
   },
   providers: [
     Credentials({
@@ -94,6 +95,22 @@ export const options: NextAuthOptions = {
           successfulRides: token.successfulRides,
         },
       };
+    },
+    async signIn({ account, user }) {
+      const isGoogle = account?.provider === "google";
+
+      if (isGoogle) {
+        const getUserUseCase = new GetUserUseCase();
+        const userToLogIn = await getUserUseCase.handle({
+          email: user?.email || "",
+        });
+
+        if (!userToLogIn) {
+          return false;
+        }
+      }
+
+      return true;
     },
 
     // async jwt({ token, trigger, session }) {

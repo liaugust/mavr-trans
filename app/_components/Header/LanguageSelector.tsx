@@ -58,7 +58,10 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({ lang }) => {
   const onChange = useCallback(
     (option: SingleValue<(typeof languageOptions)[number]>) => {
       if (!option) return;
+      if (lang === option.value) return;
+
       const newPathName = pathName.replace(`/${lang}`, `/${option.value}`);
+      console.log("window.location.origin", window.location.origin);
       // @ts-ignore
       window.location = window.location.origin + newPathName;
     },

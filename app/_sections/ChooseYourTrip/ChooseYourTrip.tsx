@@ -183,7 +183,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                   onClick={() => setStep((prev) => prev - 1)}
                   variant="outlined"
                 >
-                  {t("pages.trip.form.buttons.prev")}
+                  {t("pages.trip.buttons.prev")}
                 </Button>
               )}
 
@@ -198,8 +198,8 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                 }
               >
                 {step === 7 || step === 6
-                  ? t("pages.trip.form.buttons.go_home")
-                  : t("pages.trip.form.buttons.next")}
+                  ? t("pages.trip.buttons.go_home")
+                  : t("pages.trip.buttons.next")}
               </Button>
             </div>
           </div>
