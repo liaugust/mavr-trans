@@ -174,7 +174,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
 
             <div
               className={
-                "grid md:grid-flow-col md:auto-cols-[300px] max-w-[640px] gap-x-5 md:gap-x-10 mx-auto justify-center"
+                "grid grid-flow-col md:auto-cols-[300px] max-w-[640px] gap-x-5 md:gap-x-10 mx-auto justify-center"
               }
             >
               {step <= 5 && (
