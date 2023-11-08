@@ -24,15 +24,15 @@ export default async function middleware(
     lang = fallbackLng;
   }
 
+  const response = NextResponse.next();
+  response.headers.set("x-language", lang);
+
   if (
     !languages.some((loc) => nextUrl.pathname.startsWith(`/${loc}`)) &&
     !nextUrl.pathname.startsWith("/_next")
   ) {
     return NextResponse.redirect(new URL(`/${lang}${nextUrl.pathname}`, url));
   }
-
-  const response = NextResponse.next();
-  response.headers.set("x-language", lang);
 
   const refererCookie = headers.get("referer");
   if (refererCookie) {
