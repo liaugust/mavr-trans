@@ -18,7 +18,7 @@ export const SignUp: FC<SignUpProps> = ({ lang }) => {
     <>
       <Button
         onClick={() => {
-          router.push("/?modal=signup");
+          router.push(`/${lang}?modal=signup`);
         }}
         variant="outlined_primary"
       >
@@ -29,10 +29,10 @@ export const SignUp: FC<SignUpProps> = ({ lang }) => {
         <SignUpModal
           lang={lang}
           onSuccess={() => {
-            router.push("/?modal=login");
+            router.push(`/${lang}?modal=login`);
           }}
           onClose={() => {
-            router.push("/");
+            router.push(`/${lang}`);
           }}
         />
       )}
