@@ -35,7 +35,7 @@
   .hero {
     background-color: #1d1d1f;
     background-size: 100% auto;
-    background-position: bottom 260px !important;
+    /* bg-[url('/hero.jpg')] */
   }
 
   .hero::before {
@@ -48,6 +48,23 @@
     background-size: 100% auto;
   }
 
+  .hero {
+    background-image: url("/hero-2.jpg");
+    background-position: 70% 170% !important;
+  }
+
+  @media (min-width: 550px) {
+    .hero {
+      background-position: bottom center !important;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .hero {
+      background-size: auto 560px;
+    }
+  }
+
   @media (min-width: 1024px) {
     .hero::before {
       background: linear-gradient(
@@ -58,11 +75,13 @@
         rgba(29, 29, 31, 0) 96.08%
       );
       background-repeat: no-repeat;
-      background-size: 900px auto;
+      background-size: 100% auto;
     }
 
     .hero {
       background-size: 1100px 100%;
+      background-image: url("/hero.jpg");
+      background-position: bottom right !important;
     }
   }
 }

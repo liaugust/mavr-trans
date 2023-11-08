@@ -11,7 +11,7 @@ const gradient = {
   size: `before:w-full before:h-[680px] lg:before:h-full`,
   base: `before:absolute before:z-10`,
 };
-const baseSectionClassName = `max-w-[1920px] m-auto pt-24 lg:pt-40 pb-64 lg:pb-44 relative bg-[url('/hero.jpg')] bg-no-repeat bg-[right_bottom] lg:bg-center lg:bg-right`;
+const baseSectionClassName = `max-w-[1920px] m-auto pt-24 lg:pt-40 pb-64 lg:pb-44 relative bg-no-repeat`;
 
 const Hero: FC<WithLang> = async ({ lang }) => {
   const { t } = await useTranslation();
