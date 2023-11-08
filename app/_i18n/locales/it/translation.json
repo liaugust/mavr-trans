@@ -51,20 +51,20 @@
       "service": {
         "title": "Il miglior servizio di trasferimento",
         "subtitle": "",
-        "services": [
-          {
+        "services": {
+          "first": {
             "title": "Percorso personale",
             "text": "Sappiamo che le tue esigenze di viaggio possono essere uniche. La nostra azienda offre itinerari personalizzati e servizi che soddisfano le tue esigenze, che si tratti di svago, lavoro o eventi."
           },
-          {
+          "second": {
             "title": "Convenienza esclusiva",
             "text": "Puoi essere sicuro di sicurezza e stile quando viaggi con noi. Il massimo standard di servizio e auto moderne per la tua comodità."
           },
-          {
+          "third": {
             "title": "Servizio",
             "text": "Prenota un viaggio da qualsiasi parte del mondo in pochi clic sul nostro sito web e ricevi un feedback rapido dai nostri manager."
           }
-        ]
+        }
       },
       "choose_class": {
         "title": "Scegli il tuo percorso",
@@ -187,7 +187,7 @@
     "sign_in": {
       "title": "Accesso",
       "fields": {
-        "phone_or_email_placeholder": "Numero di telefono o Email",
+        "email_placeholder": "Email",
         "password_placeholder": "Password"
       },
       "buttons": {

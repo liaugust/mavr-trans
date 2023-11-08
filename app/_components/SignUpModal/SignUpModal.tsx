@@ -66,7 +66,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
             invalid={invalid}
             onChange={onChange}
             errorMessage={error?.message}
-            placeholder="First name"
+            placeholder={t("modals.sign_up.fields.first_name_placeholder")}
           />
         )}
       />
@@ -82,7 +82,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Second name"
+            placeholder={t("modals.sign_up.fields.last_name_placeholder")}
             errorMessage={error?.message}
           />
         )}
@@ -100,7 +100,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Phone number"
+            placeholder={t("modals.sign_up.fields.phone_placeholder")}
             errorMessage={error?.message}
           />
         )}
@@ -119,7 +119,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Email"
+            placeholder={t("modals.sign_up.fields.email_placeholder")}
             errorMessage={error?.message}
           />
         )}
@@ -138,7 +138,7 @@ export const SignUpModal: FC<SignUpModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Create a password"
+            placeholder={t("modals.sign_up.fields.create_password_placeholder")}
             errorMessage={error?.message}
           />
         )}
@@ -157,7 +157,9 @@ export const SignUpModal: FC<SignUpModalProps> = ({
             onBlur={onBlur}
             invalid={invalid}
             onChange={onChange}
-            placeholder="Repeat a password"
+            placeholder={t(
+              "modals.sign_up.fields.confirm_password_placeholder"
+            )}
             errorMessage={error?.message}
           />
         )}

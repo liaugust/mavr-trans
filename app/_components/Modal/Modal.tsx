@@ -1,7 +1,6 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useEffect } from "react";
 import { CloseButton } from "./CloseButton";
 import { Overlay } from "./Overlay";
-import { Wrapper } from "./Wrapper";
 import useLockBodyScroll from "@/app/_hooks/useLockBodyScroll";
 import { Title } from "../Typography";
 
@@ -13,9 +12,23 @@ export interface ModalProps extends PropsWithChildren {
 export const Modal: FC<ModalProps> = ({ onClose, title, children }) => {
   useLockBodyScroll();
 
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.code === "Escape" || e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", listener);
+
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [onClose]);
+
   return (
-    <Overlay>
-      <Wrapper onClose={onClose}>
+    <Overlay onClose={onClose}>
+      <div className="w-[560px] m-[10px]">
         <div className="bg-white h-full w-full rounded-[4px] px-[10px] py-10 md:pt-10 md:pb-[50px] md:px-5 relative">
           <CloseButton onClose={onClose} />
           {title && (
@@ -28,7 +41,7 @@ export const Modal: FC<ModalProps> = ({ onClose, title, children }) => {
           )}
           {children}
         </div>
-      </Wrapper>
+      </div>
     </Overlay>
   );
 };

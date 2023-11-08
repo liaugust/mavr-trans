@@ -43,7 +43,7 @@ const ChooseCategory: FC<ChooseCategoryProps> = ({ lang }) => {
               <Title
                 weight="1"
                 level="5"
-                className="bg-primary w-full h-full flex items-center justify-center uppercase"
+                className="bg-primary p-2 w-full h-full flex items-center justify-center uppercase text-center"
               >
                 {t("pages.home.choose_class.book_now")}
               </Title>

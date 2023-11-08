@@ -61,7 +61,11 @@ const Header: FC<HeaderProps> = ({ lang }) => {
               />
             </div>
 
-            <UserMenu className='hidden lg:flex' lang={lang} onCloseModal={() => setOpen(false)} />
+            <UserMenu
+              className="hidden lg:flex"
+              lang={lang}
+              onCloseModal={() => setOpen(false)}
+            />
 
             <Button
               normalize

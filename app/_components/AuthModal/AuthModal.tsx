@@ -4,7 +4,6 @@ import { Button } from "../Button";
 import { Form } from "../Form";
 import { GoogleBtn } from "./GoogleBtn";
 import { Caption } from "../Typography";
-import { Language } from "@/app/_i18n/settings";
 import { WithLang } from "@/app/types";
 
 export interface AuthModalProps extends ModalProps, WithLang {
