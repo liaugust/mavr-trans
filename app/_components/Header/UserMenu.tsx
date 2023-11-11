@@ -42,7 +42,7 @@ export const UserMenu: FC<UserMenuProps> = ({
             onClick={() =>
               signOut({
                 redirect: true,
-                callbackUrl: `${window.location.origin}/${lang}?modal=login`,
+                callbackUrl: `${window.location.origin}/${lang}`,
               })
             }
           >

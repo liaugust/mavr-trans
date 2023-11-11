@@ -7,6 +7,8 @@ import { signIn } from "next-auth/react";
 import { Input } from "../Input";
 import { useTranslation } from "@/app/_i18n/client";
 import { WithLang } from "@/app/types";
+import Link from "next/link";
+import { Trans } from "react-i18next";
 
 interface SignInModalProps
   extends WithLang,
@@ -101,6 +103,14 @@ export const SignInModal: FC<SignInModalProps> = ({
           />
         )}
       />
+      <Link href={`/${lang}?modal=signup`}>
+        <Trans
+          t={t}
+          i18nKey="modals.sign_in.hint"
+          // eslint-disable-next-line react/jsx-key
+          components={[<span className="text-primary" />]}
+        />
+      </Link>
     </AuthModal>
   );
 };

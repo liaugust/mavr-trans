@@ -5,7 +5,7 @@ const columns = [
   "admin.pages.clients.table_columns.name",
   "admin.pages.clients.table_columns.phone",
   "admin.pages.clients.table_columns.email",
-  "admin.pages.clients.table_columns.confirmed_transfers",
+  "admin.pages.clients.table_columns.confirmed_transfer",
 ];
 
 export default async function ClientsPage() {

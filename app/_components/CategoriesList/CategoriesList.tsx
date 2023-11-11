@@ -35,7 +35,7 @@ export const CategoriesList: FC<CategoriesListProps> = ({ lang }) => {
     <div className="rounded-[10px] overflow-hidden">
       <div className="bg-black text-white flex items-center justify-center p-[30px]">
         <Heading className="uppercase" weight="2">
-          {t("admin.pages.settings.categories.title")}
+          {t("admin.pages.settings.classes.title")}
         </Heading>
       </div>
 

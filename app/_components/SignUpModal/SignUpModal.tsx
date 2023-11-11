@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createUser } from "@/app/_state/users";
 import { UserSchema, userSchema } from "@/app/_storage/modules/users/core";
 import { useTranslation } from "@/app/_i18n/client";
+import Link from "next/link";
+import { Trans } from "react-i18next";
 
 interface SignUpModalProps
   extends Omit<
@@ -171,6 +173,14 @@ export const SignUpModal: FC<SignUpModalProps> = ({
           />
         )}
       />
+      <Link href={`/${lang}?modal=login`}>
+        <Trans
+          t={t}
+          i18nKey="modals.sign_up.hint"
+          // eslint-disable-next-line react/jsx-key
+          components={[<span className="text-primary" />]}
+        />
+      </Link>
     </AuthModal>
   );
 };

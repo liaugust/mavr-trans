@@ -31,7 +31,7 @@ const libraries = ["places"] as Libraries;
 export const Map: FC<MapProps> = ({ control, setValue, lang }) => {
   const { t } = useTranslation(lang);
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBaCRGexxALobAN1yY3dckkEvr-qESe5xM",
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY as string,
     libraries,
   });
 

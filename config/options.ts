@@ -1,5 +1,5 @@
 import { getUser } from "@/app/_state/users";
-import { GetUserUseCase } from "@/app/_storage";
+// import { GetUserUseCase } from "@/app/_storage";
 import { prisma } from "@/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
@@ -29,6 +29,8 @@ export const options: NextAuthOptions = {
         if (!email || !password) return null;
 
         const existingUser = await getUser(email);
+
+        console.log("existingUser", existingUser);
 
         if (!existingUser) {
           return null;
@@ -96,29 +98,24 @@ export const options: NextAuthOptions = {
         },
       };
     },
-    async signIn({ account, user }) {
-      const isGoogle = account?.provider === "google";
+    // async signIn({ account, user, ...rest }) {
+    // const isGoogle = account?.provider === "google";
 
-      if (isGoogle) {
-        const getUserUseCase = new GetUserUseCase();
-        const userToLogIn = await getUserUseCase.handle({
-          email: user?.email || "",
-        });
+    // if (isGoogle) {
+    //   const getUserUseCase = new GetUserUseCase();
+    //   const userToLogIn = await getUserUseCase.handle({
+    //     email: user?.email || "",
+    //   });
 
-        if (!userToLogIn) {
-          return false;
-        }
-      }
+    // console.log('userToLogIn', userToLogIn)
+    // console.log('rest', rest)
 
-      return true;
-    },
+    // if (!userToLogIn) {
+    //   return false;
+    // }
+    // }
 
-    // async jwt({ token, trigger, session }) {
-    //   if (trigger === "update" && session?.name) {
-    //     token.name = session.name;
-    //   }
-
-    //   return token;
+    // return true;
     // },
   },
 };

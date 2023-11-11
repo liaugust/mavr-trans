@@ -1,6 +1,6 @@
 {
-  "no_transfers": "No transfers yet",
-  "terms": "Terms",
+  "no_transfers": "Nessun trasferimento ancora",
+  "terms": "Termini",
   "privacy": "Privacy",
   "header": {
     "links": {
@@ -138,7 +138,7 @@
         },
         "contact_info": {
           "title": "Compila il modulo",
-          "inputs": {
+          "fields": {
             "first_name": "Nome",
             "last_name": "Cognome",
             "phone": "Numero di telefono",
@@ -196,7 +196,8 @@
       "buttons": {
         "submit": "Accedi",
         "google": "Accedi con un account Google"
-      }
+      },
+      "hint": "Non hai ancora un conto? <0>Iscriviti<0>"
     },
     "sign_up": {
       "title": "Crea un account",
@@ -211,7 +212,8 @@
       "buttons": {
         "submit": "Crea un account",
         "google": "Accedi con un account Google"
-      }
+      },
+      "hint": "Hai già un account? <0>Accedi<0>"
     },
     "reset_password": {
       "title": "Cambia password",
@@ -248,8 +250,7 @@
       },
       "clients": {
         "table_columns": {
-          "first_name": "Nome",
-          "last_name": "Cognome",
+          "name": "Nome",
           "phone": "Numero di telefono",
           "email": "Indirizzo email",
           "confirmed_transfer": "Trasferimento confermato"
