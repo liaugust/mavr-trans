@@ -9,6 +9,7 @@ import type {
   GetUserRidesUseCaseInput,
 } from "../use-cases";
 import { prisma } from "@/prisma";
+import { Status } from "@prisma/client";
 
 export class RideAdapter extends BasePrismaAdapter {
   constructor() {
@@ -18,7 +19,7 @@ export class RideAdapter extends BasePrismaAdapter {
   async confirmRide(data: ConfirmRideUseCaseInput): Promise<RideEntity> {
     const ride = await this.prisma.ride.update({
       where: { id: data.rideId },
-      data: { confirmedAt: new Date() },
+      data: { confirmedAt: new Date(), status: Status.done },
       include: {
         options: true,
         car: true,
@@ -82,6 +83,7 @@ export class RideAdapter extends BasePrismaAdapter {
         user: true,
         waypoints: { orderBy: { order: "asc" } },
       },
+      orderBy: { createdAt: "desc" },
     });
     return redes.map(RideMapper.toRideEntity);
   }

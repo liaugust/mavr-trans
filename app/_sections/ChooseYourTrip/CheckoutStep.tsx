@@ -27,13 +27,13 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
         weight="4"
         className="capitalize mb-10 md:mb-[60px] text-center leading-none"
       >
-        {t("pages.trip.confirmation.title")}
+        {t("pages.trip.checkout.title")}
       </Title>
 
       <div className="grid gap-y-3 md:gap-y-[14px]">
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            {t("pages.trip.confirmation.fields.route")}
+            {t("pages.trip.checkout.fields.route")}
           </Text>
           <Text level="1.1">
             {direction} ({formattedDistance})
@@ -41,25 +41,25 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            {t("pages.trip.confirmation.fields.car")}
+            {t("pages.trip.checkout.fields.car")}
           </Text>
           <Text level="1.1">{fields.car?.name}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            {t("pages.trip.confirmation.fields.passengers")}
+            {t("pages.trip.checkout.fields.passengers")}
           </Text>
           <Text level="1.1">{fields.passengers}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            {t("pages.trip.confirmation.fields.options")}
+            {t("pages.trip.checkout.fields.options")}
           </Text>
           <Text level="1.1">{fields.option?.name}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            {t("pages.trip.confirmation.fields.full_name")}
+            {t("pages.trip.checkout.fields.full_name")}
           </Text>
           <Text level="1.1">
             {fields.userInfo?.firstName} {fields.userInfo?.lastName}
@@ -67,7 +67,7 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
-            {t("pages.trip.confirmation.fields.phone")}
+            {t("pages.trip.checkout.fields.phone")}
           </Text>
           <Text level="1.1">{fields.userInfo?.phone}</Text>
         </div>
@@ -76,7 +76,7 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
       <hr className="bg-[#121420] h-[1px] w-full mt-10 md:mt-[100px] mb-5 md:mb-[30px]" />
 
       <div className="flex justify-between items-center mb-[60px] md:mb-[100px]">
-        <Text level="1.1">{t("pages.trip.confirmation.fields.amount")}</Text>
+        <Text level="1.1">{t("pages.trip.checkout.fields.amount")}</Text>
         <Text level="1.1">€{total.toFixed(1)}</Text>
       </div>
     </>

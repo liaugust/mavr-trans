@@ -17,11 +17,13 @@ interface StoreProviderProps extends PropsWithChildren {}
 interface State {
   active: RideEntity[];
   inactive: RideEntity[];
+  successfulRides: number;
 }
 
 const ProfileContext = createContext<State>({
   active: [],
   inactive: [],
+  successfulRides: 0,
 });
 
 export const useProfile = () => useContext(ProfileContext);
@@ -44,9 +46,15 @@ export const ProfileProvider: FC<StoreProviderProps> = ({ children }) => {
 
         arr[ride.status].push(ride);
 
+        acc.successfulRides += ride.status === "done" ? 1 : 0;
+
         return acc;
       },
-      { active: [] as RideEntity[], inactive: [] as RideEntity[] }
+      {
+        active: [] as RideEntity[],
+        inactive: [] as RideEntity[],
+        successfulRides: 0,
+      }
     );
 
     return sortedRides;

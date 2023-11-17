@@ -41,7 +41,7 @@ export class UserMapper {
 
       activeRides: sortedRides.active,
       inactiveRides: sortedRides.inactive,
-      successfulRides: sortedRides.active.length,
+      successfulRides: sortedRides.done.length,
 
       updatedAt: u.updatedAt,
       createdAt: u.createdAt,

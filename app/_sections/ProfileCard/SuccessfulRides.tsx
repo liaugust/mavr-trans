@@ -7,12 +7,12 @@ import { WithLang } from "@/app/types";
 
 export const SuccessfulRides: FC<WithLang> = ({ lang }) => {
   const { t } = useTranslation(lang);
-  const { active } = useProfile();
+  const { successfulRides } = useProfile();
 
   return (
     <div className="pt-5 pb-[30px] px-5 bg-[#EBB200] text-center">
       <Title weight="1" level="4" Component="div" className="mb-2">
-        {active.length}
+        {successfulRides}
       </Title>
 
       <Heading weight="0" Component="div" level="3">
