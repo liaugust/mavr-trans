@@ -30,8 +30,6 @@ export const options: NextAuthOptions = {
 
         const existingUser = await getUser(email);
 
-        console.log("existingUser", existingUser);
-
         if (!existingUser) {
           return null;
         }
