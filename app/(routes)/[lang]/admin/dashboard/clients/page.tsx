@@ -1,5 +1,6 @@
+"use client";
 import { Table } from "@/app/_components/Table";
-import { getUsers } from "@/app/_state/users";
+import { useAdminContext } from "../../admin-provider";
 
 const columns = [
   "admin.pages.clients.table_columns.name",
@@ -8,16 +9,17 @@ const columns = [
   "admin.pages.clients.table_columns.confirmed_transfer",
 ];
 
-export default async function ClientsPage() {
-  const users = await getUsers();
+export default function ClientsPage() {
+  const { leads, lang } = useAdminContext();
 
   return (
     <div className="py-5">
       <div className="container">
         <Table
+          lang={lang}
           columns={columns}
           values={
-            users.map((user) => [
+            leads.map((user) => [
               user.name,
               user.phoneNumber,
               user.email,
