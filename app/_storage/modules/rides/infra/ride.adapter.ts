@@ -41,7 +41,9 @@ export class RideAdapter extends BasePrismaAdapter {
       where: { id: { in: data.optionIds } },
     });
 
-    const total = data.distance * car.category.coefficient;
+    const distance = data.distance / 1000;
+
+    const total = distance * car.category.coefficient;
 
     const ride = await this.prisma.ride.create({
       data: {
@@ -49,12 +51,12 @@ export class RideAdapter extends BasePrismaAdapter {
           connect: data.optionIds.map((id) => ({ id })),
         },
         total,
+        distance,
         carId: car.id,
         carName: car.name,
         categoryId: car.category.id,
         categoryName: car.category.name,
         userId: data.userId,
-        distance: data.distance,
         passengers: data.passengers,
         optionNames: options.map((option) => option.name),
 

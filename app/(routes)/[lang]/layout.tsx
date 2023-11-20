@@ -57,6 +57,9 @@ export default async function RootLayout({
   return (
     <AuthContext session={session}>
       <html lang={lang}>
+        <head>
+          <link rel="icon" type="image/x-icon" href="/logo-primary.svg" />
+        </head>
         <body className={`${gotham.variable} font-sans bg-neutral-100 `}>
           <Header lang={lang} />
           <main>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useAdminContext } from "@/app/(routes)/[lang]/admin/admin-provider";
 import { confirmRide } from "@/app/_state/rides";
 import { Status } from "@prisma/client";
 import { FC, useCallback } from "react";
@@ -16,9 +17,12 @@ const labels: Record<Status, string> = {
 };
 
 export const Confirm: FC<ConfirmProps> = ({ status, id }) => {
+  const { confirm } = useAdminContext();
+
   const onConfirm = useCallback(async () => {
     await confirmRide(id);
-  }, [id]);
+    confirm(id);
+  }, [id, confirm]);
 
   if (status === "waiting") {
     return (

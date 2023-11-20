@@ -1,5 +1,6 @@
 "use server";
 
+// import { headers } from "next/headers";
 import {
   ConfirmRideUseCase,
   CreateRideUseCase,
@@ -10,8 +11,23 @@ import {
   UpdateUserUseCase,
 } from "../_storage";
 import { getToken } from "./helper";
+// import { revalidatePath } from "next/cache";
 
 export const getAllRides = async () => {
+  // const response = await fetch("https://localhost:3000/api/rides", {
+  //   headers: headers(),
+  //   cache: 'no-cache',
+  //   next: {
+  //     revalidate: 5,
+  //   },
+  // });
+  // console.log("response", response);
+
+  // const data = await response.json();
+
+  // // revalidatePath("/(routes)/[lang]/admin/dashboard/leads", "page");
+
+  // return data.rides;
   const getRidesUseCase = new GetRidesUseCase();
   return getRidesUseCase.handle();
 };

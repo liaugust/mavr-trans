@@ -4,6 +4,7 @@ import { Control, useWatch } from "react-hook-form";
 import { FormFields } from "./request-ride-schema";
 import { WithLang } from "@/app/types";
 import { useTranslation } from "@/app/_i18n/client";
+import { useSession } from "next-auth/react";
 
 interface CheckoutProps extends WithLang {
   control: Control<FormFields>;
@@ -11,6 +12,8 @@ interface CheckoutProps extends WithLang {
 
 export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
   const { t } = useTranslation(lang);
+  const { data } = useSession();
+  const { user } = data || {};
 
   const fields = useWatch({ control });
 
@@ -18,7 +21,7 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
   const direction = fields.waypoints?.map((w) => w.shortAddress).join(" - ");
   const formattedDistance =
     distance > 0.5 ? distance.toFixed(1) + "km" : fields.distance + "m";
-  const total = (fields.distance || 0) * (fields.category?.coefficient || 0);
+  const total = (distance || 0) * (fields.category?.coefficient || 0);
 
   return (
     <>
@@ -61,15 +64,13 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
           <Text level="1.1" weight="0">
             {t("pages.trip.checkout.fields.full_name")}
           </Text>
-          <Text level="1.1">
-            {fields.userInfo?.firstName} {fields.userInfo?.lastName}
-          </Text>
+          <Text level="1.1">{user?.name}</Text>
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
             {t("pages.trip.checkout.fields.phone")}
           </Text>
-          <Text level="1.1">{fields.userInfo?.phone}</Text>
+          <Text level="1.1">{fields.phone}</Text>
         </div>
       </div>
 
