@@ -70,7 +70,7 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
           <Text level="1.1" weight="0">
             {t("pages.trip.checkout.fields.phone")}
           </Text>
-          <Text level="1.1">{fields.phone}</Text>
+          <Text level="1.1">{fields.userInfo?.phone}</Text>
         </div>
       </div>
 
