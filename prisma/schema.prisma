@@ -170,6 +170,9 @@ model Ride {
   updatedAt   DateTime? @updatedAt @map("updated_at")
   confirmedAt DateTime? @map("confirmed_at")
 
+  departureAt DateTime? @map("departure_at")
+  arrivalAt   DateTime? @map("arrival_at")
+
   status Status @default(waiting)
   total  Int    @default(0)
 

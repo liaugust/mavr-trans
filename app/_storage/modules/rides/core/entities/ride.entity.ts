@@ -31,6 +31,9 @@ export type RideEntity = {
   distance: number;
   passengers: number;
 
+  departureAt: Date | null;
+  arrivalAt: Date | null;
+
   origin: Waypoint;
   destination: Waypoint;
 

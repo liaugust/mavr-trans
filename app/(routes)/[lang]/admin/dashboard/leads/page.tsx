@@ -25,7 +25,13 @@ export default function LeadsPage() {
           columns={columns}
           values={
             rides.map((ride) => [
-              new Date(ride.createdAt).toLocaleDateString(),
+              ride.departureAt && ride.arrivalAt
+                ? `${new Date(
+                    ride.departureAt
+                  ).toLocaleDateString()} – ${new Date(
+                    ride.arrivalAt
+                  ).toLocaleDateString()}`
+                : `—`,
               ride.user.name,
               ride.user.phone,
               ride.allWaypoints.map((w) => w.shortAddress).join(" - "),

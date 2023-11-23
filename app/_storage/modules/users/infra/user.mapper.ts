@@ -16,6 +16,7 @@ export class UserMapper {
     const rides = u.rides.map((r) =>
       RideMapper.toRideEntity({ ...r, user: u, userId: u.id })
     );
+
     const sortedRides = rides.reduce(
       (acc, ride) => {
         const arr = {
@@ -28,7 +29,7 @@ export class UserMapper {
 
         return acc;
       },
-      { active: [], done: [] } as any
+      { active: [], done: [], waiting: [] } as any
     );
 
     return {

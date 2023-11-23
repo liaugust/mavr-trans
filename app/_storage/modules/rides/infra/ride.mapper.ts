@@ -22,6 +22,9 @@ export class RideMapper {
     const origin = waypoints.shift()!;
     const destination = waypoints.pop()!;
 
+    const isActive = r.arrivalAt ? r.arrivalAt > new Date() : false;
+    const isConfirmed = r.arrivalAt ? true : false;
+
     return {
       id: r.id,
       car: {
@@ -29,13 +32,15 @@ export class RideMapper {
         name: r.carName,
         image: r.car?.image ?? null,
       },
+      arrivalAt: r.arrivalAt,
+      departureAt: r.departureAt,
       category: {
         id: r.categoryId,
         name: r.categoryName,
         image: r.category?.image ?? null,
       },
       total: r.total,
-      status: r.status,
+      status: isConfirmed ? (isActive ? "active" : "done") : "waiting",
       user: {
         id: r.user.id,
         name: r.user.name,
