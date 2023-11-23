@@ -6,19 +6,19 @@ import { useTranslation } from "@/app/_i18n";
 const services: ServiceCardProps[] = [
   {
     id: 1,
-    src: "/service.jpg",
+    src: "/service-1.jpg",
     title: "pages.home.service.services.first.title",
     text: "pages.home.service.services.first.text",
   },
   {
     id: 2,
-    src: "/service.jpg",
+    src: "/service-2.jpg",
     title: "pages.home.service.services.second.title",
     text: "pages.home.service.services.second.text",
   },
   {
     id: 3,
-    src: "/service.jpg",
+    src: "/service-3.jpg",
     title: "pages.home.service.services.third.title",
     text: "pages.home.service.services.third.text",
   },

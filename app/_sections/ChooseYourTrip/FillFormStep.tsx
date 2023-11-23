@@ -26,39 +26,7 @@ export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
       <div className="mb-[35px] grid gap-y-[14px] max-w-[560px] mx-auto">
         <Controller
           control={control}
-          name="userInfo.firstName"
-          render={({
-            field: { value, onChange },
-            fieldState: { error, invalid },
-          }) => (
-            <Input
-              invalid={invalid}
-              errorMessage={error?.message}
-              placeholder={t("pages.trip.form.contact_info.fields.first_name")}
-              value={value}
-              onChange={onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="userInfo.lastName"
-          render={({
-            field: { value, onChange },
-            fieldState: { error, invalid },
-          }) => (
-            <Input
-              invalid={invalid}
-              errorMessage={error?.message}
-              placeholder={t("pages.trip.form.contact_info.fields.last_name")}
-              value={value}
-              onChange={onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="userInfo.phone"
+          name="phone"
           render={({
             field: { value, onChange },
             fieldState: { error, invalid },
@@ -67,22 +35,6 @@ export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
               invalid={invalid}
               errorMessage={error?.message}
               placeholder={t("pages.trip.form.contact_info.fields.phone")}
-              value={value}
-              onChange={onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="userInfo.email"
-          render={({
-            field: { value, onChange },
-            fieldState: { error, invalid },
-          }) => (
-            <Input
-              invalid={invalid}
-              errorMessage={error?.message}
-              placeholder={t("pages.trip.form.contact_info.fields.email")}
               value={value}
               onChange={onChange}
             />

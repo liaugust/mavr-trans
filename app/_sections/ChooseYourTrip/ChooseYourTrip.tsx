@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { Checkout } from "./CheckoutStep";
 import { ChoosePassengersStep } from "./ChoosePassengersStep";
 import { FillFormStep } from "./FillFormStep";
@@ -16,43 +16,48 @@ import { MessageStep } from "./Message";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "@/app/_i18n/client";
 import { WithLang } from "@/app/types";
+import { useSession } from "next-auth/react";
 
 export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
   const { t } = useTranslation(lang);
+  const { data, update } = useSession();
   const [step, setStep] = useState(0);
   const router = useRouter();
 
-  const { control, handleSubmit, watch, setValue } = useForm<FormFields>({
-    defaultValues: {
-      passengers: 1,
-      option: null as unknown as { id: number; name: string } | null,
-      car: null as unknown as { id: number; name: string },
-      userInfo: { firstName: "", lastName: "", phone: "", email: "" },
-      waypoints: [
-        {
-          fullAddress: "",
-          shortAddress: "",
-          lng: 0,
-          lat: 0,
-        },
-        {
-          fullAddress: "",
-          shortAddress: "",
-          lng: 0,
-          lat: 0,
-        },
-      ],
-    },
-    resolver: zodResolver(schema),
-    mode: "onBlur",
-  });
+  const userPhone = data?.user.phoneNumber;
+
+  const { control, handleSubmit, watch, setValue, formState } =
+    useForm<FormFields>({
+      defaultValues: {
+        passengers: 1,
+        option: null as unknown as { id: number; name: string } | null,
+        car: null as unknown as { id: number; name: string },
+        phone: userPhone || "",
+        waypoints: [
+          {
+            fullAddress: "",
+            shortAddress: "",
+            lng: 0,
+            lat: 0,
+          },
+          {
+            fullAddress: "",
+            shortAddress: "",
+            lng: 0,
+            lat: 0,
+          },
+        ],
+      },
+      resolver: zodResolver(schema),
+      mode: "onBlur",
+    });
 
   const onSubmit = handleSubmit(async (values) => {
     try {
       await createRide({
+        phone: values.phone,
         carId: values.car.id,
         distance: values.distance,
-        phone: values.userInfo.phone,
         categoryId: values.category.id,
         optionIds: values.option ? [values.option.id] : [],
         passengers: values.passengers,
@@ -64,6 +69,11 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
           lat: w.lat,
         })),
       });
+
+      if (!userPhone && values.phone) {
+        await update({ phone: values.phone });
+      }
+
       setStep(6);
     } catch (e) {
       setStep(7);
@@ -71,36 +81,52 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
   });
 
   const values = watch();
-  const { category, car, passengers, userInfo, waypoints } = values;
+  const { category, car, passengers, phone, waypoints } = values;
 
-  const zeroStepDisabled = !category;
-  const firstStepDisabled = !passengers || zeroStepDisabled;
-  const secondStepDisabled = !car || firstStepDisabled;
   const mapStepDisabled =
     !waypoints.every((waypoint) => waypoint.lat && waypoint.lng) ||
     waypoints.length < 2;
-  const fourthStepDisabled =
-    !userInfo.email ||
-    !userInfo.phone ||
-    !userInfo.firstName ||
-    !userInfo.lastName ||
-    secondStepDisabled ||
-    mapStepDisabled;
 
-  const isZero = step === 0;
-  const isFirst = step === 1;
-  const isSecond = step === 2;
-  const isFourth = step === 4;
+  const disabled = useMemo(() => {
+    if (step === 0) {
+      return !category;
+    }
 
-  const disabled = isZero
-    ? zeroStepDisabled
-    : isFirst
-    ? firstStepDisabled
-    : isSecond
-    ? secondStepDisabled
-    : isFourth
-    ? fourthStepDisabled
-    : false;
+    if (step === 1) {
+      return !passengers;
+    }
+
+    if (step === 2) {
+      return !car;
+    }
+
+    if (step === 3 && userPhone) {
+      return mapStepDisabled;
+    }
+
+    if (step === 3 && !userPhone) {
+      return false;
+    }
+
+    if (step === 4) {
+      return !phone || mapStepDisabled;
+    }
+
+    if (step === 5) {
+      return formState.isSubmitting;
+    }
+
+    return true;
+  }, [
+    step,
+    passengers,
+    mapStepDisabled,
+    phone,
+    category,
+    car,
+    userPhone,
+    formState.isSubmitting,
+  ]);
 
   return (
     <>
@@ -180,7 +206,13 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
               {step <= 5 && (
                 <Button
                   disabled={step === 0}
-                  onClick={() => setStep((prev) => prev - 1)}
+                  onClick={() => {
+                    if (step === 5 && userPhone) {
+                      return setStep(3);
+                    }
+
+                    setStep((prev) => prev - 1);
+                  }}
                   variant="outlined"
                 >
                   {t("pages.trip.buttons.prev")}
@@ -189,13 +221,21 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
 
               <Button
                 disabled={disabled}
-                onClick={
-                  step === 5
-                    ? onSubmit
-                    : step === 7 || step === 6
-                    ? () => router.push(`/${lang}`)
-                    : () => setStep((prev) => prev + 1)
-                }
+                onClick={() => {
+                  if (step === 5) {
+                    return onSubmit();
+                  }
+
+                  if (step === 7 || step === 6) {
+                    return router.push(`/${lang}`);
+                  }
+
+                  if (step === 3 && userPhone) {
+                    return setStep(5);
+                  }
+
+                  return setStep((prev) => prev + 1);
+                }}
               >
                 {step === 7 || step === 6
                   ? t("pages.trip.buttons.go_home")

@@ -33,7 +33,7 @@
   }
 
   .hero {
-    background-color: #1d1d1f;
+    background-color: #ffffff;
     background-size: 100% auto;
     /* bg-[url('/hero.jpg')] */
   }
@@ -49,19 +49,19 @@
   }
 
   .hero {
-    background-image: url("/hero-2.jpg");
-    background-position: 70% 170% !important;
+    background-image: url("/hero-3.jpg");
+    background-position: bottom center !important;
   }
 
   @media (min-width: 550px) {
-    .hero {
+    /* .hero {
       background-position: bottom center !important;
-    }
+    } */
   }
 
   @media (max-width: 550px) {
     .hero {
-      background-size: auto 560px;
+      /* background-size: auto 560px; */
     }
   }
 
@@ -79,8 +79,8 @@
     }
 
     .hero {
-      background-size: 1100px 100%;
-      background-image: url("/hero.jpg");
+      background-size: auto 100%;
+      /* background-image: url("/hero.jpg"); */
       background-position: bottom right !important;
     }
   }

@@ -1,5 +1,4 @@
 import { getUser } from "@/app/_state/users";
-// import { GetUserUseCase } from "@/app/_storage";
 import { prisma } from "@/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
@@ -59,7 +58,7 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, trigger, session }) {
       if (user) {
         const newToken = {
           ...token,
@@ -71,12 +70,20 @@ export const options: NextAuthOptions = {
           successfulRides: user.successfulRides,
         };
 
+        if (trigger === "update" && session.phone) {
+          newToken.phoneNumber = session.phone;
+        }
+
         if (account && account.provider) {
           // @ts-ignore
           newToken.provider = account.provider;
         }
 
         return newToken;
+      }
+
+      if (trigger === "update" && session.phone) {
+        token.phoneNumber = session.phone;
       }
 
       return token;
@@ -96,25 +103,6 @@ export const options: NextAuthOptions = {
         },
       };
     },
-    // async signIn({ account, user, ...rest }) {
-    // const isGoogle = account?.provider === "google";
-
-    // if (isGoogle) {
-    //   const getUserUseCase = new GetUserUseCase();
-    //   const userToLogIn = await getUserUseCase.handle({
-    //     email: user?.email || "",
-    //   });
-
-    // console.log('userToLogIn', userToLogIn)
-    // console.log('rest', rest)
-
-    // if (!userToLogIn) {
-    //   return false;
-    // }
-    // }
-
-    // return true;
-    // },
   },
 };
 

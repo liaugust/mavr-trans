@@ -26,14 +26,7 @@ export const schema = z.object({
     name: z.string(),
   }),
   distance: z.number().min(0),
-  userInfo: z
-    .object({
-      email: z.string().email(),
-      firstName: z.string(),
-      lastName: z.string(),
-      phone: z.string(),
-    })
-    .required(),
+  phone: z.string().min(1),
 
   waypoints: z.array(waypoint.required()).min(2).nonempty(),
 });

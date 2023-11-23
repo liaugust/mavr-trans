@@ -8,10 +8,10 @@ import { WithLang } from "@/app/types";
 
 const gradient = {
   position: `before:top-0 before:bottom-0 before:left-0`,
-  size: `before:w-full before:h-[680px] lg:before:h-full`,
+  size: `before:w-full lg:before:w-[80%] before:h-[680px] lg:before:h-full`,
   base: `before:absolute before:z-10`,
 };
-const baseSectionClassName = `max-w-[1920px] m-auto pt-24 lg:pt-40 pb-64 lg:pb-44 relative bg-no-repeat`;
+const baseSectionClassName = `max-w-[1440px] m-auto pt-24 lg:pt-40 pb-64 lg:pb-44 relative bg-no-repeat overflow-hidden`;
 
 const Hero: FC<WithLang> = async ({ lang }) => {
   const { t } = await useTranslation();
