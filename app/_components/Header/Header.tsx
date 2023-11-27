@@ -7,11 +7,13 @@ import { useTranslation } from "@/app/_i18n/client";
 import { WithLang } from "@/app/types";
 import { Link } from "../Link";
 import { UserMenu } from "./UserMenu";
+import { useSession } from "next-auth/react";
 
 interface HeaderProps extends WithLang {}
 
 const Header: FC<HeaderProps> = ({ lang }) => {
   const { t } = useTranslation(lang);
+  const { data } = useSession();
 
   const [open, setOpen] = useState(false);
 
@@ -32,6 +34,16 @@ const Header: FC<HeaderProps> = ({ lang }) => {
               }`}
             >
               <ul className="lg:flex lg:items-center text-center lg:text-left text-primary lg:text-[#1E1D1F]">
+                {data?.user.isAdmin && (
+                  <li className="py-2 lg:py-0 px-2 lg:mr-[10px] text-2xl lg:text-lg">
+                    <Link
+                      onClick={() => setOpen(false)}
+                      href={`/${lang}/admin/settings`}
+                    >
+                      Admin
+                    </Link>
+                  </li>
+                )}
                 <li className="py-2 lg:py-0 px-2 lg:mr-[10px] text-2xl lg:text-lg">
                   <Link onClick={() => setOpen(false)} href={`/${lang}`}>
                     {t("header.links.home")}
