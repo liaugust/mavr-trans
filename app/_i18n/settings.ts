@@ -1,9 +1,9 @@
 import { headers } from "next/headers";
 
-export type Language = "en" | "uk" | "it";
+export type Language = "en" | "ua" | "it";
 
 export const fallbackLng: Language = "en";
-export const languages: Language[] = [fallbackLng, "uk", "it"];
+export const languages: Language[] = [fallbackLng, "ua", "it"];
 export const defaultNS = "translation";
 export const cookieName = "i18next";
 

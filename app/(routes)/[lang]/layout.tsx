@@ -36,7 +36,7 @@ const gotham = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Mavr-Trans",
+  title: "Mavr-Trans | Transfer Italy",
   description:
     "With more than 10 years of experience in the industry, Mavr-Trans is your reliable choice for transportation throughout Italy and beyond. It doesn't matter whether you are in Italy for work or a tourist, our company will make sure that you travel on time and comfortably and get only the best impressions from your trip. We have a large selection of types of cars, which will help you choose exactly what you want and for the number of people you need, regardless of whether you are traveling alone, with family or colleagues. We will take care of your comfort, speed, and optimal route.",
 };
