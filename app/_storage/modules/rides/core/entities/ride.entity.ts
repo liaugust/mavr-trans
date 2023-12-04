@@ -15,6 +15,7 @@ export type RideEntity = {
     id: number | null;
     name: string;
   };
+  number: string | null;
   category: {
     image: string | null;
     id: number | null;

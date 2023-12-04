@@ -40,6 +40,22 @@ export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
             />
           )}
         />
+        <Controller
+          control={control}
+          name="number"
+          render={({
+            field: { value, onChange },
+            fieldState: { error, invalid },
+          }) => (
+            <Input
+              invalid={invalid}
+              errorMessage={error?.message}
+              placeholder={t("pages.trip.form.contact_info.fields.number")}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
       </div>
     </>
   );

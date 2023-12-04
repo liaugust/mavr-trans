@@ -155,8 +155,9 @@ model Ride {
   category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId Int?      @map("category_id") @db.Integer()
 
-  carName      String @map("car_name") @db.VarChar(255)
-  categoryName String @map("category_name") @db.VarChar(255)
+  number       String? @db.VarChar(255)
+  carName      String  @map("car_name") @db.VarChar(255)
+  categoryName String  @map("category_name") @db.VarChar(255)
 
   passengers Int @db.Integer()
   distance   Int @db.Integer()

@@ -72,6 +72,12 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
           </Text>
           <Text level="1.1">{fields.phone}</Text>
         </div>
+        <div className="flex justify-between items-center">
+          <Text level="1.1" weight="0">
+            {t("pages.trip.checkout.fields.number")}
+          </Text>
+          <Text level="1.1">{fields.number}</Text>
+        </div>
       </div>
 
       <hr className="bg-[#121420] h-[1px] w-full mt-10 md:mt-[100px] mb-5 md:mb-[30px]" />

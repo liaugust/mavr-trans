@@ -4,6 +4,7 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
   carId: number;
   phone: string;
   userId: string;
+  number?: string;
   distance: number;
   categoryId: number;
   passengers: number;
@@ -22,6 +23,7 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
 
     this.carId = props.carId;
     this.phone = props.phone;
+    this.number = props.number;
     this.userId = props.userId;
     this.distance = props.distance;
     this.waypoints = props.waypoints;

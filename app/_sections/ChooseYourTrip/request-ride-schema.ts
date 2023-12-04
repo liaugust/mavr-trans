@@ -25,6 +25,7 @@ export const schema = z.object({
     id: z.number().positive().min(1),
     name: z.string(),
   }),
+  number: z.string().optional(),
   distance: z.number().min(0),
   phone: z.string().min(1),
 

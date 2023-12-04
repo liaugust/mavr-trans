@@ -1,4 +1,5 @@
 "use client";
+
 import { Confirm } from "@/app/_components/Ride/Confirm";
 import { Table } from "@/app/_components/Table";
 import { useAdminContext } from "../../admin-provider";
@@ -9,6 +10,7 @@ const columns = [
   "admin.pages.leads.table_columns.phone",
   "admin.pages.leads.table_columns.route",
   "admin.pages.leads.table_columns.car",
+  "admin.pages.leads.table_columns.number",
   "admin.pages.leads.table_columns.options",
   "admin.pages.leads.table_columns.total",
   "admin.pages.leads.table_columns.status",
@@ -32,10 +34,11 @@ export default function LeadsPage() {
                     ride.arrivalAt
                   ).toLocaleDateString()}`
                 : `—`,
-              ride.user.name,
+              ride.user.name || "—",
               ride.user.phone,
               ride.allWaypoints.map((w) => w.shortAddress).join(" - "),
               ride.car.name,
+              ride.number,
               ride.options.join(", "),
               `${ride.total}€`,
               (

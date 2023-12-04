@@ -142,6 +142,7 @@
             "first_name": "First name",
             "last_name": "Second name",
             "phone": "Phone number",
+            "number": "Flight number",
             "email": "Email"
           }
         }
@@ -155,6 +156,7 @@
           "options": "Additional options",
           "full_name": "Customer name",
           "phone": "Phone number",
+          "number": "Flight number",
           "amount": "Amount"
         }
       },
@@ -238,6 +240,7 @@
           "date": "Date",
           "name": "Name",
           "phone": "Phone number",
+          "number": "Flight number",
           "route": "Route",
           "car": "Car",
           "options": "Additional options",

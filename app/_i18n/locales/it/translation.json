@@ -141,37 +141,39 @@
           "fields": {
             "first_name": "Nome",
             "last_name": "Cognome",
+            "number": "Flight number",
             "phone": "Numero di telefono",
             "email": "Email"
           }
-        },
-        "checkout": {
-          "title": "È tutto corretto?",
-          "fields": {
-            "route": "Percorso",
-            "car": "Auto",
-            "passengers": "Numero di passeggeri",
-            "options": "Opzioni aggiuntive",
-            "full_name": "Nome del cliente",
-            "phone": "Numero di telefono",
-            "amount": "Importo"
-          }
-        },
-        "confirmation": {
-          "title": "Confermato",
-          "text": "La tua richiesta è stata elaborata e un responsabile ti contatterà a breve."
-        },
-        "error": {
-          "title": "Si è verificato un errore",
-          "text": "Non siamo riusciti a elaborare la tua richiesta. Riprova più tardi."
-        },
-
-        "buttons": {
-          "prev": "Indietro",
-          "next": "Avanti",
-          "go_home": "Torna alla home",
-          "submit": "Paga il trasferimento"
         }
+      },
+      "checkout": {
+        "title": "È tutto corretto?",
+        "fields": {
+          "route": "Percorso",
+          "car": "Auto",
+          "passengers": "Numero di passeggeri",
+          "options": "Opzioni aggiuntive",
+          "full_name": "Nome del cliente",
+          "phone": "Numero di telefono",
+          "number": "Flight number",
+          "amount": "Importo"
+        }
+      },
+      "confirmation": {
+        "title": "Confermato",
+        "text": "La tua richiesta è stata elaborata e un responsabile ti contatterà a breve."
+      },
+      "error": {
+        "title": "Si è verificato un errore",
+        "text": "Non siamo riusciti a elaborare la tua richiesta. Riprova più tardi."
+      },
+
+      "buttons": {
+        "prev": "Indietro",
+        "next": "Avanti",
+        "go_home": "Torna alla home",
+        "submit": "Paga il trasferimento"
       }
     },
     "profile": {
@@ -239,6 +241,7 @@
           "date": "Data",
           "first_name": "Nome",
           "last_name": "Cognome",
+          "number": "Flight number",
           "phone": "Numero di telefono",
           "route": "Percorso",
           "car": "Auto",
