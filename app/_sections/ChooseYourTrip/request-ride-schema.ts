@@ -29,6 +29,10 @@ export const schema = z.object({
   distance: z.number().min(0),
   phone: z.string().min(1),
 
+  departureAt: z.coerce.date().refine((data) => data > new Date(), {
+    message: "Departure date must be in the future",
+  }),
+
   waypoints: z.array(waypoint.required()).min(2).nonempty(),
 });
 

@@ -49,7 +49,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
         ],
       },
       resolver: zodResolver(schema),
-      mode: "onBlur",
+      mode: "onChange",
     });
 
   const onSubmit = handleSubmit(async (values) => {
@@ -57,6 +57,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
       await createRide({
         phone: values.phone,
         carId: values.car.id,
+        number: values.number,
         distance: values.distance,
         categoryId: values.category.id,
         optionIds: values.option ? [values.option.id] : [],
@@ -81,7 +82,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
   });
 
   const values = watch();
-  const { category, car, passengers, phone, waypoints } = values;
+  const { category, car, passengers, phone, waypoints, departureAt } = values;
 
   const mapStepDisabled =
     !waypoints.every((waypoint) => waypoint.lat && waypoint.lng) ||
@@ -100,16 +101,12 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
       return !car;
     }
 
-    if (step === 3 && userPhone) {
-      return mapStepDisabled;
-    }
-
-    if (step === 3 && !userPhone) {
+    if (step === 3) {
       return false;
     }
 
     if (step === 4) {
-      return !phone || mapStepDisabled;
+      return !phone || !departureAt || mapStepDisabled || !formState.isValid;
     }
 
     if (step === 5) {
@@ -123,9 +120,10 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
     mapStepDisabled,
     phone,
     category,
+    departureAt,
     car,
-    userPhone,
     formState.isSubmitting,
+    formState.isValid,
   ]);
 
   return (
@@ -193,7 +191,13 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                 )}
               />
             )}
-            {step === 4 && <FillFormStep lang={lang} control={control} />}
+            {step === 4 && (
+              <FillFormStep
+                hasPhone={Boolean(userPhone)}
+                control={control}
+                lang={lang}
+              />
+            )}
             {step === 5 && <Checkout lang={lang} control={control} />}
             {step === 6 && <MessageStep lang={lang} type="success" />}
             {step === 7 && <MessageStep lang={lang} type="failure" />}
@@ -207,10 +211,6 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                 <Button
                   disabled={step === 0}
                   onClick={() => {
-                    if (step === 5 && userPhone) {
-                      return setStep(3);
-                    }
-
                     setStep((prev) => prev - 1);
                   }}
                   variant="outlined"
@@ -228,10 +228,6 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
 
                   if (step === 7 || step === 6) {
                     return router.push(`/${lang}`);
-                  }
-
-                  if (step === 3 && userPhone) {
-                    return setStep(5);
                   }
 
                   return setStep((prev) => prev + 1);

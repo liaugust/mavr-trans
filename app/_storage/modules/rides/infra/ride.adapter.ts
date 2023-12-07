@@ -20,8 +20,6 @@ export class RideAdapter extends BasePrismaAdapter {
       where: { id: data.rideId },
       data: {
         confirmedAt: new Date(),
-        arrivalAt: data.arrivalAt,
-        departureAt: data.departureAt,
       },
       include: {
         options: true,
@@ -57,6 +55,7 @@ export class RideAdapter extends BasePrismaAdapter {
         distance,
         carId: car.id,
         carName: car.name,
+        number: data.number,
         categoryId: car.category.id,
         categoryName: car.category.name,
         userId: data.userId,

@@ -8,9 +8,14 @@ import { useTranslation } from "@/app/_i18n/client";
 
 interface FillFormStepProps extends WithLang {
   control: Control<FormFields>;
+  hasPhone: boolean;
 }
 
-export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
+export const FillFormStep: FC<FillFormStepProps> = ({
+  lang,
+  control,
+  hasPhone,
+}) => {
   const { t } = useTranslation(lang);
 
   return (
@@ -24,22 +29,24 @@ export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
       </Title>
 
       <div className="mb-[35px] grid gap-y-[14px] max-w-[560px] mx-auto">
-        <Controller
-          control={control}
-          name="phone"
-          render={({
-            field: { value, onChange },
-            fieldState: { error, invalid },
-          }) => (
-            <Input
-              invalid={invalid}
-              errorMessage={error?.message}
-              placeholder={t("pages.trip.form.contact_info.fields.phone")}
-              value={value}
-              onChange={onChange}
-            />
-          )}
-        />
+        {!hasPhone && (
+          <Controller
+            control={control}
+            name="phone"
+            render={({
+              field: { value, onChange },
+              fieldState: { error, invalid },
+            }) => (
+              <Input
+                invalid={invalid}
+                errorMessage={error?.message}
+                placeholder={t("pages.trip.form.contact_info.fields.phone")}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+        )}
         <Controller
           control={control}
           name="number"
@@ -53,6 +60,22 @@ export const FillFormStep: FC<FillFormStepProps> = ({ lang, control }) => {
               placeholder={t("pages.trip.form.contact_info.fields.number")}
               value={value}
               onChange={onChange}
+            />
+          )}
+        />
+        <Controller
+          name="departureAt"
+          control={control}
+          render={({
+            field: { value, onChange },
+            fieldState: { error, invalid },
+          }) => (
+            <Input
+              invalid={invalid}
+              errorMessage={error?.message}
+              value={value as unknown as string}
+              onChange={onChange}
+              type="date"
             />
           )}
         />

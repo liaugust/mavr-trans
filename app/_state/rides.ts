@@ -62,10 +62,7 @@ export const createRide = async (
   return createRideUseCase.handle({ ...input, userId: user.id });
 };
 
-export const confirmRide = async (
-  rideId: number,
-  values: { departureAt: Date; arrivalAt: Date }
-) => {
+export const confirmRide = async (rideId: number) => {
   const confirmRideUseCase = new ConfirmRideUseCase();
-  return confirmRideUseCase.handle({ rideId, ...values });
+  return confirmRideUseCase.handle({ rideId });
 };
