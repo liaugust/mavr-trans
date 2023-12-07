@@ -27,6 +27,7 @@ export class RideMapper {
 
     return {
       id: r.id,
+      number: r.number,
       car: {
         id: r.carId,
         name: r.carName,
