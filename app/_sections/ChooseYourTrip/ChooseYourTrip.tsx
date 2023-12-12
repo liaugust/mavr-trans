@@ -60,6 +60,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
         number: values.number,
         distance: values.distance,
         categoryId: values.category.id,
+        departureAt: values.departureAt,
         optionIds: values.option ? [values.option.id] : [],
         passengers: values.passengers,
         waypoints: values.waypoints.map((w, idx) => ({

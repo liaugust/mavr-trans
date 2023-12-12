@@ -6,6 +6,7 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
   userId: string;
   number?: string;
   distance: number;
+  departureAt: Date;
   categoryId: number;
   passengers: number;
   optionIds: number[];
@@ -30,5 +31,6 @@ export class CreateRideUseCaseInput extends BaseUseCaseInput {
     this.optionIds = props.optionIds;
     this.categoryId = props.categoryId;
     this.passengers = props.passengers;
+    this.departureAt = props.departureAt;
   }
 }
