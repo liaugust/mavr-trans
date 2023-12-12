@@ -153,6 +153,7 @@
           "route": "Route",
           "car": "Car",
           "passengers": "Number of passengers",
+          "departureAt": "Departure date",
           "options": "Additional options",
           "full_name": "Customer name",
           "phone": "Phone number",

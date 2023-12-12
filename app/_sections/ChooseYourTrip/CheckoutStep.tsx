@@ -50,6 +50,16 @@ export const Checkout: FC<CheckoutProps> = ({ lang, control }) => {
         </div>
         <div className="flex justify-between items-center">
           <Text level="1.1" weight="0">
+            {t("pages.trip.checkout.fields.departureAt")}
+          </Text>
+          <Text level="1.1">
+            {fields.departureAt
+              ? new Date(fields.departureAt).toLocaleDateString()
+              : "—"}
+          </Text>
+        </div>
+        <div className="flex justify-between items-center">
+          <Text level="1.1" weight="0">
             {t("pages.trip.checkout.fields.passengers")}
           </Text>
           <Text level="1.1">{fields.passengers}</Text>
