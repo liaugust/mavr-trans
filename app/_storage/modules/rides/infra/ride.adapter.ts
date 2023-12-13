@@ -57,6 +57,7 @@ export class RideAdapter extends BasePrismaAdapter {
         carName: car.name,
         number: data.number,
         categoryId: car.category.id,
+        departureAt: data.departureAt,
         categoryName: car.category.name,
         userId: data.userId,
         passengers: data.passengers,

@@ -53,6 +53,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
     });
 
   const onSubmit = handleSubmit(async (values) => {
+    console.log("values", values);
     try {
       await createRide({
         phone: values.phone,
