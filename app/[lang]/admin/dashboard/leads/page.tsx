@@ -28,7 +28,6 @@ export default async function LeadsPage() {
   const lang = getLanguage();
   const response = await fetch(url, {
     next: { tags: ["rides"] },
-    cache: "no-store",
   });
   const rides: RideEntity[] = await response.json();
 

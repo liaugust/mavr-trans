@@ -11,7 +11,7 @@ import {
 } from "../_storage";
 import { getToken } from "./helper";
 import { getLanguage } from "../_i18n/helper";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 // import { revalidatePath } from "next/cache";
 
 export const getUserRides = async () => {
@@ -52,6 +52,7 @@ export const createRide = async (
   const lang = getLanguage();
   const url = `${host}/${lang}/admin/dashboard/leads`;
   revalidatePath(url);
+  revalidateTag("rides");
 
   return ride;
 };
