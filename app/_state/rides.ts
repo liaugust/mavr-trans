@@ -51,8 +51,9 @@ export const createRide = async (
 
   const lang = getLanguage();
   const url = `${host}/${lang}/admin/dashboard/leads`;
-  revalidatePath(url);
+  revalidatePath("/", "layout");
   revalidateTag("rides");
+  revalidatePath(url);
 
   return ride;
 };
