@@ -10,20 +10,22 @@ import {
   UpdateCarUseCase,
 } from "../_storage";
 import { del, put } from "@vercel/blob";
+import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export const getCar = async (carId: number): Promise<CarEntity | null> => {
   const getCarUseCase = new GetCarUseCase();
   return getCarUseCase.handle({ id: carId });
 };
 
-export const getCars = async (): Promise<CarEntity[]> => {
-  const getCarsUseCase = new GetCarsUseCase();
-  return getCarsUseCase.handle();
-};
-
 export const toggleCarActive = async (carId: number) => {
   const toggleCategoryActive = new ToggleCarActiveUseCase();
-  return toggleCategoryActive.handle({ carId });
+  const car = await toggleCategoryActive.handle({ carId });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return car;
 };
 
 export const deleteCar = async (carId: number) => {
@@ -36,7 +38,12 @@ export const deleteCar = async (carId: number) => {
     await del(categoryToDelete.image);
   }
 
-  return deleteCarUseCase.handle({ id: carId });
+  const car = await deleteCarUseCase.handle({ id: carId });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return car;
 };
 
 export const createCar = async (formData: FormData) => {
@@ -69,13 +76,18 @@ export const createCar = async (formData: FormData) => {
 
   const { url } = await put(filePath, file, { access: "public" });
 
-  return createCarUseCase.handle({
+  const car = await createCarUseCase.handle({
     categoryId: data.categoryId,
     seats: data.seats,
     name: data.name,
     active: true,
     image: url,
   });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return car;
 };
 
 export const updateCar = async (carId: number, formData: FormData) => {
@@ -120,10 +132,15 @@ export const updateCar = async (carId: number, formData: FormData) => {
     url = result.url;
   }
 
-  return updateCarUseCase.handle(carId, {
+  const updatedCar = await updateCarUseCase.handle(carId, {
     categoryId: data.categoryId,
     seats: data.seats,
     name: data.name,
     image: url,
   });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return updatedCar;
 };

@@ -4,14 +4,15 @@ import { FC, useCallback, useState } from "react";
 import { ManageCar } from "../ManageCar";
 import { Button } from "../Button";
 import { createCar } from "@/app/_state/cars";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { WithLang } from "@/app/types";
 import { useTranslation } from "@/app/_i18n/client";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
-interface CreateCarProps extends WithLang {}
+interface CreateCarProps extends WithLang {
+  categories: CategoryEntity[];
+}
 
-export const CreateCar: FC<CreateCarProps> = ({ lang }) => {
-  const { add } = useStore();
+export const CreateCar: FC<CreateCarProps> = ({ lang, categories }) => {
   const { t } = useTranslation(lang);
   const [open, setOpen] = useState(false);
   const onClose = useCallback(() => setOpen(false), []);
@@ -19,11 +20,10 @@ export const CreateCar: FC<CreateCarProps> = ({ lang }) => {
 
   const onSubmit = useCallback(
     async (formData: FormData) => {
-      const car = await createCar(formData);
-      if (car) add("cars", car);
+      await createCar(formData);
       onClose();
     },
-    [onClose, add]
+    [onClose]
   );
 
   return (
@@ -32,6 +32,7 @@ export const CreateCar: FC<CreateCarProps> = ({ lang }) => {
         <ManageCar
           lang={lang}
           onClose={onClose}
+          categories={categories}
           title={t("admin.pages.settings.cars.form.title")}
           onSubmitHandler={onSubmit}
         />

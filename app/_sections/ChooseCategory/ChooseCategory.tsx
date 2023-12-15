@@ -1,18 +1,29 @@
-"use client";
-
 import { Title } from "@/app/_components/Typography";
 import { FC } from "react";
 import { Category } from "./Category";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import Link from "next/link";
-import { useTranslation } from "@/app/_i18n/client";
+import { useTranslation } from "@/app/_i18n";
 import { WithLang } from "@/app/types";
+import { headers } from "next/headers";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
 interface ChooseCategoryProps extends WithLang {}
 
-const ChooseCategory: FC<ChooseCategoryProps> = ({ lang }) => {
-  const { t } = useTranslation(lang);
-  const { categories } = useStore();
+const ChooseCategory: FC<ChooseCategoryProps> = async () => {
+  const { t } = await useTranslation();
+
+  const baseHost = headers().get("host");
+  const host =
+    baseHost === "localhost:3000"
+      ? "https://localhost:3000"
+      : "https://mavrtrans.com";
+
+  const url = `${host}/api/categories`;
+
+  const response = await fetch(url, {
+    next: { tags: ["categories"] },
+  });
+  const categories: CategoryEntity[] = await response.json();
 
   return (
     <section className="pt-20 lg:pt-[60px] lg:pb-20 lg:bg-[#E2E2E2]">

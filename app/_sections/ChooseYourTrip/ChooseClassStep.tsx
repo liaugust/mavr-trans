@@ -1,25 +1,26 @@
 import { EntityCard } from "@/app/_components/EntityCard";
 import { Title } from "@/app/_components/Typography";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { FC, useMemo } from "react";
 import { FormFields } from "./request-ride-schema";
 import { WithLang } from "@/app/types";
 import { useTranslation } from "@/app/_i18n/client";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
 type Class = FormFields["category"];
 
 interface ChooseClassStepProps extends WithLang {
   value: Class | null;
   onChange: (value: Class) => void;
+  categories: CategoryEntity[];
 }
 
 export const ChooseClassStep: FC<ChooseClassStepProps> = ({
   lang,
   value,
   onChange,
+  categories,
 }) => {
   const { t } = useTranslation(lang);
-  const { categories } = useStore();
 
   const activeCategories = useMemo(
     () => categories.filter((c) => c.active),

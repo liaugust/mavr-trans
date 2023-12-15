@@ -1,34 +1,33 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Header } from "../../_components/Header";
-import { Footer } from "../../_components/Footer";
+import { Header } from "../_components/Header";
+import { Footer } from "../_components/Footer";
 import { getServerSession } from "next-auth";
 import { AuthContext } from "./authcontext";
 import { options } from "@/config/options";
-import { StoreProvider } from "./store-provider";
 import { languages } from "@/app/_i18n/settings";
 
 const gotham = localFont({
   src: [
     {
-      path: "../../_fonts/gothampro.ttf",
+      path: "../_fonts/gothampro.ttf",
       weight: "400",
     },
     {
-      path: "../../_fonts/gothampro_black.ttf",
+      path: "../_fonts/gothampro_black.ttf",
       weight: "900",
     },
     {
-      path: "../../_fonts/gothampro_bold.ttf",
+      path: "../_fonts/gothampro_bold.ttf",
       weight: "700",
     },
     {
-      path: "../../_fonts/gothampro_medium.ttf",
+      path: "../_fonts/gothampro_medium.ttf",
       weight: "500",
     },
     {
-      path: "../../_fonts/gothampro_light.ttf",
+      path: "../_fonts/gothampro_light.ttf",
       weight: "300",
     },
   ],
@@ -62,9 +61,7 @@ export default async function RootLayout({
         </head>
         <body className={`${gotham.variable} font-sans bg-neutral-100 `}>
           <Header lang={lang} />
-          <main>
-            <StoreProvider>{children}</StoreProvider>
-          </main>
+          <main>{children}</main>
           <Footer />
         </body>
       </html>

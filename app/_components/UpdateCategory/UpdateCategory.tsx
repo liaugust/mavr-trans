@@ -6,14 +6,12 @@ import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 import { Caption } from "../Typography";
 import { WithLang } from "@/app/types";
 import { updateCategory } from "@/app/_state/categories";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 
 interface UpdateCategoryProps extends WithLang {
   category: CategoryEntity;
 }
 
 export const UpdateCategory: FC<UpdateCategoryProps> = ({ lang, category }) => {
-  const { update } = useStore();
   const [open, setOpen] = useState(false);
 
   const onClose = useCallback(() => setOpen(false), []);
@@ -21,15 +19,10 @@ export const UpdateCategory: FC<UpdateCategoryProps> = ({ lang, category }) => {
 
   const onSubmit = useCallback(
     async (formData: FormData) => {
-      const newCategory = await updateCategory(category.id, formData);
-      if (newCategory) {
-        update("categories", newCategory);
-        setOpen(false);
-      }
-
+      await updateCategory(category.id, formData);
       setOpen(false);
     },
-    [category.id, update]
+    [category.id]
   );
 
   return (

@@ -1,13 +1,14 @@
 import { EntityCard } from "@/app/_components/EntityCard";
 import { Title } from "@/app/_components/Typography";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { FC, useMemo } from "react";
 import { WithLang } from "@/app/types";
 import { useTranslation } from "@/app/_i18n/client";
+import { CarEntity } from "@/app/_storage/modules/cars/core";
 
 type Car = { id: number; name: string };
 
 interface ChooseCarStepProps extends WithLang {
+  cars: CarEntity[];
   value: Car | null;
   passengers: number;
   onChange: (value: Car) => void;
@@ -18,9 +19,9 @@ export const ChooseCarStep: FC<ChooseCarStepProps> = ({
   value,
   passengers,
   onChange,
+  cars,
 }) => {
   const { t } = useTranslation(lang);
-  const { cars } = useStore();
 
   const carsWithPassengers = useMemo(
     () => cars.filter((car) => car.seats >= passengers),

@@ -1,6 +1,6 @@
 "use client";
 import { Heading, Title } from "@/app/_components/Typography";
-import { useProfile } from "@/app/(routes)/[lang]/profile-context";
+import { useProfile } from "@/app/[lang]/profile-context";
 import { FC } from "react";
 import { useTranslation } from "@/app/_i18n/client";
 import { WithLang } from "@/app/types";

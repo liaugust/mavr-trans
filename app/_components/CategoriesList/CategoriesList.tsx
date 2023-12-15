@@ -1,35 +1,29 @@
-"use client";
-
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import { Heading } from "../Typography";
 import { EntityList } from "../EntityList";
 import { deleteCategory, toggleCategoryActive } from "@/app/_state/categories";
 import { CreateCategory } from "../CreateCategory";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
-import { useTranslation } from "@/app/_i18n/client";
+import { useTranslation } from "@/app/_i18n";
 import { WithLang } from "@/app/types";
+import { headers } from "next/headers";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
 interface CategoriesListProps extends WithLang {}
 
-export const CategoriesList: FC<CategoriesListProps> = ({ lang }) => {
-  const { t } = useTranslation(lang);
-  const { categories, remove, toggle } = useStore();
+export const CategoriesList: FC<CategoriesListProps> = async ({ lang }) => {
+  const baseHost = headers().get("host");
+  const host =
+    baseHost === "localhost:3000"
+      ? "https://localhost:3000"
+      : "https://mavrtrans.com";
 
-  const onDeleteCategory = useCallback(
-    async (categoryId: number) => {
-      await deleteCategory(categoryId);
-      remove("categories", categoryId);
-    },
-    [remove]
-  );
+  const url = `${host}/api/categories`;
 
-  const onToggleCategory = useCallback(
-    async (categoryId: number) => {
-      await toggleCategoryActive(categoryId);
-      toggle("categories", categoryId);
-    },
-    [toggle]
-  );
+  const { t } = await useTranslation();
+  const response = await fetch(url, {
+    next: { tags: ["categories"] },
+  });
+  const categories: CategoryEntity[] = await response.json();
 
   return (
     <div className="rounded-[10px] overflow-hidden">
@@ -41,10 +35,11 @@ export const CategoriesList: FC<CategoriesListProps> = ({ lang }) => {
 
       <EntityList
         lang={lang}
+        categories={[]}
         kind="categories"
         entities={categories}
-        onDeleteEntity={onDeleteCategory}
-        onHideEntity={onToggleCategory}
+        onDeleteEntity={deleteCategory}
+        onHideEntity={toggleCategoryActive}
       />
 
       <CreateCategory lang={lang} />

@@ -9,8 +9,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import { RideEntity } from "../../_storage/modules/rides/core";
-import { getUserRides } from "../../_state/rides";
+import { RideEntity } from "../_storage/modules/rides/core";
+import { getUserRides } from "../_state/rides";
 
 interface StoreProviderProps extends PropsWithChildren {}
 

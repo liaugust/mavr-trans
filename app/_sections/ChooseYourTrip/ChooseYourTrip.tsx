@@ -17,8 +17,17 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "@/app/_i18n/client";
 import { WithLang } from "@/app/types";
 import { useSession } from "next-auth/react";
+import { CarEntity } from "@/app/_storage/modules/cars/core";
+import { OptionEntity } from "@/app/_storage/modules/options/core";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
-export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
+export const ChooseYourTrip: FC<
+  WithLang & {
+    cars: CarEntity[];
+    options: OptionEntity[];
+    categories: CategoryEntity[];
+  }
+> = ({ lang, cars, options, categories }) => {
   const { t } = useTranslation(lang);
   const { data, update } = useSession();
   const [step, setStep] = useState(0);
@@ -53,7 +62,6 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
     });
 
   const onSubmit = handleSubmit(async (values) => {
-    console.log("values", values);
     try {
       await createRide({
         phone: values.phone,
@@ -148,6 +156,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                     lang={lang}
                     value={value}
                     onChange={onChange}
+                    categories={categories}
                   />
                 )}
               />
@@ -172,6 +181,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                 name="car"
                 render={({ field: { value, onChange } }) => (
                   <ChooseCarStep
+                    cars={cars}
                     lang={lang}
                     value={value}
                     onChange={onChange}
@@ -188,6 +198,7 @@ export const ChooseYourTrip: FC<WithLang> = ({ lang }) => {
                   <ChooseOptionStep
                     lang={lang}
                     value={value}
+                    options={options}
                     onChange={onChange}
                   />
                 )}

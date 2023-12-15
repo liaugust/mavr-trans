@@ -1,3 +1,5 @@
+"use client";
+
 import { HideEntity } from "../HideEntity";
 import { DeleteEntity } from "../DeleteEntity";
 import { Text } from "../Typography";
@@ -19,14 +21,16 @@ interface Option {
 interface EntityListProps<T> extends WithLang {
   entities: T[];
   kind: "cars" | "categories" | "options";
-  onHideEntity: (entityId: number) => Promise<void>;
-  onDeleteEntity: (entityId: number) => Promise<void>;
+  categories: CategoryEntity[];
+  onHideEntity: (entityId: number) => Promise<any>;
+  onDeleteEntity: (entityId: number) => Promise<any>;
 }
 
 export const EntityList = <T extends Option>({
   lang,
   kind,
   entities,
+  categories,
   onHideEntity,
   onDeleteEntity,
 }: EntityListProps<T>) => {
@@ -68,7 +72,11 @@ export const EntityList = <T extends Option>({
               />
             )}
             {isCars && (
-              <UpdateCar lang={lang} car={entity as unknown as CarEntity} />
+              <UpdateCar
+                categories={categories}
+                lang={lang}
+                car={entity as unknown as CarEntity}
+              />
             )}
 
             <DeleteEntity

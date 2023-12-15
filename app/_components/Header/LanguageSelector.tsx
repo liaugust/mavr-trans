@@ -1,3 +1,5 @@
+"use client";
+
 import { WithLang } from "@/app/types";
 import ReactSelect, { CSSObjectWithLabel, SingleValue } from "react-select";
 import { FC, useCallback, useId, useMemo } from "react";

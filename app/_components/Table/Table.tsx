@@ -1,4 +1,4 @@
-import { useTranslation } from "@/app/_i18n/client";
+import { useTranslation } from "@/app/_i18n";
 import { WithLang } from "@/app/types";
 import { FC } from "react";
 
@@ -7,8 +7,8 @@ interface TableProps extends WithLang {
   values: string[][];
 }
 
-export const Table: FC<TableProps> = ({ values, columns, lang }) => {
-  const { t } = useTranslation(lang);
+export const Table: FC<TableProps> = async ({ values, columns, lang }) => {
+  const { t } = await useTranslation(lang);
 
   return (
     <div className="overflow-x-scroll">

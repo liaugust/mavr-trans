@@ -8,7 +8,6 @@ import { initialValues } from "./constants";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { CategoryEntity } from "@/app/_storage/modules/categories/core";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import {
   ACCEPTED_IMAGE_TYPES,
   CarSchema,
@@ -20,8 +19,9 @@ import { useTranslation } from "@/app/_i18n/client";
 interface ManageCarProps extends WithLang {
   title: string;
   onClose: () => void;
+  categories: CategoryEntity[];
   defaultValues?: Omit<CarSchema, "files">;
-  onSubmitHandler: (formData: FormData) => Promise<void>;
+  onSubmitHandler: (formData: FormData) => Promise<any>;
 }
 
 const getOptionLabel = (option: unknown) => {
@@ -36,11 +36,11 @@ export const ManageCar: FC<ManageCarProps> = ({
   lang,
   title,
   onClose,
+  categories,
   onSubmitHandler,
   defaultValues = initialValues,
 }) => {
   const { t } = useTranslation(lang);
-  const { categories } = useStore();
   const { control, handleSubmit, formState } = useForm<CarSchema>({
     defaultValues: {
       categoryId: defaultValues.categoryId,

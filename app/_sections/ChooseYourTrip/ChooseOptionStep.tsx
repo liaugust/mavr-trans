@@ -1,24 +1,25 @@
 import { Card } from "@/app/_components/Card";
 import { Heading, Title } from "@/app/_components/Typography";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { FC } from "react";
 import { WithLang } from "@/app/types";
 import { useTranslation } from "@/app/_i18n/client";
+import { OptionEntity } from "@/app/_storage/modules/options/core";
 
 type Option = { id: number; name: string };
 
 interface ChooseOptionStepProps extends WithLang {
   value: Option | null;
+  options: OptionEntity[];
   onChange: (value: Option | null) => void;
 }
 
 export const ChooseOptionStep: FC<ChooseOptionStepProps> = ({
   lang,
   value,
+  options,
   onChange,
 }) => {
   const { t } = useTranslation(lang);
-  const { options } = useStore();
 
   return (
     <>

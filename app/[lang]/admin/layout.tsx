@@ -4,7 +4,6 @@ import { options } from "@/config/options";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { PropsWithChildren } from "react";
-import { AdminProvider } from "./admin-provider";
 
 interface AdminLayoutProps extends PropsWithChildren {
   params: WithLang;
@@ -21,9 +20,9 @@ export default async function AdminLayout({
   }
 
   return (
-    <AdminProvider lang={params.lang}>
+    <>
       <Sidebar lang={params.lang} />
       {children}
-    </AdminProvider>
+    </>
   );
 }

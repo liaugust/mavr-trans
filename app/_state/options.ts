@@ -1,31 +1,31 @@
 "use server";
 
-import {
-  OptionEntity,
-  OptionSchema,
-  optionSchema,
-} from "../_storage/modules/options/core";
+import { OptionSchema, optionSchema } from "../_storage/modules/options/core";
 import {
   CreateOptionUseCase,
   DeleteOptionUseCase,
-  GetOptionsUseCase,
   ToggleOptionActiveUseCase,
   UpdateOptionUseCase,
 } from "../_storage";
-
-export const getOptions = async (): Promise<OptionEntity[]> => {
-  const getOptionsUseCase = new GetOptionsUseCase();
-  return getOptionsUseCase.handle();
-};
+import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export const toggleOptionActive = async (optionId: number) => {
   const toggleOptionActive = new ToggleOptionActiveUseCase();
-  return toggleOptionActive.handle({ optionId });
+  const option = await toggleOptionActive.handle({ optionId });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return option;
 };
 
 export const deleteOption = async (optionId: number) => {
   const deleteOptionUseCase = new DeleteOptionUseCase();
-  return deleteOptionUseCase.handle({ id: optionId });
+  await deleteOptionUseCase.handle({ id: optionId });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
 };
 
 export const createOption = async (values: OptionSchema) => {
@@ -36,12 +36,22 @@ export const createOption = async (values: OptionSchema) => {
 
   const { data } = safeParsedBody;
 
-  return createOptionUseCase.handle({
+  const option = await createOptionUseCase.handle({
     name: data.name,
   });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return option;
 };
 
 export const updateOption = async (optionId: number, input: OptionSchema) => {
   const updateOptionUseCase = new UpdateOptionUseCase();
-  return updateOptionUseCase.handle(optionId, input);
+  const option = await updateOptionUseCase.handle(optionId, input);
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return option;
 };

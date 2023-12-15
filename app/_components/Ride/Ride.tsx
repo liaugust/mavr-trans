@@ -22,7 +22,11 @@ export const Ride: FC<RideProps> = ({ ride }) => {
       <td className="py-[10px] px-[6px]">{options}</td>
       <td className="py-[10px] px-[6px]">{ride.total}</td>
       <td className="">
-        <Confirm id={ride.id} status={ride.status} />
+        <Confirm
+          departureAt={ride.departureAt}
+          id={ride.id}
+          status={ride.status}
+        />
       </td>
     </tr>
   );

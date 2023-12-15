@@ -13,22 +13,29 @@ import {
   UpdateCategoryUseCase,
 } from "../_storage";
 import { del, put } from "@vercel/blob";
+import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export const getCategory = async (
   categoryId: number
 ): Promise<CategoryEntity | null> => {
   const getCategoryUseCase = new GetCategoryUseCase();
-  return getCategoryUseCase.handle({ id: categoryId });
+  const category = await getCategoryUseCase.handle({ id: categoryId });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return category;
 };
 
 export const toggleCategoryActive = async (categoryId: number) => {
   const toggleCategoryActive = new ToggleCategoryActiveUseCase();
-  return toggleCategoryActive.handle({ categoryId });
-};
+  const category = await toggleCategoryActive.handle({ categoryId });
 
-export const getCategories = async (): Promise<CategoryEntity[]> => {
-  const getCategoriesUseCase = new GetCategoriesUseCase();
-  return getCategoriesUseCase.handle();
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return category;
 };
 
 export const deleteCategory = async (categoryId: number) => {
@@ -42,6 +49,9 @@ export const deleteCategory = async (categoryId: number) => {
   }
 
   await deleteCategoryUseCase.handle({ id: categoryId });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
 };
 
 export const createCategory = async (formData: FormData) => {
@@ -68,13 +78,18 @@ export const createCategory = async (formData: FormData) => {
 
   const { url } = await put(filePath, file, { access: "public" });
 
-  return createCategoryUseCase.handle({
+  const category = await createCategoryUseCase.handle({
     maximumSeats: data.maximumSeats,
     coefficient: data.coefficient,
     name: data.name,
     active: true,
     image: url,
   });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return category;
 };
 
 export const updateCategory = async (
@@ -122,10 +137,15 @@ export const updateCategory = async (
     url = result.url;
   }
 
-  return updateCategoryUseCase.handle(categoryId, {
+  const createdCategory = await updateCategoryUseCase.handle(categoryId, {
     coefficient: data.coefficient,
     maximumSeats: data.maximumSeats,
     name: data.name,
     image: url,
   });
+
+  const referer = headers().get("referer");
+  revalidatePath(referer as string);
+
+  return createdCategory;
 };

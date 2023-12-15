@@ -5,15 +5,15 @@ import { CarEntity } from "@/app/_storage/modules/cars/core";
 import { ManageCar } from "../ManageCar";
 import { Caption } from "../Typography";
 import { updateCar } from "@/app/_state/cars";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { WithLang } from "@/app/types";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
 interface UpdateCarProps extends WithLang {
   car: CarEntity;
+  categories: CategoryEntity[];
 }
 
-export const UpdateCar: FC<UpdateCarProps> = ({ car, lang }) => {
-  const { update } = useStore();
+export const UpdateCar: FC<UpdateCarProps> = ({ car, categories, lang }) => {
   const [open, setOpen] = useState(false);
 
   const onClose = useCallback(() => setOpen(false), []);
@@ -21,13 +21,10 @@ export const UpdateCar: FC<UpdateCarProps> = ({ car, lang }) => {
 
   const onSubmit = useCallback(
     async (formData: FormData) => {
-      const newCar = await updateCar(car.id, formData);
-      if (newCar) {
-        update("cars", newCar);
-        setOpen(false);
-      }
+      await updateCar(car.id, formData);
+      setOpen(false);
     },
-    [car.id, update]
+    [car.id]
   );
 
   return (
@@ -38,6 +35,7 @@ export const UpdateCar: FC<UpdateCarProps> = ({ car, lang }) => {
           onClose={onClose}
           title="Update car"
           defaultValues={car}
+          categories={categories}
           onSubmitHandler={onSubmit}
         />
       )}

@@ -7,6 +7,7 @@ import type {
   ConfirmRideUseCaseInput,
   CreateRideUseCaseInput,
   GetUserRidesUseCaseInput,
+  RejectRideUseCaseInput,
 } from "../use-cases";
 import { prisma } from "@/prisma";
 
@@ -20,6 +21,25 @@ export class RideAdapter extends BasePrismaAdapter {
       where: { id: data.rideId },
       data: {
         confirmedAt: new Date(),
+        status: "active",
+      },
+      include: {
+        options: true,
+        car: true,
+        user: true,
+        waypoints: { orderBy: { order: "asc" } },
+      },
+    });
+    console.log("RIDE", ride);
+
+    return RideMapper.toRideEntity(ride);
+  }
+
+  async rejectRide(data: RejectRideUseCaseInput): Promise<RideEntity> {
+    const ride = await this.prisma.ride.update({
+      where: { id: data.rideId },
+      data: {
+        status: "done",
       },
       include: {
         options: true,

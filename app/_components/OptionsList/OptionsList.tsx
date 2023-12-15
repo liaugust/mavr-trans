@@ -1,32 +1,29 @@
-"use client";
-import { FC, useCallback } from "react";
+// "use client";
+import { FC } from "react";
 import { Heading } from "../Typography";
 import { EntityList } from "../EntityList";
 import { deleteOption, toggleOptionActive } from "@/app/_state/options";
 import { CreateOption } from "../CreateOption";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { WithLang } from "@/app/types";
-import { useTranslation } from "@/app/_i18n/client";
+import { useTranslation } from "@/app/_i18n";
+import { headers } from "next/headers";
+import { OptionEntity } from "@/app/_storage/modules/options/core";
+// import { useTranslation } from "@/app/_i18n/client";
 
-export const OptionsList: FC<WithLang> = ({ lang }) => {
-  const { t } = useTranslation(lang);
-  const { options, remove, toggle } = useStore();
+export const OptionsList: FC<WithLang> = async ({ lang }) => {
+  const baseHost = headers().get("host");
+  const host =
+    baseHost === "localhost:3000"
+      ? "https://localhost:3000"
+      : "https://mavrtrans.com";
 
-  const onDeleteOption = useCallback(
-    async (id: number) => {
-      await deleteOption(id);
-      remove("options", id);
-    },
-    [remove]
-  );
+  const url = `${host}/api/options`;
 
-  const onToggleOption = useCallback(
-    async (id: number) => {
-      await toggleOptionActive(id);
-      toggle("options", id);
-    },
-    [toggle]
-  );
+  const { t } = await useTranslation();
+  const response = await fetch(url, {
+    next: { tags: ["options"] },
+  });
+  const options: OptionEntity[] = await response.json();
 
   return (
     <div className="rounded-[10px] overflow-hidden">
@@ -40,8 +37,9 @@ export const OptionsList: FC<WithLang> = ({ lang }) => {
         lang={lang}
         kind="options"
         entities={options}
-        onDeleteEntity={onDeleteOption}
-        onHideEntity={onToggleOption}
+        categories={[]}
+        onDeleteEntity={deleteOption}
+        onHideEntity={toggleOptionActive}
       />
 
       <CreateOption lang={lang} />

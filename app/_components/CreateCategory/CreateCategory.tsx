@@ -4,12 +4,10 @@ import { FC, useCallback, useState } from "react";
 import { ManageCategory } from "../ManageCategory";
 import { Button } from "../Button";
 import { createCategory } from "@/app/_state/categories";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { WithLang } from "@/app/types";
 import { useTranslation } from "@/app/_i18n/client";
 
 export const CreateCategory: FC<WithLang> = ({ lang }) => {
-  const { add } = useStore();
   const { t } = useTranslation(lang);
   const [open, setOpen] = useState(false);
   const onClose = useCallback(() => setOpen(false), []);
@@ -17,11 +15,10 @@ export const CreateCategory: FC<WithLang> = ({ lang }) => {
 
   const onSubmit = useCallback(
     async (formData: FormData) => {
-      const category = await createCategory(formData);
-      if (category) add("categories", category);
+      await createCategory(formData);
       onClose();
     },
-    [onClose, add]
+    [onClose]
   );
 
   return (

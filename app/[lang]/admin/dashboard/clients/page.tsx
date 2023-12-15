@@ -1,6 +1,7 @@
-"use client";
 import { Table } from "@/app/_components/Table";
-import { useAdminContext } from "../../admin-provider";
+import { getLanguage } from "@/app/_i18n/helper";
+import { UserEntity } from "@/app/_storage/modules/users/core";
+import { headers } from "next/headers";
 
 const columns = [
   "admin.pages.clients.table_columns.name",
@@ -9,8 +10,18 @@ const columns = [
   "admin.pages.clients.table_columns.confirmed_transfer",
 ];
 
-export default function ClientsPage() {
-  const { leads, lang } = useAdminContext();
+export default async function ClientsPage() {
+  const baseHost = headers().get("host");
+  const host =
+    baseHost === "localhost:3000"
+      ? "https://localhost:3000"
+      : "https://mavrtrans.com";
+
+  const lang = getLanguage();
+  const response = await fetch(`${host}/api/users`, {
+    next: { tags: ["users"] },
+  });
+  const leads: UserEntity[] = await response.json();
 
   return (
     <div className="py-5">

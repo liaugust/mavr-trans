@@ -8,17 +8,11 @@ import {
 import {
   CreateUserUseCase,
   GetUserUseCase,
-  GetUsersUseCase,
   ResetUserPasswordUseCase,
 } from "../_storage";
 import { compare, hash } from "bcrypt";
 import { getToken } from "./helper";
 import { ChangePasswordSchema } from "../_components/ChangePasswordModal/change-password-schema";
-
-export const getUsers = async () => {
-  const getUsersUseCase = new GetUsersUseCase();
-  return getUsersUseCase.handle();
-};
 
 export const getUser = async (email: string): Promise<UserEntity | null> => {
   const getUserUseCase = new GetUserUseCase();

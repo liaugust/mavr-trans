@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import { LanguageSelector } from "./LanguageSelector";
 import { signOut, useSession } from "next-auth/react";

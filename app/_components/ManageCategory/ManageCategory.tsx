@@ -18,7 +18,7 @@ interface ManageCategoryProps extends WithLang {
   title: string;
   onClose: () => void;
   defaultValues?: CategorySchema;
-  onSubmitHandler: (formData: FormData) => Promise<void>;
+  onSubmitHandler: (formData: FormData) => Promise<any>;
 }
 
 export const ManageCategory: FC<ManageCategoryProps> = ({

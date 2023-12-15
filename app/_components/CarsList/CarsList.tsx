@@ -1,33 +1,30 @@
-"use client";
-
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import { Heading } from "../Typography";
 import { EntityList } from "../EntityList";
 import { CreateCar } from "../CreateCar";
-import { useStore } from "@/app/(routes)/[lang]/store-provider";
 import { deleteCar, toggleCarActive } from "@/app/_state/cars";
 import { WithLang } from "@/app/types";
-import { useTranslation } from "@/app/_i18n/client";
+import { useTranslation } from "@/app/_i18n";
+import { headers } from "next/headers";
+import { CarEntity } from "@/app/_storage/modules/cars/core";
+import { CategoryEntity } from "@/app/_storage/modules/categories/core";
 
-export const CarsList: FC<WithLang> = ({ lang }) => {
-  const { t } = useTranslation(lang);
-  const { cars, remove, toggle } = useStore();
+export const CarsList: FC<WithLang> = async ({ lang }) => {
+  const baseHost = headers().get("host");
+  const host =
+    baseHost === "localhost:3000"
+      ? "https://localhost:3000"
+      : "https://mavrtrans.com";
 
-  const onDeleteCar = useCallback(
-    async (id: number) => {
-      await deleteCar(id);
-      remove("cars", id);
-    },
-    [remove]
-  );
-
-  const onToggleCar = useCallback(
-    async (id: number) => {
-      await toggleCarActive(id);
-      toggle("cars", id);
-    },
-    [toggle]
-  );
+  const { t } = await useTranslation();
+  const carsResponse = await fetch(`${host}/api/cars`, {
+    next: { tags: ["cars"] },
+  });
+  const cars: CarEntity[] = await carsResponse.json();
+  const categoriesResponse = await fetch(`${host}/api/categories`, {
+    next: { tags: ["categories"] },
+  });
+  const categories: CategoryEntity[] = await categoriesResponse.json();
 
   return (
     <div className="rounded-[10px] overflow-hidden">
@@ -41,11 +38,12 @@ export const CarsList: FC<WithLang> = ({ lang }) => {
         lang={lang}
         kind="cars"
         entities={cars}
-        onHideEntity={onToggleCar}
-        onDeleteEntity={onDeleteCar}
+        categories={categories}
+        onHideEntity={toggleCarActive}
+        onDeleteEntity={deleteCar}
       />
 
-      <CreateCar lang={lang} />
+      <CreateCar categories={categories} lang={lang} />
     </div>
   );
 };
