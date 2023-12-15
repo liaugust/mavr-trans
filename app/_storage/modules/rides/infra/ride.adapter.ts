@@ -30,7 +30,6 @@ export class RideAdapter extends BasePrismaAdapter {
         waypoints: { orderBy: { order: "asc" } },
       },
     });
-    console.log("RIDE", ride);
 
     return RideMapper.toRideEntity(ride);
   }

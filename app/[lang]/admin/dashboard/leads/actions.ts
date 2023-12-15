@@ -9,7 +9,7 @@ export const confirmRideAction = async (id: number) => {
 
   try {
     const confirmRideUseCase = new ConfirmRideUseCase();
-    const ride = await confirmRideUseCase.handle({ rideId: id });
+    await confirmRideUseCase.handle({ rideId: id });
 
     revalidatePath(referer);
 

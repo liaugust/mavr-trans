@@ -68,7 +68,6 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({ lang }) => {
       if (lang === option.value) return;
 
       const newPathName = pathName.replace(`/${lang}`, `/${option.value}`);
-      console.log("window.location.origin", window.location.origin);
       // @ts-ignore
       window.location = window.location.origin + newPathName;
     },
