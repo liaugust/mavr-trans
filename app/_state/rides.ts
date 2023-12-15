@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 // import { headers } from "next/headers";
 import {
   CreateRideUseCase,
@@ -9,6 +10,8 @@ import {
   UpdateUserUseCase,
 } from "../_storage";
 import { getToken } from "./helper";
+import { getLanguage } from "../_i18n/helper";
+import { revalidatePath } from "next/cache";
 // import { revalidatePath } from "next/cache";
 
 export const getUserRides = async () => {
@@ -38,5 +41,17 @@ export const createRide = async (
   }
 
   const createRideUseCase = new CreateRideUseCase();
-  return createRideUseCase.handle({ ...input, userId: user.id });
+  const ride = await createRideUseCase.handle({ ...input, userId: user.id });
+
+  const baseHost = headers().get("host");
+  const host =
+    baseHost === "localhost:3000"
+      ? "https://localhost:3000"
+      : "https://mavrtrans.com";
+
+  const lang = getLanguage();
+  const url = `${host}/${lang}/admin/dashboard/leads`;
+  revalidatePath(url);
+
+  return ride;
 };
