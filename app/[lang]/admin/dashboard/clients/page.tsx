@@ -15,7 +15,7 @@ export default async function ClientsPage() {
   const host =
     baseHost === "localhost:3000"
       ? "https://localhost:3000"
-      : "https://mavrtrans.com";
+      : "https://www.mavrtrans.com";
 
   const lang = getLanguage();
   const response = await fetch(`${host}/api/users`, {

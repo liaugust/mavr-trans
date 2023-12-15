@@ -48,7 +48,7 @@ export const createRide = async (
   const host =
     baseHost === "localhost:3000"
       ? "https://localhost:3000"
-      : "https://mavrtrans.com";
+      : "https://www.mavrtrans.com";
 
   const lang = getLanguage();
   const url = `${host}/${lang}/admin/dashboard/leads`;
