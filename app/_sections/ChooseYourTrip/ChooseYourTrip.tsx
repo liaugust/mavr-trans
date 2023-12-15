@@ -63,7 +63,7 @@ export const ChooseYourTrip: FC<
 
   const onSubmit = handleSubmit(async (values) => {
     try {
-      await createRide({
+      const result = await createRide({
         phone: values.phone,
         carId: values.car.id,
         number: values.number,
@@ -80,6 +80,7 @@ export const ChooseYourTrip: FC<
           lat: w.lat,
         })),
       });
+      console.log("result", result);
 
       if (!userPhone && values.phone) {
         await update({ phone: values.phone });

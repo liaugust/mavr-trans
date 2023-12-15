@@ -24,7 +24,8 @@ export const Confirm: FC<ConfirmProps> = ({ status, id, departureAt }) => {
   const [open, setOpen] = useState<"reject" | "confirm" | null>(null);
 
   const onConfirm = useCallback(async () => {
-    await confirmRideAction(id);
+    const referer = await confirmRideAction(id);
+    console.log("referer", referer);
     setOpen(null);
   }, [id]);
 

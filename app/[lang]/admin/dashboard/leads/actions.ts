@@ -13,7 +13,7 @@ export const confirmRideAction = async (id: number) => {
 
     revalidatePath(referer);
 
-    return ride;
+    return referer;
   } catch (e: unknown) {
     console.log("ERROR from confirm ride action", e);
   }

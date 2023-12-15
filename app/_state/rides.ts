@@ -44,6 +44,7 @@ export const createRide = async (
   const ride = await createRideUseCase.handle({ ...input, userId: user.id });
 
   const baseHost = headers().get("host");
+  const referer = headers().get("referer");
   const host =
     baseHost === "localhost:3000"
       ? "https://localhost:3000"
@@ -55,5 +56,11 @@ export const createRide = async (
   revalidateTag("rides");
   revalidatePath(url);
 
-  return ride;
+  return {
+    baseHost,
+    host,
+    url,
+    referer,
+    headers: Object.fromEntries(headers().entries()),
+  };
 };
